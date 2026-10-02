@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "character.schema.json",
+  "title": "Chess Vision Character",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "name",
+    "temperament",
+    "description",
+    "enabled",
+    "rating",
+    "gameplay",
+    "persona",
+    "dialogue_policy",
+    "dialogue"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "temperament": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "enabled": { "type": "boolean" },
+    "rating": { "type": "integer", "minimum": 0 },
+    "gameplay": { "$ref": "#/$defs/gameplay" },
+    "persona": { "$ref": "#/$defs/persona" },
+    "dialogue_policy": { "$ref": "#/$defs/dialoguePolicy" },
+    "dialogue": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "$ref": "#/$defs/line" }
+      }
+    }
+  },
+  "$defs": {
+    "gameplay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weights",
+        "risk",
+        "exchange_preference",
+        "initiative",
+        "caution"
+      ],
+      "properties": {
+        "weights": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 },
+          "required": [
+            "material",
+            "activity",
+            "center",
+            "development",
+            "king_safety",
+            "tactics",
+            "plan_memory"
+          ]
+        },
+        "risk": { "type": "number", "minimum": 0 },
+        "exchange_preference": { "type": "number", "minimum": 0 },
+        "initiative": { "type": "number", "minimum": 0 },
+        "caution": { "type": "number", "minimum": 0 }
+      }
+    },
+    "persona": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "archetype",
+        "play_style",
+        "attitude_to_opponent",
+        "attitude_to_mistakes",
+        "reaction_to_pressure",
+        "attitude_to_time",
+        "voice",
+        "forbidden_traits"
+      ],
+      "properties": {
+        "archetype": { "type": "string", "minLength": 1 },
+        "play_style": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "attitude_to_opponent": { "type": "string", "minLength": 1 },
+        "attitude_to_mistakes": { "type": "string", "minLength": 1 },
+        "reaction_to_pressure": { "type": "string", "minLength": 1 },
+        "attitude_to_time": { "type": "string", "minLength": 1 },
+        "voice": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tone",
+            "sentence_style",
+            "forms_of_address",
+            "signature_words",
+            "interjections"
+          ],
+          "properties": {
+            "tone": { "$ref": "#/$defs/stringList" },
+            "sentence_style": { "type": "string", "minLength": 1 },
+            "forms_of_address": { "$ref": "#/$defs/stringList" },
+            "signature_words": { "$ref": "#/$defs/stringList" },
+            "interjections": { "$ref": "#/$defs/stringList" }
+          }
+        },
+        "forbidden_traits": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "dialoguePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "priority",
+        "default_situation",
+        "repeat_cooldown_moves",
+        "fallback",
+        "probability",
+        "optional_prefixes"
+      ],
+      "properties": {
+        "priority": { "$ref": "#/$defs/stringList" },
+        "default_situation": { "type": "string", "minLength": 1 },
+        "repeat_cooldown_moves": { "type": "integer", "minimum": 0 },
+        "fallback": { "enum": ["silent", "default_situation"] },
+        "probability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["critical_event", "ordinary_move", "quiet_endgame"],
+          "properties": {
+            "critical_event": { "$ref": "#/$defs/probability" },
+            "ordinary_move": { "$ref": "#/$defs/probability" },
+            "quiet_endgame": { "$ref": "#/$defs/probability" }
+          }
+        },
+        "optional_prefixes": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "weight", "cooldown"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+        "text": { "type": "string", "minLength": 1 },
+        "weight": { "type": "number", "exclusiveMinimum": 0 },
+        "cooldown": { "type": "integer", "minimum": 0 },
+        "min_move": { "type": "integer", "minimum": 1 },
+        "max_move": {
+          "anyOf": [
+            { "type": "integer", "minimum": 1 },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "probability": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+[Event "rated blitz game"]
+[Site "https://lichess.org/J7DenqOy"]
+[Date "2026.10.01"]
+[Round "-"]
+[White "AlexTaran"]
+[Black "mrik7"]
+[Result "0-1"]
+[GameId "J7DenqOy"]
+[UTCDate "2026.10.01"]
+[UTCTime "17:10:04"]
+[WhiteElo "1375"]
+[BlackElo "1430"]
+[WhiteRatingDiff "-5"]
+[BlackRatingDiff "+5"]
+[Variant "Standard"]
+[TimeControl "180+2"]
+[ECO "C45"]
+[Opening "Scotch Game: Schmidt Variation"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 { [%clk 0:03:00] } 1... e5 { [%clk 0:03:00] } 2. Nf3 { [%clk 0:03:01] } 2... Nc6 { [%clk 0:03:02] } 3. d4 { [%clk 0:03:02] } 3... exd4 { [%clk 0:03:03] } 4. Nxd4 { [%clk 0:03:04] } 4... Nf6 { [%clk 0:02:59] } { C45 Scotch Game: Schmidt Variation } 5. Nf3 { [%clk 0:03:04] } 5... Nxe4 { [%clk 0:02:59] } 6. Bd3 { [%clk 0:03:06] } 6... Nf6 { [%clk 0:02:57] } 7. Nc3 { [%clk 0:03:07] } 7... Be7 { [%clk 0:02:55] } 8. O-O { [%clk 0:03:04] } 8... O-O { [%clk 0:02:57] } 9. Bg5 { [%clk 0:03:02] } 9... h6 { [%clk 0:02:56] } 10. Bxf6 { [%clk 0:03:03] } 10... Bxf6 { [%clk 0:02:57] } 11. Rb1 { [%clk 0:03:03] } 11... d5 { [%clk 0:02:57] } 12. Ne2 { [%clk 0:03:02] } 12... Bg4 { [%clk 0:02:50] } 13. h3 { [%clk 0:03:00] } 13... Bxf3 { [%clk 0:02:51] } 14. gxf3 { [%clk 0:03:01] } 14... Be5 { [%clk 0:02:46] } 15. Ng3 { [%clk 0:03:02] } 15... Qh4 { [%clk 0:02:39] } 16. Kg2 { [%clk 0:03:03] } 16... Ne7 { [%clk 0:02:17] } 17. c3 { [%clk 0:02:25] } 17... Bd6 { [%clk 0:01:53] } 18. Bc2 { [%clk 0:02:17] } 18... Rad8 { [%clk 0:01:46] } 19. Qd3 { [%clk 0:02:05] } 19... Ng6 { [%clk 0:01:38] } 20. Rbe1 { [%clk 0:01:51] } 20... Nf4+ { [%clk 0:01:39] } { White resigns. } 0-1
+
+

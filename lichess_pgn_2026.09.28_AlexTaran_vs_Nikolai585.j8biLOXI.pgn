@@ -1,0 +1,24 @@
+[Event "rated blitz game"]
+[Site "https://lichess.org/j8biLOXI"]
+[Date "2026.09.28"]
+[Round "-"]
+[White "AlexTaran"]
+[Black "Nikolai585"]
+[Result "0-1"]
+[GameId "j8biLOXI"]
+[UTCDate "2026.09.28"]
+[UTCTime "20:27:18"]
+[WhiteElo "1373"]
+[BlackElo "1371"]
+[WhiteRatingDiff "-6"]
+[BlackRatingDiff "+6"]
+[Variant "Standard"]
+[TimeControl "180+2"]
+[ECO "B44"]
+[Opening "Sicilian Defense: Taimanov Variation"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 { [%clk 0:03:00] } 1... c5 { [%clk 0:03:00] } 2. Nf3 { [%clk 0:03:01] } 2... e6 { [%clk 0:03:00] } 3. d4 { [%clk 0:03:03] } 3... cxd4 { [%clk 0:03:01] } 4. Nxd4 { [%clk 0:03:04] } 4... Nc6 { [%clk 0:03:02] } { B44 Sicilian Defense: Taimanov Variation } 5. Nxc6 { [%clk 0:03:05] } 5... bxc6 { [%clk 0:03:04] } 6. Nc3 { [%clk 0:03:06] } 6... d5 { [%clk 0:03:03] } 7. Bd3 { [%clk 0:03:08] } 7... dxe4 { [%clk 0:03:04] } 8. Nxe4 { [%clk 0:03:09] } 8... Bb7 { [%clk 0:03:01] } 9. O-O { [%clk 0:03:10] } 9... Nf6 { [%clk 0:03:00] } 10. Bg5 { [%clk 0:03:10] } 10... Be7 { [%clk 0:02:59] } 11. Nxf6+ { [%clk 0:03:10] } 11... Bxf6 { [%clk 0:03:00] } 12. Bxf6 { [%clk 0:03:11] } 12... Qxf6 { [%clk 0:03:01] } 13. c3 { [%clk 0:03:09] } 13... O-O { [%clk 0:03:00] } 14. Qb3 { [%clk 0:03:10] } 14... Rab8 { [%clk 0:02:57] } 15. Rad1 { [%clk 0:03:11] } 15... c5 { [%clk 0:02:55] } 16. Bxh7+ { [%clk 0:03:11] } 16... Kxh7 { [%clk 0:02:48] } 17. Rd3 { [%clk 0:03:00] } 17... Kg8 { [%clk 0:02:27] } 18. Qc2 { [%clk 0:03:00] } 18... Qg6 { [%clk 0:02:23] } 19. f3 { [%clk 0:02:40] } 19... Ba6 { [%clk 0:02:21] } 20. c4 { [%clk 0:02:38] } 20... Rbd8 { [%clk 0:02:15] } 21. Rfd1 { [%clk 0:02:12] } 21... Rxd3 { [%clk 0:02:09] } 22. Rxd3 { [%clk 0:02:12] } 22... e5 { [%clk 0:01:58] } 23. b3 { [%clk 0:02:12] } 23... e4 { [%clk 0:01:57] } 24. fxe4 { [%clk 0:02:12] } 24... Qxe4 { [%clk 0:01:54] } 25. Rc3 { [%clk 0:02:12] } 25... Qe1# { [%clk 0:01:50] } { Black wins by checkmate. } 0-1
+
+

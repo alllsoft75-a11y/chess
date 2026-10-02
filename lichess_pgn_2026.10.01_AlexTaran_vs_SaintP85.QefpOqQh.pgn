@@ -1,0 +1,24 @@
+[Event "rated blitz game"]
+[Site "https://lichess.org/QefpOqQh"]
+[Date "2026.10.01"]
+[Round "-"]
+[White "AlexTaran"]
+[Black "SaintP85"]
+[Result "1-0"]
+[GameId "QefpOqQh"]
+[UTCDate "2026.10.01"]
+[UTCTime "13:50:22"]
+[WhiteElo "1356"]
+[BlackElo "1267"]
+[WhiteRatingDiff "+4"]
+[BlackRatingDiff "-4"]
+[Variant "Standard"]
+[TimeControl "180+2"]
+[ECO "C02"]
+[Opening "French Defense: Advance Variation, Nimzowitsch System"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 { [%clk 0:03:00] } 1... e6 { [%clk 0:03:00] } 2. Nf3 { [%clk 0:03:00] } 2... d5 { [%clk 0:03:01] } 3. e5 { [%clk 0:03:01] } 3... c5 { [%clk 0:03:02] } 4. d4 { [%clk 0:03:02] } { C02 French Defense: Advance Variation, Nimzowitsch System } 4... cxd4 { [%clk 0:03:03] } 5. Qxd4 { [%clk 0:03:04] } 5... Nc6 { [%clk 0:03:04] } 6. Bb5 { [%clk 0:03:04] } 6... Bd7 { [%clk 0:03:05] } 7. Bxc6 { [%clk 0:03:05] } 7... Bxc6 { [%clk 0:03:06] } 8. Nc3 { [%clk 0:03:07] } 8... Ne7 { [%clk 0:03:06] } 9. h4 { [%clk 0:03:03] } 9... Nf5 { [%clk 0:03:07] } 10. Qg4 { [%clk 0:02:51] } 10... g6 { [%clk 0:03:04] } 11. Bg5 { [%clk 0:02:48] } 11... Be7 { [%clk 0:03:04] } 12. O-O-O { [%clk 0:02:43] } 12... h6 { [%clk 0:03:02] } 13. Bxe7 { [%clk 0:02:43] } 13... Qxe7 { [%clk 0:03:02] } 14. Nd4 { [%clk 0:02:45] } 14... Nxd4 { [%clk 0:03:01] } 15. Rxd4 { [%clk 0:02:44] } 15... O-O { [%clk 0:02:49] } 16. f4 { [%clk 0:02:44] } 16... h5 { [%clk 0:02:50] } 17. Qf3 { [%clk 0:02:41] } 17... a5 { [%clk 0:02:48] } 18. g4 { [%clk 0:02:32] } 18... hxg4 { [%clk 0:02:37] } 19. Qxg4 { [%clk 0:02:34] } 19... Kg7 { [%clk 0:02:35] } 20. h5 { [%clk 0:02:35] } 20... Rh8 { [%clk 0:02:35] } 21. Rdd1 { [%clk 0:02:31] } 21... Rh6 { [%clk 0:02:35] } 22. hxg6 { [%clk 0:02:32] } 22... Rxh1 { [%clk 0:02:34] } 23. Rxh1 { [%clk 0:02:32] } 23... fxg6 { [%clk 0:02:35] } 24. Qh3 { [%clk 0:02:22] } 24... Rg8 { [%clk 0:02:15] } 25. Ne2 { [%clk 0:02:11] } 25... d4 { [%clk 0:02:12] } 26. Nxd4 { [%clk 0:02:11] } 26... Bxh1 { [%clk 0:02:12] } 27. Nxe6+ { [%clk 0:02:13] } 27... Qxe6 { [%clk 0:02:12] } 28. Qxe6 { [%clk 0:02:13] } { Black resigns. } 1-0
+
+

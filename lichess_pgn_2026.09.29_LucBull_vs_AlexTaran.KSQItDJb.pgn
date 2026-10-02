@@ -1,0 +1,24 @@
+[Event "rated blitz game"]
+[Site "https://lichess.org/KSQItDJb"]
+[Date "2026.09.29"]
+[Round "-"]
+[White "LucBull"]
+[Black "AlexTaran"]
+[Result "0-1"]
+[GameId "KSQItDJb"]
+[UTCDate "2026.09.29"]
+[UTCTime "19:02:55"]
+[WhiteElo "1399"]
+[BlackElo "1354"]
+[WhiteRatingDiff "-6"]
+[BlackRatingDiff "+7"]
+[Variant "Standard"]
+[TimeControl "180+2"]
+[ECO "B10"]
+[Opening "Caro-Kann Defense"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 { [%clk 0:03:00] } 1... c6 { [%clk 0:03:00] } { B10 Caro-Kann Defense } 2. Nf3 { [%clk 0:03:01] } 2... d5 { [%clk 0:03:01] } 3. e5 { [%clk 0:03:01] } 3... Bg4 { [%clk 0:03:02] } 4. d4 { [%clk 0:03:02] } 4... e6 { [%clk 0:03:02] } 5. Be2 { [%clk 0:03:03] } 5... Nd7 { [%clk 0:03:03] } 6. h3 { [%clk 0:03:03] } 6... Bh5 { [%clk 0:03:04] } 7. Bg5 { [%clk 0:03:02] } 7... Be7 { [%clk 0:03:04] } 8. Nc3 { [%clk 0:03:00] } 8... f6 { [%clk 0:03:05] } 9. Bf4 { [%clk 0:02:58] } 9... g5 { [%clk 0:02:58] } 10. Bh2 { [%clk 0:02:48] } 10... Nf8 { [%clk 0:02:56] } 11. Nxg5 { [%clk 0:02:13] } 11... Bxe2 { [%clk 0:02:55] } 12. Nxe6 { [%clk 0:02:15] } 12... Nxe6 { [%clk 0:02:56] } 13. Qxe2 { [%clk 0:02:15] } 13... Nxd4 { [%clk 0:02:54] } 14. Qd2 { [%clk 0:02:02] } 14... Ne6 { [%clk 0:02:12] } 15. O-O { [%clk 0:01:56] } 15... fxe5 { [%clk 0:02:08] } 16. Bxe5 { [%clk 0:01:56] } 16... Bf6 { [%clk 0:02:09] } 17. Rfe1 { [%clk 0:01:37] } 17... Bxe5 { [%clk 0:02:03] } 18. Rxe5 { [%clk 0:01:38] } 18... Qe7 { [%clk 0:02:05] } 19. Rae1 { [%clk 0:01:39] } 19... O-O-O { [%clk 0:02:04] } 20. Rxe6 { [%clk 0:01:39] } 20... Qc5 { [%clk 0:02:00] } 21. Qf4 { [%clk 0:01:13] } 21... h5 { [%clk 0:01:42] } 22. Qf7 { [%clk 0:00:59] } 22... Nh6 { [%clk 0:01:34] } 23. Qxh5 { [%clk 0:00:52] } 23... Rdf8 { [%clk 0:01:20] } 24. Nd1 { [%clk 0:00:32] } 24... Nf7 { [%clk 0:01:01] } 25. Qf5 { [%clk 0:00:16] } 25... Nd6 { [%clk 0:01:02] } 26. Re8+ { [%clk 0:00:11] } 26... Kc7 { [%clk 0:00:50] } 27. R8e7+ { [%clk 0:00:09] } 27... Kb6 { [%clk 0:00:46] } 28. Qd3 { [%clk 0:00:09] } 28... Ne4 { [%clk 0:00:23] } 29. R7xe4 { [%clk 0:00:09] } 29... dxe4 { [%clk 0:00:23] } 30. Rxe4 { [%clk 0:00:09] } 30... Rd8 { [%clk 0:00:18] } 31. Qb3+ { [%clk 0:00:10] } 31... Kc7 { [%clk 0:00:19] } 32. Re7+ { [%clk 0:00:11] } 32... Qxe7 { [%clk 0:00:20] } 33. Qe3 { [%clk 0:00:09] } 33... Rxd1+ { [%clk 0:00:21] } 34. Kh2 { [%clk 0:00:09] } 34... Qxe3 { [%clk 0:00:21] } 35. fxe3 { [%clk 0:00:11] } { White resigns. } 0-1
+
+

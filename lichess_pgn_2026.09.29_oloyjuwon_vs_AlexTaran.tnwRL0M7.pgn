@@ -1,0 +1,24 @@
+[Event "rated blitz game"]
+[Site "https://lichess.org/tnwRL0M7"]
+[Date "2026.09.29"]
+[Round "-"]
+[White "oloyjuwon"]
+[Black "AlexTaran"]
+[Result "1-0"]
+[GameId "tnwRL0M7"]
+[UTCDate "2026.09.29"]
+[UTCTime "15:38:13"]
+[WhiteElo "1347"]
+[BlackElo "1361"]
+[WhiteRatingDiff "+6"]
+[BlackRatingDiff "-6"]
+[Variant "Standard"]
+[TimeControl "180+2"]
+[ECO "B12"]
+[Opening "Caro-Kann Defense: Advance Variation"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 { [%clk 0:03:00] } 1... c6 { [%clk 0:03:00] } 2. d4 { [%clk 0:03:00] } 2... d5 { [%clk 0:03:01] } 3. e5 { [%clk 0:03:02] } { B12 Caro-Kann Defense: Advance Variation } 3... e6 { [%clk 0:03:02] } 4. Nf3 { [%clk 0:02:58] } 4... Nd7 { [%clk 0:03:03] } 5. Bd3 { [%clk 0:02:51] } 5... c5 { [%clk 0:03:04] } 6. c3 { [%clk 0:02:51] } 6... c4 { [%clk 0:03:01] } 7. Bc2 { [%clk 0:02:52] } 7... Be7 { [%clk 0:03:00] } 8. O-O { [%clk 0:02:49] } 8... f6 { [%clk 0:03:01] } 9. Re1 { [%clk 0:02:48] } 9... fxe5 { [%clk 0:03:02] } 10. Nxe5 { [%clk 0:02:43] } 10... Ngf6 { [%clk 0:03:01] } 11. Nd2 { [%clk 0:02:40] } 11... O-O { [%clk 0:03:01] } 12. Ndf3 { [%clk 0:02:41] } 12... Nxe5 { [%clk 0:02:59] } 13. Nxe5 { [%clk 0:02:41] } 13... Bd6 { [%clk 0:02:55] } 14. b3 { [%clk 0:02:05] } 14... Qa5 { [%clk 0:02:24] } 15. bxc4 { [%clk 0:01:45] } 15... Qxc3 { [%clk 0:02:23] } 16. Bf4 { [%clk 0:01:06] } 16... Bxe5 { [%clk 0:02:09] } 17. dxe5 { [%clk 0:01:05] } 17... Ne4 { [%clk 0:02:10] } 18. Bxe4 { [%clk 0:00:54] } 18... dxe4 { [%clk 0:02:11] } 19. Rc1 { [%clk 0:00:43] } 19... Qd3 { [%clk 0:01:52] } 20. Qg4 { [%clk 0:00:29] } 20... Qd4 { [%clk 0:01:21] } 21. Red1 { [%clk 0:00:21] } 21... Qb2 { [%clk 0:00:58] } 22. Rb1 { [%clk 0:00:13] } 22... Qxa2 { [%clk 0:00:51] } 23. Ra1 { [%clk 0:00:13] } 23... Qxc4 { [%clk 0:00:51] } 24. Bh6 { [%clk 0:00:12] } 24... Rf7 { [%clk 0:00:43] } 25. Rd8+ { [%clk 0:00:12] } 25... Rf8 { [%clk 0:00:43] } 26. Qxg7# { [%clk 0:00:11] } { White wins by checkmate. } 1-0
+
+

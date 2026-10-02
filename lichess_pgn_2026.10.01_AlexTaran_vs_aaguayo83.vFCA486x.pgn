@@ -1,0 +1,24 @@
+[Event "rated blitz game"]
+[Site "https://lichess.org/vFCA486x"]
+[Date "2026.10.01"]
+[Round "-"]
+[White "AlexTaran"]
+[Black "aaguayo83"]
+[Result "1-0"]
+[GameId "vFCA486x"]
+[UTCDate "2026.10.01"]
+[UTCTime "17:14:21"]
+[WhiteElo "1370"]
+[BlackElo "1368"]
+[WhiteRatingDiff "+5"]
+[BlackRatingDiff "-5"]
+[Variant "Standard"]
+[TimeControl "180+2"]
+[ECO "C44"]
+[Opening "Scotch Game"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 { [%clk 0:03:00] } 1... e5 { [%clk 0:03:00] } 2. Nf3 { [%clk 0:03:01] } 2... Nc6 { [%clk 0:03:01] } 3. d4 { [%clk 0:03:02] } 3... exd4 { [%clk 0:03:01] } { C44 Scotch Game } 4. Ng5 { [%clk 0:03:04] } 4... h6 { [%clk 0:03:00] } 5. Nxf7 { [%clk 0:03:04] } 5... Kxf7 { [%clk 0:03:01] } 6. Bc4+ { [%clk 0:03:05] } 6... d5 { [%clk 0:03:01] } 7. Qd2 { [%clk 0:03:06] } 7... dxc4 { [%clk 0:03:01] } 8. O-O { [%clk 0:03:06] } 8... Bc5 { [%clk 0:02:57] } 9. Qf4+ { [%clk 0:03:07] } 9... Nf6 { [%clk 0:02:55] } 10. e5 { [%clk 0:03:08] } 10... Rf8 { [%clk 0:02:52] } 11. exf6 { [%clk 0:03:10] } 11... Kg8 { [%clk 0:02:53] } 12. Qg3 { [%clk 0:02:44] } 12... Qxf6 { [%clk 0:02:47] } 13. Nd2 { [%clk 0:02:41] } 13... b5 { [%clk 0:02:43] } 14. Ne4 { [%clk 0:02:42] } 14... Qf5 { [%clk 0:02:36] } 15. Nxc5 { [%clk 0:02:41] } 15... Qxc5 { [%clk 0:02:37] } 16. Bxh6 { [%clk 0:02:43] } 16... Rf7 { [%clk 0:02:31] } 17. Bf4 { [%clk 0:02:26] } 17... Bb7 { [%clk 0:02:20] } 18. Rae1 { [%clk 0:02:22] } 18... Raf8 { [%clk 0:02:20] } 19. Bxc7 { [%clk 0:02:02] } 19... d3 { [%clk 0:02:18] } 20. cxd3 { [%clk 0:01:47] } 20... Rxf2 { [%clk 0:02:07] } 21. Rxf2 { [%clk 0:01:33] } 21... Ne5 { [%clk 0:02:06] } 22. Bxe5 { [%clk 0:01:32] } 22... cxd3 { [%clk 0:02:03] } 23. Qxg7# { [%clk 0:01:30] } { White wins by checkmate. } 1-0
+
+

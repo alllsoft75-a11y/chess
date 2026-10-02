@@ -1,0 +1,24 @@
+[Event "rated blitz game"]
+[Site "https://lichess.org/KHTsXNkt"]
+[Date "2026.10.01"]
+[Round "-"]
+[White "AlexTaran"]
+[Black "JordanAlejandro"]
+[Result "1-0"]
+[GameId "KHTsXNkt"]
+[UTCDate "2026.10.01"]
+[UTCTime "12:19:42"]
+[WhiteElo "1351"]
+[BlackElo "1353"]
+[WhiteRatingDiff "+5"]
+[BlackRatingDiff "-5"]
+[Variant "Standard"]
+[TimeControl "180+2"]
+[ECO "C42"]
+[Opening "Petrov's Defense: Three Knights Game"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 { [%clk 0:03:00] } 1... e5 { [%clk 0:03:00] } 2. Nf3 { [%clk 0:03:01] } 2... Nf6 { [%clk 0:03:01] } 3. Nc3 { [%clk 0:03:01] } { C42 Petrov's Defense: Three Knights Game } 3... Bc5 { [%clk 0:03:02] } 4. d3 { [%clk 0:02:56] } 4... O-O { [%clk 0:03:02] } 5. Be3 { [%clk 0:02:57] } 5... b6 { [%clk 0:03:02] } 6. Bxc5 { [%clk 0:02:58] } 6... bxc5 { [%clk 0:03:02] } 7. Qd2 { [%clk 0:03:00] } 7... c6 { [%clk 0:03:03] } 8. Nxe5 { [%clk 0:02:52] } 8... Bb7 { [%clk 0:02:55] } 9. d4 { [%clk 0:02:51] } 9... d6 { [%clk 0:02:54] } 10. Nc4 { [%clk 0:02:46] } 10... d5 { [%clk 0:02:52] } 11. Ne5 { [%clk 0:02:44] } 11... dxe4 { [%clk 0:02:48] } 12. Qf4 { [%clk 0:02:17] } 12... Qxd4 { [%clk 0:02:44] } 13. Rd1 { [%clk 0:02:13] } 13... Qb4 { [%clk 0:02:30] } 14. Nxf7 { [%clk 0:01:18] } 14... Rxf7 { [%clk 0:02:16] } 15. Rd8+ { [%clk 0:01:19] } 15... Rf8 { [%clk 0:02:16] } 16. Rxf8+ { [%clk 0:01:21] } 16... Kxf8 { [%clk 0:02:17] } 17. Qd6+ { [%clk 0:01:22] } 17... Kf7 { [%clk 0:02:16] } 18. Be2 { [%clk 0:00:52] } 18... Nbd7 { [%clk 0:01:46] } 19. O-O { [%clk 0:00:51] } 19... Rd8 { [%clk 0:01:43] } 20. Qc7 { [%clk 0:00:43] } 20... Qxb2 { [%clk 0:01:32] } 21. Bc4+ { [%clk 0:00:43] } 21... Nd5 { [%clk 0:00:14] } 22. Qxd8 { [%clk 0:00:41] } 22... Qxc3 { [%clk 0:00:11] } 23. Qxd7+ { [%clk 0:00:40] } 23... Kg6 { [%clk 0:00:09] } 24. Bxd5 { [%clk 0:00:41] } 24... cxd5 { [%clk 0:00:09] } 25. Qxb7 { [%clk 0:00:42] } 25... e3 { [%clk 0:00:08] } 26. Qc6+ { [%clk 0:00:41] } 26... Kh5 { [%clk 0:00:08] } 27. Qxd5+ { [%clk 0:00:42] } 27... g5 { [%clk 0:00:07] } 28. Qf3+ { [%clk 0:00:39] } 28... Kg6 { [%clk 0:00:06] } 29. fxe3 { [%clk 0:00:40] } 29... h5 { [%clk 0:00:06] } 30. Qf5+ { [%clk 0:00:41] } 30... Kg7 { [%clk 0:00:04] } 31. Qf7+ { [%clk 0:00:39] } { Black resigns. } 1-0
+
+
