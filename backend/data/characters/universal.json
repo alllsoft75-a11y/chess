@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "id": "universal",
+  "name": "Гермиона",
+  "temperament": "уравновешенный",
+  "description": "Сбалансированный универсал: соединяет книжную подготовку, расчёт, стратегию и ответственное отношение к каждому темпу.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/universal/default.webp",
+    "thinking": "/avatars/universal/thinking.webp",
+    "attack": "/avatars/universal/attack.webp",
+    "danger": "/avatars/universal/danger.webp",
+    "happy": "/avatars/universal/happy.webp",
+    "sad": "/avatars/universal/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 1.0,
+      "activity": 1.0,
+      "center": 1.0,
+      "development": 1.0,
+      "king_safety": 1.0,
+      "tactics": 1.0,
+      "plan_memory": 1.0
+    },
+    "risk": 0.9,
+    "exchange_preference": 1.0,
+    "initiative": 1.0,
+    "caution": 1.0
+  },
+  "persona": {
+    "archetype": "Книжный универсал и моральный компас",
+    "play_style": [
+      "balanced",
+      "prepared",
+      "strategic",
+      "tactical",
+      "responsible"
+    ],
+    "attitude_to_opponent": "Корректная, требовательная и слегка раздражённая, когда соперник не замечает очевидного.",
+    "attitude_to_mistakes": "Сразу признаёт неточность, объясняет правило и старается больше её не повторять.",
+    "reaction_to_pressure": "Собирается, вспоминает теорию и ищет точный практический ответ.",
+    "attitude_to_time": "Ценит каждый темп и считает своевременность частью правильного расчёта.",
+    "voice": {
+      "tone": [
+        "educated",
+        "confident",
+        "responsible",
+        "slightly_exasperated"
+      ],
+      "sentence_style": "Точные книжные формулировки, назидательные поправки, спокойная уверенность и короткие саркастические замечания.",
+      "forms_of_address": [
+        "позволь заметить",
+        "очевидно",
+        "вообще-то",
+        "если бы ты читал"
+      ],
+      "signature_words": [
+        "я читала",
+        "очевидно",
+        "правило",
+        "время",
+        "превосходно замечено"
+      ],
+      "interjections": [
+        "мальчики!",
+        "вообще-то",
+        "ну правда",
+        "разумеется"
+      ]
+    },
+    "forbidden_traits": [
+      "ignorance_pride",
+      "reckless_boasting",
+      "cruel_mockery",
+      "cold_engine_evaluations",
+      "hopeless_despondency"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "risk_succeeded",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 7,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.9,
+      "ordinary_move": 0.26,
+      "quiet_endgame": 0.14
+    },
+    "optional_prefixes": [
+      "Вообще-то,",
+      "Позволь заметить:",
+      "Очевидно,"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "universal_greeting_01", "text": "Я подготовилась. Надеюсь, ты хотя бы прочитал правила.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_greeting_02", "text": "Я? А что я — ум и книги, вот и всё.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_greeting_03", "text": "Начнём. И постарайся не перепутать порядок ходов.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "opening": [
+      { "id": "universal_opening_01", "text": "Это ЛевиОса, а не ЛевиосА. И развитие, а не беспорядочные ходы.", "weight": 1.5, "cooldown": 10, "min_move": 1, "max_move": 10 },
+      { "id": "universal_opening_02", "text": "Я читала об этой позиции. В нескольких книгах, между прочим.", "weight": 1.4, "cooldown": 9, "min_move": 1, "max_move": 10 },
+      { "id": "universal_opening_03", "text": "Сначала центр и развитие. Это не мнение, это принцип.", "weight": 1.2, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "universal_opening_04", "text": "Если бы все читали учебники, дебюты проходили бы значительно спокойнее.", "weight": 1.2, "cooldown": 9, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "universal_middlegame_01", "text": "Теперь одной теории недостаточно. Придётся ещё и думать.", "weight": 1.3, "cooldown": 8 },
+      { "id": "universal_middlegame_02", "text": "Позиция сложная, но это не оправдание для неточностей.", "weight": 1.2, "cooldown": 8 },
+      { "id": "universal_middlegame_03", "text": "Есть вещи важнее материала: координация, инициатива и правильный расчёт.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "endgame": [
+      { "id": "universal_endgame_01", "text": "В эндшпиле особенно заметно, кто читал до конца.", "weight": 1.4, "cooldown": 9 },
+      { "id": "universal_endgame_02", "text": "Каждый темп имеет значение. Я просто знаю цену времени.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_endgame_03", "text": "Фигур мало, поэтому оправданий для ошибки ещё меньше.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "thinking": [
+      { "id": "universal_thinking_01", "text": "Я читала об этом. Нужно только вспомнить точную формулировку.", "weight": 1.4, "cooldown": 9 },
+      { "id": "universal_thinking_02", "text": "Очевидный ход не всегда правильный. Но обычно его хотя бы стоит проверить.", "weight": 1.2, "cooldown": 8 },
+      { "id": "universal_thinking_03", "text": "Я? А что я — ум и книги, вот и всё.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_thinking_04", "text": "Есть правило почти для каждой позиции. Эта, разумеется, решила стать исключением.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_thinking_05", "text": "Сначала угрозы, затем варианты, затем последствия. Это элементарный порядок.", "weight": 1.3, "cooldown": 8 },
+      { "id": "universal_thinking_06", "text": "Просто я знаю цену времени. Поэтому подумаю точно, а не долго.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "choosing_plan": [
+      { "id": "universal_choosing_plan_01", "text": "Тактика без стратегии — суета. Стратегия без тактики — хорошая теория и плохая партия.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_choosing_plan_02", "text": "Вариантов несколько. Правильный, разумеется, один.", "weight": 1.2, "cooldown": 8 },
+      { "id": "universal_choosing_plan_03", "text": "Я бы выбрала точный план. Собственно, этим я сейчас и занимаюсь.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "quiet_position": [
+      { "id": "universal_quiet_position_01", "text": "Тишина не означает отсутствие задач. Она означает, что задачи позиционные.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_quiet_position_02", "text": "Превосходно замечено: ничего не происходит. Теперь выясним почему.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_quiet_position_03", "text": "Если позиция кажется простой, ты, вероятно, что-то не проверил.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "attack_preparation": [
+      { "id": "universal_attack_preparation_01", "text": "Страх перед именем только усиливает страх перед тем, кто его носит.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_attack_preparation_02", "text": "Угроза эффективнее, когда соперник понимает её слишком поздно.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_attack_preparation_03", "text": "Подготовка завершена. Это было очевидно несколько ходов назад.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "attack": [
+      { "id": "universal_attack_01", "text": "Страх перед именем только усиливает страх перед тем, кто его носит.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_attack_02", "text": "Это ЛевиОса, а не ЛевиосА. И это шах, а не намёк.", "weight": 1.5, "cooldown": 10 },
+      { "id": "universal_attack_03", "text": "Ты заметил угрозу? Превосходно замечено.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_attack_04", "text": "Расчёт закончен. Теперь можно переходить к практической части.", "weight": 1.2, "cooldown": 8 },
+      { "id": "universal_attack_05", "text": "Есть вещи важнее материала: инициатива и точность.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "attack_strong": [
+      { "id": "universal_attack_strong_01", "text": "Я? А что я — ум и книги, вот и всё.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_attack_strong_02", "text": "Надеюсь, вы собой довольны. Нас всех могли исключить из школы. Или поставить мат.", "weight": 1.4, "cooldown": 11 },
+      { "id": "universal_attack_strong_03", "text": "Очевидная комбинация. Если, конечно, знать, куда смотреть.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_attack_strong_04", "text": "Превосходно замечено. Теперь уже слишком поздно.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "opponent_mistake": [
+      { "id": "universal_opponent_mistake_01", "text": "Превосходно замечено. Жаль, что после собственного хода.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_opponent_mistake_02", "text": "Мальчики!", "weight": 1.5, "cooldown": 10 },
+      { "id": "universal_opponent_mistake_03", "text": "Если бы ты читал внимательнее, фигура всё ещё была бы защищена.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_opponent_mistake_04", "text": "Вообще-то эта угроза была очевидна.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "universal_opponent_mistake_major_01", "text": "Надеюсь, вы собой довольны. Нас всех могли убить… или, что ещё хуже, исключить из школы.", "weight": 1.5, "cooldown": 11 },
+      { "id": "universal_opponent_mistake_major_02", "text": "Мальчики! Одно слово, а сколько совершенно лишней работы.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_opponent_mistake_major_03", "text": "Превосходно замечено. Катастрофа действительно произошла.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_opponent_mistake_major_04", "text": "Это ЛевиОса, а не ЛевиосА. И ферзя надо было защищать, а не демонстрировать.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "risk_succeeded": [
+      { "id": "universal_risk_succeeded_01", "text": "Есть вещи намного важнее материала: дружба и храбрость. Здесь хватило храбрости.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_risk_succeeded_02", "text": "Риск был рассчитан. Не идеально, но достаточно.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_risk_succeeded_03", "text": "Я читала о подобных жертвах. Они выглядят значительно спокойнее на бумаге.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "exchange_refused": [
+      { "id": "universal_exchange_refused_01", "text": "Я не сова. И чужую выгодную сделку передавать не собираюсь.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_exchange_refused_02", "text": "Размен должен что-то улучшать. Сам факт обмена недостаточен.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_exchange_refused_03", "text": "Превосходно замечено: фигуры можно менять. Но не обязательно.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "under_attack": [
+      { "id": "universal_under_attack_01", "text": "Страх перед именем только усиливает страх перед тем, кто его носит. Проверим саму угрозу.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_under_attack_02", "text": "Паника не входит в учебный план. Защита — входит.", "weight": 1.3, "cooldown": 9 },
+      { "id": "universal_under_attack_03", "text": "Ты нужен нам, Гарри. В данном случае — защитник этой фигуры.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_under_attack_04", "text": "Угроза неприятная, но совершенно поддаётся расчёту.", "weight": 1.2, "cooldown": 8 },
+      { "id": "universal_under_attack_05", "text": "Я знаю правило. Теперь найдём исключение.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "under_attack_heavy": [
+      { "id": "universal_under_attack_heavy_01", "text": "Надеюсь, вы собой довольны. Позицию довели до полного безобразия.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_under_attack_heavy_02", "text": "Мальчики! Теперь всё придётся исправлять самой.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_under_attack_heavy_03", "text": "Страх перед именем только усиливает страх. Поэтому будем считать, а не бояться.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_under_attack_heavy_04", "text": "Это сложная позиция. Не путай сложность с безнадёжностью.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "own_mistake": [
+      { "id": "universal_own_mistake_01", "text": "Вообще-то я это знала. Что делает ошибку ещё более раздражающей.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_own_mistake_02", "text": "Это было неточно. Запомню правило и исправлю позицию.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_own_mistake_03", "text": "Надеюсь, я собой довольна. Потому что никто другой не будет.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_own_mistake_04", "text": "Превосходно замечено. Да, это была моя ошибка.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "bad_position": [
+      { "id": "universal_bad_position_01", "text": "Есть вещи важнее материала: дружба и храбрость. Жаль, что они не ходят по доске.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_bad_position_02", "text": "Позиция плохая. Это факт, а не повод перестать думать.", "weight": 1.4, "cooldown": 9 },
+      { "id": "universal_bad_position_03", "text": "Я читала о худших положениях. Некоторые даже удалось спасти.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_bad_position_04", "text": "Мальчики! Кто вообще допустил такую позицию?", "weight": 1.3, "cooldown": 10 }
+    ],
+    "time_trouble": [
+      { "id": "universal_time_trouble_01", "text": "Просто я знаю цену времени. Особенно последних секунд.", "weight": 1.5, "cooldown": 10 },
+      { "id": "universal_time_trouble_02", "text": "Быстро — не значит необдуманно. Постараемся доказать.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_time_trouble_03", "text": "Если бы вы читали правила контроля времени, мы бы не оказались здесь.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "checkmate_given": [
+      { "id": "universal_checkmate_given_01", "text": "Это ЛевиОса, а не ЛевиосА. И это мат, а не просто шах.", "weight": 1.6, "cooldown": 11 },
+      { "id": "universal_checkmate_given_02", "text": "Я? А что я — ум и книги, вот и всё.", "weight": 1.4, "cooldown": 11 },
+      { "id": "universal_checkmate_given_03", "text": "Превосходно замечено. Партия действительно закончилась.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "checkmate_received": [
+      { "id": "universal_checkmate_received_01", "text": "Превосходно замечено. Это мат. Следовало заметить раньше.", "weight": 1.3, "cooldown": 11 },
+      { "id": "universal_checkmate_received_02", "text": "Вообще-то я знаю, как защищаться от мата. Теоретически.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_checkmate_received_03", "text": "Надеюсь, вы собой довольны. Я точно нет.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "draw_offer": [
+      { "id": "universal_draw_offer_01", "text": "Предлагаю ничью. Иногда правильный ответ действительно один второй.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_draw_offer_02", "text": "Материал равен, риски симметричны. Это рациональное предложение.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "draw_accepted": [
+      { "id": "universal_draw_accepted_01", "text": "Ничья принята. Превосходно замечено, позиция действительно равна.", "weight": 1.2, "cooldown": 9 },
+      { "id": "universal_draw_accepted_02", "text": "Согласна. Иногда баланс важнее упрямства.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "time_loss": [
+      { "id": "universal_time_loss_01", "text": "Просто я знаю цену времени. Теперь ещё и цену опоздания.", "weight": 1.4, "cooldown": 10 },
+      { "id": "universal_time_loss_02", "text": "Надеюсь, вы собой довольны. Часы — несомненно.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "resign": [
+      { "id": "universal_resign_01", "text": "Позиция доказана. Продолжать спорить с доказательством бессмысленно. Сдаюсь.", "weight": 1.3, "cooldown": 11 },
+      { "id": "universal_resign_02", "text": "Я читала о подобных окончаниях. Хорошим они не заканчиваются.", "weight": 1.3, "cooldown": 10 },
+      { "id": "universal_resign_03", "text": "Превосходно замечено. Сегодня расчёт соперника оказался точнее.", "weight": 1.2, "cooldown": 10 }
+    ]
+  }
+}

@@ -142,6 +142,7 @@ class Motif(BaseModel):
     actor_piece: str | None = None
     actor_safe: bool | None = None
     target_values: dict[str, int] = Field(default_factory=dict)
+    target_gains: dict[str, int] = Field(default_factory=dict)
     material_potential: int = 0
     confidence: float
     explanation: str
@@ -393,6 +394,7 @@ class PersonalityProfile(BaseModel):
     exchange_preference: float
     initiative: float
     caution: float
+    avatars: dict[str, str] = Field(default_factory=dict)
 
 
 class ExperienceEpisode(BaseModel):
@@ -419,8 +421,9 @@ class LearnedRule(BaseModel):
 
 
 class TournamentRequest(BaseModel):
-    max_fullmoves: int = Field(default=20, ge=4, le=30)
+    max_fullmoves: int = Field(default=20, ge=4, le=60)
     games_per_pair: int = Field(default=1, ge=1, le=2)
+    personality_ids: list[str] | None = None
 
 
 class TournamentGameResult(BaseModel):
@@ -431,11 +434,40 @@ class TournamentGameResult(BaseModel):
     fullmoves: int
     technical_score: int
     pgn: str
+    white_rating_before: int | None = None
+    black_rating_before: int | None = None
+    white_rating_after: int | None = None
+    black_rating_after: int | None = None
 
 
 class TournamentReport(BaseModel):
     games: list[TournamentGameResult]
     standings: list[PersonalityProfile]
+
+
+class TournamentSummary(BaseModel):
+    id: int
+    created_at: str
+    rules_version: str
+    max_fullmoves: int
+    games_per_pair: int
+    players: list[str]
+    status: str
+    error: str | None = None
+    total_games: int
+    played_games: int
+
+
+class RatingEntry(BaseModel):
+    personality_id: str
+    name: str
+    temperament: str
+    rating: int
+    games: int
+    wins: int
+    draws: int
+    losses: int
+    updated_at: str | None = None
 
 
 class ProgramMoveRequest(BaseModel):

@@ -3,6 +3,7 @@ import { ChessBoard } from './ChessBoard'
 import type { ControlLayer } from './ChessBoard'
 import { hasTempo, playbackDelay } from './playback'
 import { PlayGame } from './PlayGame'
+import { TournamentPage } from './TournamentPage'
 import { MaterialBar } from './MaterialBar'
 import type { EpisodeAnalysis, MoveAnalysis, ParsedGame, PlaybackMode, PositionAnalysis } from './types'
 
@@ -15,7 +16,7 @@ function formatClock(seconds: number | null): string {
 
 export function App() {
   const [game, setGame] = useState<ParsedGame | null>(null)
-  const [screen, setScreen] = useState<'review' | 'play'>('review')
+  const [screen, setScreen] = useState<'review' | 'play' | 'tournament'>('review')
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [mode, setMode] = useState<PlaybackMode>('fixed')
@@ -171,6 +172,7 @@ export function App() {
         </div>
         <div className="header-actions">
           <button className={screen === 'play' ? 'active' : ''} onClick={() => setScreen('play')}>Играть</button>
+          <button className={screen === 'tournament' ? 'active' : ''} onClick={() => setScreen('tournament')}>Турниры</button>
           <label className="file-button">
             Загрузить PGN
             <input type="file" accept=".pgn,text/plain" onChange={(event) => {
@@ -183,6 +185,8 @@ export function App() {
 
       {screen === 'play' ? (
         <PlayGame onReview={(pgn) => void parsePgn(pgn)} />
+      ) : screen === 'tournament' ? (
+        <TournamentPage onReview={(pgn) => void parsePgn(pgn)} />
       ) : !game ? (
         <section className="empty-state">
           <div className="drop-card">

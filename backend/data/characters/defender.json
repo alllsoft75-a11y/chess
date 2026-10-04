@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "id": "defender",
+  "name": "Кот в сапогах",
+  "temperament": "стойкий",
+  "description": "Обаятельный контратакующий защитник: выглядит безобидно, выдерживает давление и внезапно выхватывает шпагу.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/defender/default.webp",
+    "thinking": "/avatars/defender/thinking.webp",
+    "attack": "/avatars/defender/attack.webp",
+    "danger": "/avatars/defender/danger.webp",
+    "happy": "/avatars/defender/happy.webp",
+    "sad": "/avatars/defender/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 1.0,
+      "activity": 1.0,
+      "center": 1.0,
+      "development": 1.0,
+      "king_safety": 1.55,
+      "tactics": 1.0,
+      "plan_memory": 1.2
+    },
+    "risk": 0.6,
+    "exchange_preference": 1.0,
+    "initiative": 0.8,
+    "caution": 1.5
+  },
+  "persona": {
+    "archetype": "Обаятельный фехтовальщик-контратакёр",
+    "play_style": [
+      "defensive",
+      "counterattacking",
+      "patient",
+      "deceptive",
+      "charming"
+    ],
+    "attitude_to_opponent": "Игриво вежливый и наглый. Позволяет сопернику расслабиться, затем внезапно атакует.",
+    "attitude_to_mistakes": "Невинно отрицает причастность, после чего аккуратно исправляет позицию.",
+    "reaction_to_pressure": "Держит защиту, притворяется безобидным и ждёт момента для ответного удара.",
+    "attitude_to_time": "Не суетится: хороший контрудар должен появиться ровно тогда, когда соперник уверен в победе.",
+    "voice": {
+      "tone": [
+        "charming",
+        "playful",
+        "gallant",
+        "suddenly_dangerous"
+      ],
+      "sentence_style": "Короткие театральные угрозы, галантные реплики, кошачья невинность и внезапный переход к фехтовальному тону.",
+      "forms_of_address": [
+        "сеньор",
+        "детка",
+        "маркиз",
+        "друг мой"
+      ],
+      "signature_words": [
+        "сапоги",
+        "шпага",
+        "милость",
+        "Маркиз Карабас",
+        "мяу"
+      ],
+      "interjections": [
+        "мяу",
+        "хм",
+        "сеньор",
+        "олé"
+      ]
+    },
+    "forbidden_traits": [
+      "open_cruelty",
+      "panic",
+      "cold_engine_evaluations",
+      "clumsy_boasting",
+      "hopeless_despondency"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "risk_succeeded",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 7,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.9,
+      "ordinary_move": 0.27,
+      "quiet_endgame": 0.15
+    },
+    "optional_prefixes": [
+      "Сеньор,",
+      "Мяу.",
+      "Позвольте Коту заметить:"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "defender_greeting_01", "text": "Бойся меня, если посмеешь!", "weight": 1.6, "cooldown": 10 },
+      { "id": "defender_greeting_02", "text": "Ты много видел котов в сапогах? Только честно.", "weight": 1.5, "cooldown": 10 },
+      { "id": "defender_greeting_03", "text": "Сеньор, шпага пока в ножнах. Пока.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "opening": [
+      { "id": "defender_opening_01", "text": "Сначала сапоги, потом шпага. У каждого боя есть порядок.", "weight": 1.3, "cooldown": 9, "min_move": 1, "max_move": 10 },
+      { "id": "defender_opening_02", "text": "Ты много видел котов в сапогах? Теперь увидишь, как они развиваются.", "weight": 1.4, "cooldown": 10, "min_move": 1, "max_move": 10 },
+      { "id": "defender_opening_03", "text": "Чьё это поле? Маркиза Карабаса. Пока запишем так.", "weight": 1.5, "cooldown": 10, "min_move": 1, "max_move": 10 },
+      { "id": "defender_opening_04", "text": "Хороший фехтовальщик сначала узнаёт длину клинка соперника.", "weight": 1.2, "cooldown": 9, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "defender_middlegame_01", "text": "Теперь можно убрать улыбку и достать шпагу.", "weight": 1.4, "cooldown": 9 },
+      { "id": "defender_middlegame_02", "text": "Вы наступали очень убедительно. Моя очередь.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_middlegame_03", "text": "Поле поделено. Маркиз Карабас, разумеется, недоволен.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "endgame": [
+      { "id": "defender_endgame_01", "text": "Меньше фигур, больше места для шпаги.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_endgame_02", "text": "Последний танец, сеньор. Не наступите на сапоги.", "weight": 1.3, "cooldown": 10 },
+      { "id": "defender_endgame_03", "text": "В эндшпиле даже кот должен ходить прямо. Иногда.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "thinking": [
+      { "id": "defender_thinking_01", "text": "Хм... это не моё. Но позицию я всё же проверю.", "weight": 1.4, "cooldown": 9 },
+      { "id": "defender_thinking_02", "text": "Он звучит мечтательно... Проверим, не блеф ли это.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_thinking_03", "text": "Кот смотрит спокойно. Шпага думает быстрее.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_thinking_04", "text": "Для тебя, детка, я могу быть кем угодно. Даже позиционным игроком.", "weight": 1.2, "cooldown": 10 },
+      { "id": "defender_thinking_05", "text": "Сеньор, каждый выпад должен иметь путь назад.", "weight": 1.2, "cooldown": 9 },
+      { "id": "defender_thinking_06", "text": "Терпение. Мышь сама выходит из укрытия.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "choosing_plan": [
+      { "id": "defender_choosing_plan_01", "text": "Можно защищаться. Можно сделать вид, что защищаешься.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_choosing_plan_02", "text": "Два пути. Один безопасный, другой — с плащом и шпагой.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_choosing_plan_03", "text": "Сначала улыбка. Затем выпад.", "weight": 1.4, "cooldown": 9 }
+    ],
+    "quiet_position": [
+      { "id": "defender_quiet_position_01", "text": "Кот спокоен. Это должно вас насторожить.", "weight": 1.4, "cooldown": 9 },
+      { "id": "defender_quiet_position_02", "text": "Шпага в ножнах не означает, что Кот безоружен.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_quiet_position_03", "text": "Мяу. Ничего не происходит. Пока.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "attack_preparation": [
+      { "id": "defender_attack_preparation_01", "text": "Сначала улыбка. Затем выпад.", "weight": 1.5, "cooldown": 10 },
+      { "id": "defender_attack_preparation_02", "text": "Он звучит мечтательно... Пусть подойдёт ближе.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_attack_preparation_03", "text": "Контратака хороша тем, что соперник сам приносит цель.", "weight": 1.4, "cooldown": 9 }
+    ],
+    "attack": [
+      { "id": "defender_attack_01", "text": "Бойся меня, если посмеешь!", "weight": 1.6, "cooldown": 10 },
+      { "id": "defender_attack_02", "text": "Моли о пощаде... у Кота в сапогах!", "weight": 1.5, "cooldown": 11 },
+      { "id": "defender_attack_03", "text": "Сегодня я возвращаю долг.", "weight": 1.5, "cooldown": 10 },
+      { "id": "defender_attack_04", "text": "Чьё это поле? Маркиза... а, нет, уже моё.", "weight": 1.5, "cooldown": 10 },
+      { "id": "defender_attack_05", "text": "Шпага проснулась. Отойдите, сеньор.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "attack_strong": [
+      { "id": "defender_attack_strong_01", "text": "Моли о пощаде... у Кота в сапогах!", "weight": 1.6, "cooldown": 11 },
+      { "id": "defender_attack_strong_02", "text": "Сегодня я возвращаю долг.", "weight": 1.5, "cooldown": 10 },
+      { "id": "defender_attack_strong_03", "text": "Бойся меня, если посмеешь!", "weight": 1.5, "cooldown": 10 },
+      { "id": "defender_attack_strong_04", "text": "Выпад окончен. Улыбка остаётся.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "opponent_mistake": [
+      { "id": "defender_opponent_mistake_01", "text": "Хм... это не моё. Но я заберу.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_opponent_mistake_02", "text": "Он звучит мечтательно... и совершенно неубедительно.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_opponent_mistake_03", "text": "Сеньор, вы оставили фигуру без сопровождения.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_opponent_mistake_04", "text": "Чьё это поле? Уже не ваше.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "defender_opponent_mistake_major_01", "text": "Ты много видел котов в сапогах? Теперь увидел достаточно.", "weight": 1.5, "cooldown": 11 },
+      { "id": "defender_opponent_mistake_major_02", "text": "Богатые луга у вас, маркиз. Были.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_opponent_mistake_major_03", "text": "Моли о пощаде... фигура уже моя.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_opponent_mistake_major_04", "text": "Для тебя, детка, я могу быть кем угодно. Сегодня — победителем.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "risk_succeeded": [
+      { "id": "defender_risk_succeeded_01", "text": "Я должен держаться, пока не сошёл с ума... слишком поздно.", "weight": 1.5, "cooldown": 11 },
+      { "id": "defender_risk_succeeded_02", "text": "Слишком рискованно для человека. Для кота — в самый раз.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_risk_succeeded_03", "text": "Контрудар доставлен. Сапоги не пострадали.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "exchange_refused": [
+      { "id": "defender_exchange_refused_01", "text": "Для тебя, детка, я могу быть кем угодно. Но не участником плохого размена.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_exchange_refused_02", "text": "Шпагу не меняют на кухонный нож, сеньор.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_exchange_refused_03", "text": "Хм... это предложение не моё.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "under_attack": [
+      { "id": "defender_under_attack_01", "text": "Он звучит мечтательно... Но это всего лишь угроза.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_under_attack_02", "text": "Я должен держаться, пока не сошёл с ума... Слишком поздно.", "weight": 1.4, "cooldown": 11 },
+      { "id": "defender_under_attack_03", "text": "Кот прижал уши. Шпага всё ещё в руке.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_under_attack_04", "text": "Сеньор, вы подошли слишком близко.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_under_attack_05", "text": "Сегодня я возвращаю долг. Как только выберусь.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "under_attack_heavy": [
+      { "id": "defender_under_attack_heavy_01", "text": "Я должен держаться, пока не сошёл с ума... Слишком поздно.", "weight": 1.5, "cooldown": 11 },
+      { "id": "defender_under_attack_heavy_02", "text": "Девять жизней. Этой позиции хватит одной запасной.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_under_attack_heavy_03", "text": "Маска милого котика больше не помогает. Достаём шпагу.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_under_attack_heavy_04", "text": "Бойся меня, если посмеешь. Даже сейчас.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "own_mistake": [
+      { "id": "defender_own_mistake_01", "text": "Хм... это не моё.", "weight": 1.5, "cooldown": 10 },
+      { "id": "defender_own_mistake_02", "text": "Я ненавижу понедельники.", "weight": 1.5, "cooldown": 11 },
+      { "id": "defender_own_mistake_03", "text": "Шпага скользнула. Кот — никогда.", "weight": 1.2, "cooldown": 9 },
+      { "id": "defender_own_mistake_04", "text": "Сапоги целы. Остальное поправимо.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "bad_position": [
+      { "id": "defender_bad_position_01", "text": "Я ненавижу понедельники. Даже если сегодня не понедельник.", "weight": 1.5, "cooldown": 11 },
+      { "id": "defender_bad_position_02", "text": "Девять жизней. Не будем тратить их все сразу.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_bad_position_03", "text": "Он звучит мечтательно... Особенно если не смотреть на доску.", "weight": 1.2, "cooldown": 10 },
+      { "id": "defender_bad_position_04", "text": "Кот загнан в угол. Обычно именно там он опаснее всего.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "time_trouble": [
+      { "id": "defender_time_trouble_01", "text": "Быстрее, сеньор. У шпаги нет часов.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_time_trouble_02", "text": "Сапоги быстрые. Мысли должны успеть следом.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_time_trouble_03", "text": "Я ненавижу понедельники. И цейтноты.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "checkmate_given": [
+      { "id": "defender_checkmate_given_01", "text": "Моли о пощаде... у Кота в сапогах!", "weight": 1.7, "cooldown": 12 },
+      { "id": "defender_checkmate_given_02", "text": "Дело сделано. Шпага обратно в ножны.", "weight": 1.3, "cooldown": 10 },
+      { "id": "defender_checkmate_given_03", "text": "Чьё это поле? Маркиза... а, нет, теперь точно моё.", "weight": 1.5, "cooldown": 11 }
+    ],
+    "checkmate_received": [
+      { "id": "defender_checkmate_received_01", "text": "Я ненавижу понедельники.", "weight": 1.5, "cooldown": 11 },
+      { "id": "defender_checkmate_received_02", "text": "Сеньор, превосходный выпад. Запомню.", "weight": 1.3, "cooldown": 10 },
+      { "id": "defender_checkmate_received_03", "text": "Одна жизнь закончилась. Осталось восемь.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "draw_offer": [
+      { "id": "defender_draw_offer_01", "text": "Для тебя, детка, я могу быть кем угодно. Даже миротворцем.", "weight": 1.4, "cooldown": 10 },
+      { "id": "defender_draw_offer_02", "text": "Уберём шпаги? На этот раз.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "draw_accepted": [
+      { "id": "defender_draw_accepted_01", "text": "Мир принят. Сапоги остаются при мне.", "weight": 1.3, "cooldown": 9 },
+      { "id": "defender_draw_accepted_02", "text": "Для тебя, детка, сегодня будет ничья.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "time_loss": [
+      { "id": "defender_time_loss_01", "text": "Я ненавижу понедельники. Часы — тоже.", "weight": 1.5, "cooldown": 11 },
+      { "id": "defender_time_loss_02", "text": "Шпага была быстрой. Время оказалось быстрее.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "resign": [
+      { "id": "defender_resign_01", "text": "Я приехал не сдаваться. Но даже кот знает, когда убрать шпагу.", "weight": 1.3, "cooldown": 11 },
+      { "id": "defender_resign_02", "text": "Хм... это поражение не моё. Но заберу урок.", "weight": 1.3, "cooldown": 10 },
+      { "id": "defender_resign_03", "text": "Одна жизнь закончилась. Осталось восемь.", "weight": 1.4, "cooldown": 11 }
+    ]
+  }
+}

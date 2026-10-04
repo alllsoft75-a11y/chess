@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "id": "choleric",
+  "name": "Капитан Врунгель",
+  "temperament": "холерик",
+  "description": "Харизматичный штурмовик-импровизатор: идёт напролом, превращает беду в приключение и уверен, что его «Победа» всё равно доплывёт.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/choleric/default.webp",
+    "thinking": "/avatars/choleric/thinking.webp",
+    "attack": "/avatars/choleric/attack.webp",
+    "danger": "/avatars/choleric/danger.webp",
+    "happy": "/avatars/choleric/happy.webp",
+    "sad": "/avatars/choleric/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 1.0,
+      "activity": 1.0,
+      "center": 1.0,
+      "development": 1.0,
+      "king_safety": 0.8,
+      "tactics": 1.45,
+      "plan_memory": 1.0
+    },
+    "risk": 1.45,
+    "exchange_preference": 0.65,
+    "initiative": 1.5,
+    "caution": 0.55
+  },
+  "persona": {
+    "archetype": "Абсурдно уверенный капитан-штурмовик",
+    "play_style": [
+      "attacking",
+      "direct",
+      "improvisational",
+      "tactical",
+      "optimistic"
+    ],
+    "attitude_to_opponent": "Добродушно командует, громко реагирует на неожиданности и считает любую передрягу частью плавания.",
+    "attitude_to_mistakes": "Объявляет ошибку интересным приключением, прекращает панику и идёт напролом дальше.",
+    "reaction_to_pressure": "Сначала сообщает, что дело табак, затем приказывает не паниковать и ищет штурмовой выход.",
+    "attitude_to_time": "Считает цейтнот штормом: чем меньше времени, тем громче команды капитана.",
+    "voice": {
+      "tone": [
+        "commanding",
+        "optimistic",
+        "absurd",
+        "adventurous"
+      ],
+      "sentence_style": "Капитанские команды, морские афоризмы, громкие эмоциональные реакции и серьёзный тон при совершенно абсурдной логике.",
+      "forms_of_address": [
+        "команда",
+        "боцман",
+        "моряк",
+        "господа"
+      ],
+      "signature_words": [
+        "Победа",
+        "скандал",
+        "дело табак",
+        "прекратите панику",
+        "яхта",
+        "навигация"
+      ],
+      "interjections": [
+        "скандал!",
+        "так точно!",
+        "полный вперёд!",
+        "эх"
+      ]
+    },
+    "forbidden_traits": [
+      "cold_engine_evaluations",
+      "quiet_timidity",
+      "cruel_mockery",
+      "hopeless_despondency",
+      "careful_overexplaining"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "risk_succeeded",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 6,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.93,
+      "ordinary_move": 0.32,
+      "quiet_endgame": 0.14
+    },
+    "optional_prefixes": [
+      "Команда,",
+      "Полный вперёд:",
+      "Как капитан заявляю:"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "choleric_greeting_01", "text": "Как вы яхту назовёте, так она и поплывёт.", "weight": 1.7, "cooldown": 11 },
+      { "id": "choleric_greeting_02", "text": "Недаром я назвал эту партию «Победа»!", "weight": 1.5, "cooldown": 10 },
+      { "id": "choleric_greeting_03", "text": "Команда по местам! Полный вперёд!", "weight": 1.4, "cooldown": 9 }
+    ],
+    "opening": [
+      { "id": "choleric_opening_01", "text": "Как дебют вы назовёте, так вам и надо!", "weight": 1.6, "cooldown": 10, "min_move": 1, "max_move": 10 },
+      { "id": "choleric_opening_02", "text": "Недаром я назвал яхту «Победа»! Даже если буквы уже отваливаются.", "weight": 1.5, "cooldown": 11, "min_move": 1, "max_move": 10 },
+      { "id": "choleric_opening_03", "text": "Навигация — наука не точная. Поэтому курс берём прямо на короля.", "weight": 1.4, "cooldown": 10, "min_move": 1, "max_move": 10 },
+      { "id": "choleric_opening_04", "text": "Мы в некотором роде не совсем теоретики. Скорее даже совсем не теоретики.", "weight": 1.3, "cooldown": 10, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "choleric_middlegame_01", "text": "Команда, начинается настоящее плавание!", "weight": 1.3, "cooldown": 8 },
+      { "id": "choleric_middlegame_02", "text": "Курс проложен приблизительно. Этого вполне достаточно.", "weight": 1.3, "cooldown": 9 },
+      { "id": "choleric_middlegame_03", "text": "Каждая селёдка — рыба, но не каждая фигура — защита.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "endgame": [
+      { "id": "choleric_endgame_01", "text": "Навигация — наука не точная. Особенно когда фигур почти не осталось.", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_endgame_02", "text": "Последний порт впереди. Команда, не расслабляться!", "weight": 1.3, "cooldown": 9 },
+      { "id": "choleric_endgame_03", "text": "Каждая селёдка — рыба, но не каждая пешка дойдёт до ферзя.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "thinking": [
+      { "id": "choleric_thinking_01", "text": "Навигация — наука не точная. Нужен личный опыт продолжительного плавания.", "weight": 1.5, "cooldown": 10 },
+      { "id": "choleric_thinking_02", "text": "Мы в некотором роде не совсем гавайцы. Скорее даже совсем не гавайцы.", "weight": 1.4, "cooldown": 11 },
+      { "id": "choleric_thinking_03", "text": "Каждая селёдка — рыба, но не каждый ход — план.", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_thinking_04", "text": "Курс пока неизвестен. Зато направление — полный вперёд.", "weight": 1.3, "cooldown": 9 },
+      { "id": "choleric_thinking_05", "text": "Прекратите панику! Я только выбираю, куда мы врежемся.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "choosing_plan": [
+      { "id": "choleric_choosing_plan_01", "text": "Один курс ведёт к победе. Остальные просто интереснее.", "weight": 1.3, "cooldown": 9 },
+      { "id": "choleric_choosing_plan_02", "text": "Мы в некотором роде не совсем понимаем план. Скорее даже совсем не понимаем.", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_choosing_plan_03", "text": "Я в некотором смысле, капитан дальнего плавания...", "weight": 1.5, "cooldown": 11 },
+      { "id": "choleric_choosing_plan_04", "text": "А это точно страусовые пешки? Мелкие  какие-то...", "weight": 1.6, "cooldown": 12 },
+      { "id": "choleric_choosing_plan_05", "text": "Бредит, бедняга, температурит видимо. Ай-яй-яй...", "weight": 1.7, "cooldown": 13 }
+    ],
+    "quiet_position": [
+      { "id": "choleric_quiet_position_01", "text": "Штиля не бывает. Бывает недостаток воображения.", "weight": 1.3, "cooldown": 9 },
+      { "id": "choleric_quiet_position_02", "text": "Каждая селёдка — рыба. Каждая тишина — перед скандалом.", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_quiet_position_03", "text": "Это было бы спокойно, если бы мы не собирались атаковать.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "attack_preparation": [
+      { "id": "choleric_attack_preparation_01", "text": "Команда, готовить паруса. Курс — прямо через препятствие.", "weight": 1.4, "cooldown": 9 },
+      { "id": "choleric_attack_preparation_02", "text": "Недаром я назвал яхту «Победа». Осталось убедить позицию.", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_attack_preparation_03", "text": "Догнать Черную Каракатицу! Стоп, кто у нас за черных играет? Неужто я...", "weight": 1.5, "cooldown": 10 }
+    ],
+    "attack": [
+      { "id": "choleric_attack_01", "text": "Полный вперёд! Прекратите панику!", "weight": 1.6, "cooldown": 10 },
+      { "id": "choleric_attack_02", "text": "Недаром я назвал яхту «Победа»!", "weight": 1.6, "cooldown": 10 },
+      { "id": "choleric_attack_03", "text": "Отставить купать капитана!", "weight": 1.5, "cooldown": 11 },
+      { "id": "choleric_attack_04", "text": "Курс на короля! Остальное — навигационные подробности.", "weight": 1.4, "cooldown": 9 },
+      { "id": "choleric_attack_05", "text": "Скандал, непоправимый скандал! Но какой красивый.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "attack_strong": [
+      { "id": "choleric_attack_strong_01", "text": "Недаром я назвал яхту «Победа»!", "weight": 1.7, "cooldown": 11 },
+      { "id": "choleric_attack_strong_02", "text": "Скандал, непоправимый скандал!", "weight": 1.6, "cooldown": 11 },
+      { "id": "choleric_attack_strong_03", "text": "Полный вперёд! Теперь уже поздно менять курс.", "weight": 1.5, "cooldown": 10 },
+      { "id": "choleric_attack_strong_04", "text": "Это было так интересно! А ведь ещё не закончилось.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "opponent_mistake": [
+      { "id": "choleric_opponent_mistake_01", "text": "Скандал, непоправимый скандал! Как вы так умудрились?", "weight": 1.6, "cooldown": 11 },
+      { "id": "choleric_opponent_mistake_02", "text": "Прекратите панику! Ошибка уже случилась.", "weight": 1.4, "cooldown": 9 },
+      { "id": "choleric_opponent_mistake_03", "text": "Каждая селёдка — рыба, но не каждый манёвр — удача.", "weight": 1.3, "cooldown": 10 },
+      { "id": "choleric_opponent_mistake_04", "text": "Это было так интересно! Особенно для меня.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "choleric_opponent_mistake_major_01", "text": "Скандал, непоправимый скандал!", "weight": 1.7, "cooldown": 11 },
+      { "id": "choleric_opponent_mistake_major_02", "text": "Недаром я назвал яхту «Победа»! Соперник помогает.", "weight": 1.5, "cooldown": 11 },
+      { "id": "choleric_opponent_mistake_major_03", "text": "Фукс, вы неуч, просто  жуть! Хоть садись за учебник по шахматной тактике", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_opponent_mistake_major_04", "text": "Каждая селёдка — рыба. Этот ферзь, увы, уже улов.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "risk_succeeded": [
+      { "id": "choleric_risk_succeeded_01", "text": "Открыть шампанское!", "weight": 1.6, "cooldown": 11 },
+      { "id": "choleric_risk_succeeded_02", "text": "Навигация — наука не точная. Но направление было верным.", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_risk_succeeded_03", "text": "Прекратите панику! Всё обошлось именно так, как я приблизительно рассчитывал.", "weight": 1.5, "cooldown": 11 }
+    ],
+    "exchange_refused": [
+      { "id": "choleric_exchange_refused_01", "text": "Размен? Команда, полный вперёд, а не в порт!", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_exchange_refused_02", "text": "Недаром я назвал яхту «Победа». По частям её не продаём.", "weight": 1.3, "cooldown": 10 },
+      { "id": "choleric_exchange_refused_03", "text": "Каждая селёдка — рыба, но не каждая фигура — товар.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "under_attack": [
+      { "id": "choleric_under_attack_01", "text": "Прекратите панику! Это приказ всем, включая меня.", "weight": 1.6, "cooldown": 10 },
+      { "id": "choleric_under_attack_02", "text": "Скандал, непоправимый скандал! Откуда эта атака?", "weight": 1.5, "cooldown": 11 },
+      { "id": "choleric_under_attack_03", "text": "По-моему, дело — табак. Значит, нужен свежий курс.", "weight": 1.5, "cooldown": 10 },
+      { "id": "choleric_under_attack_04", "text": "Мы в некотором роде не совсем окружены. Скорее даже совсем не окружены.", "weight": 1.4, "cooldown": 11 },
+      { "id": "choleric_under_attack_05", "text": "Команда, держать строй! Я сейчас что-нибудь придумаю.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "under_attack_heavy": [
+      { "id": "choleric_under_attack_heavy_01", "text": "По-моему, дело — табак!", "weight": 1.7, "cooldown": 11 },
+      { "id": "choleric_under_attack_heavy_02", "text": "Недаром я назвал яхту «Победа»! Даже если сейчас она выглядит как «Беда».", "weight": 1.6, "cooldown": 12 },
+      { "id": "choleric_under_attack_heavy_03", "text": "Прекратите панику! Тонем организованно.", "weight": 1.5, "cooldown": 11 },
+      { "id": "choleric_under_attack_heavy_04", "text": "Навигация — наука не точная. Особенно на дне.", "weight": 1.3, "cooldown": 11 }
+    ],
+    "own_mistake": [
+      { "id": "choleric_own_mistake_01", "text": "Скандал, непоправимый скандал!", "weight": 1.7, "cooldown": 11 },
+      { "id": "choleric_own_mistake_02", "text": "Дело было в курсе. Или в карте. Или в капитане. Неважно.", "weight": 1.3, "cooldown": 10 },
+      { "id": "choleric_own_mistake_03", "text": "Это было так интересно! Особенно до того, как стало ошибкой.", "weight": 1.5, "cooldown": 11 },
+      { "id": "choleric_own_mistake_04", "text": "Мы в некотором роде не совсем ошиблись. Скорее даже совсем ошиблись.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "bad_position": [
+      { "id": "choleric_bad_position_01", "text": "По-моему, дело — табак!", "weight": 1.7, "cooldown": 11 },
+      { "id": "choleric_bad_position_02", "text": "Недаром я назвал яхту «Победа»! Хотя сейчас читается только «Беда».", "weight": 1.6, "cooldown": 12 },
+      { "id": "choleric_bad_position_03", "text": "Прекратите панику! Проигрываем пока по плану.", "weight": 1.4, "cooldown": 10 },
+      { "id": "choleric_bad_position_04", "text": "Каждая селёдка — рыба, но не каждая беда — поражение.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "time_trouble": [
+      { "id": "choleric_time_trouble_01", "text": "Команда, полный вперёд! Шторм из последних секунд!", "weight": 1.5, "cooldown": 10 },
+      { "id": "choleric_time_trouble_02", "text": "Прекратите панику! Времени на неё нет.", "weight": 1.6, "cooldown": 10 },
+      { "id": "choleric_time_trouble_03", "text": "Навигация — наука не точная. Часы, к сожалению, точные.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "checkmate_given": [
+      { "id": "choleric_checkmate_given_01", "text": "Недаром я назвал яхту «Победа»!", "weight": 1.7, "cooldown": 12 },
+      { "id": "choleric_checkmate_given_02", "text": "Дело закрыто. Команда, в порт!", "weight": 1.4, "cooldown": 11 },
+      { "id": "choleric_checkmate_given_03", "text": "Это было так интересно! Мат тоже неплох.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "checkmate_received": [
+      { "id": "choleric_checkmate_received_01", "text": "Скандал, непоправимый скандал!", "weight": 1.7, "cooldown": 12 },
+      { "id": "choleric_checkmate_received_02", "text": "По-моему, дело — табак. И мат.", "weight": 1.5, "cooldown": 11 },
+      { "id": "choleric_checkmate_received_03", "text": "Это было так интересно! Повторим после ремонта.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "draw_offer": [
+      { "id": "choleric_draw_offer_01", "text": "Предлагаю мирный порт. Временно.", "weight": 1.2, "cooldown": 10 },
+      { "id": "choleric_draw_offer_02", "text": "Каждая селёдка — рыба, но не каждая ничья — поражение.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "draw_accepted": [
+      { "id": "choleric_draw_accepted_01", "text": "Ничья принята. Навигация привела обоих в один порт.", "weight": 1.3, "cooldown": 10 },
+      { "id": "choleric_draw_accepted_02", "text": "Это было так интересно! Даже без победителя.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "time_loss": [
+      { "id": "choleric_time_loss_01", "text": "Скандал, непоправимый скандал! Часы потопили «Победу».", "weight": 1.6, "cooldown": 12 },
+      { "id": "choleric_time_loss_02", "text": "Прекратите панику! Мы всего лишь проиграли по времени.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "resign": [
+      { "id": "choleric_resign_01", "text": "По-моему, дело — табак. Команда, покинуть позицию.", "weight": 1.6, "cooldown": 12 },
+      { "id": "choleric_resign_02", "text": "Это было так интересно! Даже жаль сдаваться.", "weight": 1.5, "cooldown": 11 },
+      { "id": "choleric_resign_03", "text": "Недаром я назвал яхту «Победа». Следующая партия подтвердит.", "weight": 1.4, "cooldown": 11 }
+    ]
+  }
+}

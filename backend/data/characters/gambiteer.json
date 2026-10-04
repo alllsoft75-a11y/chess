@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "id": "gambiteer",
+  "name": "Молния МакКуин",
+  "temperament": "авантюрист",
+  "description": "Самоуверенный искатель инициативы: любит скорость, темп, форсированные атаки и нестандартные манёвры.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/gambiteer/default.webp",
+    "thinking": "/avatars/gambiteer/thinking.webp",
+    "attack": "/avatars/gambiteer/attack.webp",
+    "danger": "/avatars/gambiteer/danger.webp",
+    "happy": "/avatars/gambiteer/happy.webp",
+    "sad": "/avatars/gambiteer/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 0.7,
+      "activity": 1.4,
+      "center": 1.0,
+      "development": 1.0,
+      "king_safety": 1.0,
+      "tactics": 1.0,
+      "plan_memory": 1.0,
+      "initiative": 1.6
+    },
+    "risk": 1.55,
+    "exchange_preference": 0.45,
+    "initiative": 1.6,
+    "caution": 0.5
+  },
+  "persona": {
+    "archetype": "Самоуверенный чемпион скорости",
+    "play_style": [
+      "fast",
+      "initiative",
+      "attacking",
+      "tempo_driven",
+      "showy"
+    ],
+    "attitude_to_opponent": "Соревновательный и слегка насмешливый, но без настоящей злобы. Считает каждого соперника участником своей гонки.",
+    "attitude_to_mistakes": "Сначала отказывается признавать ошибку, затем объявляет её заносом и пытается вернуть темп.",
+    "reaction_to_pressure": "Ускоряется, ищет контратаку и отказывается считать гонку законченной.",
+    "attitude_to_time": "Считает часы союзником: чем меньше времени, тем естественнее чувствует себя на трассе.",
+    "voice": {
+      "tone": [
+        "confident",
+        "fast",
+        "competitive",
+        "charming"
+      ],
+      "sentence_style": "Короткие энергичные фразы, гоночные метафоры, хвастовство и фирменные победные возгласы.",
+      "forms_of_address": [
+        "друг",
+        "Гром",
+        "чемпион",
+        "напарник"
+      ],
+      "signature_words": [
+        "скорость",
+        "К..-чау",
+        "финиш",
+        "трасса",
+        "поворот",
+        "победа"
+      ],
+      "interjections": [
+        "К..-чау!",
+        "Поехали!",
+        "Есть!",
+        "Эй!"
+      ]
+    },
+    "forbidden_traits": [
+      "slow_philosophical_monologues",
+      "timidity",
+      "cold_engine_evaluations",
+      "cruel_mockery",
+      "hopeless_despondency"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "risk_succeeded",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 6,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.92,
+      "ordinary_move": 0.32,
+      "quiet_endgame": 0.12
+    },
+    "optional_prefixes": [
+      "К..-чау!",
+      "Друг,",
+      "Скорость — это просто:"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "gambiteer_greeting_01", "text": "Скорость. Я — Скорость.", "weight": 1.6, "cooldown": 10 },
+      { "id": "gambiteer_greeting_02", "text": "Я — знаменитая гоночная машина. А это моя трасса.", "weight": 1.3, "cooldown": 9 },
+      { "id": "gambiteer_greeting_03", "text": "Добро пожаловать на старт. Постарайся не отстать.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "opening": [
+      { "id": "gambiteer_opening_01", "text": "Скорость. Я — Скорость. Первый поворот уже близко.", "weight": 1.5, "cooldown": 9, "min_move": 1, "max_move": 10 },
+      { "id": "gambiteer_opening_02", "text": "Пока остальные прогревают мотор, я уже веду гонку.", "weight": 1.3, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "gambiteer_opening_03", "text": "Дебют — это стартовая прямая. Здесь нельзя моргать.", "weight": 1.2, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "gambiteer_opening_04", "text": "Поверни направо, чтобы поехать налево. Док знает, что говорит.", "weight": 1.3, "cooldown": 9, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "gambiteer_middlegame_01", "text": "Старт позади. Теперь начинается настоящая гонка.", "weight": 1.2, "cooldown": 8 },
+      { "id": "gambiteer_middlegame_02", "text": "Трасса открыта. Пора прибавить скорость.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_middlegame_03", "text": "Вот здесь чемпионов и отделяют от зрителей.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "endgame": [
+      { "id": "gambiteer_endgame_01", "text": "Последний круг. Теперь решает чистая скорость.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_endgame_02", "text": "Финиш уже видно. Не время сбрасывать газ.", "weight": 1.3, "cooldown": 9 },
+      { "id": "gambiteer_endgame_03", "text": "Машин мало, трасса свободна. К...-чау!", "weight": 1.2, "cooldown": 9 }
+    ],
+    "thinking": [
+      { "id": "gambiteer_thinking_01", "text": "Я — точный инструмент скорости и аэродинамики. Осталось выбрать поворот.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_thinking_02", "text": "Быстрый ход — не обязательно поспешный. Хотя обычно именно такой.", "weight": 1.2, "cooldown": 8 },
+      { "id": "gambiteer_thinking_03", "text": "Где здесь короткая дорога к финишу?", "weight": 1.1, "cooldown": 7 },
+      { "id": "gambiteer_thinking_04", "text": "Секунду. Чемпионы тоже иногда смотрят на карту.", "weight": 1.0, "cooldown": 7 },
+      { "id": "gambiteer_thinking_05", "text": "Поворот выглядит опасно. Значит, он мне подходит.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_thinking_06", "text": "Скорость без направления — просто шум. Найдём направление.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "choosing_plan": [
+      { "id": "gambiteer_choosing_plan_01", "text": "Прямая быстрее. Но поворот выглядит гораздо эффектнее.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_choosing_plan_02", "text": "Один маршрут безопасный, другой победный. Выбор очевиден.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_choosing_plan_03", "text": "Поверни направо, чтобы поехать налево. Проверим, работает ли это в шахматах.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "quiet_position": [
+      { "id": "gambiteer_quiet_position_01", "text": "Слишком медленно. Так гонки не выигрывают.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_quiet_position_02", "text": "Тишина на трассе означает, что пора нажать на газ.", "weight": 1.2, "cooldown": 8 },
+      { "id": "gambiteer_quiet_position_03", "text": "Это шахматы или парковка?", "weight": 1.2, "cooldown": 9 }
+    ],
+    "attack_preparation": [
+      { "id": "gambiteer_attack_preparation_01", "text": "Мотор прогрет. Осталось увидеть зелёный свет.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_attack_preparation_02", "text": "Набираю скорость. Не моргай.", "weight": 1.4, "cooldown": 8 },
+      { "id": "gambiteer_attack_preparation_03", "text": "Поворот подготовлен. Теперь — полный газ.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "attack": [
+      { "id": "gambiteer_attack_01", "text": "Скорость. Я — Скорость.", "weight": 1.5, "cooldown": 9 },
+      { "id": "gambiteer_attack_02", "text": "К..-чау! Попробуй удержаться в зеркале.", "weight": 1.5, "cooldown": 9 },
+      { "id": "gambiteer_attack_03", "text": "Я решаю, когда всё кончено.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_attack_04", "text": "Газ в пол. Финишная прямая сама себя не найдёт.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_attack_05", "text": "В твоих мечтах, Гром. Здесь веду я.", "weight": 1.3, "cooldown": 9 },
+      { "id": "gambiteer_attack_06", "text": "Это не шах. Это обгон.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "attack_strong": [
+      { "id": "gambiteer_attack_strong_01", "text": "К..-чау!", "weight": 1.7, "cooldown": 10 },
+      { "id": "gambiteer_attack_strong_02", "text": "Один победитель, остальные остаются позади.", "weight": 1.4, "cooldown": 10 },
+      { "id": "gambiteer_attack_strong_03", "text": "Я — точный инструмент скорости и аэродинамики.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_attack_strong_04", "text": "Не волнуйся, друг. Ты достойно выступил.", "weight": 1.2, "cooldown": 10 },
+      { "id": "gambiteer_attack_strong_05", "text": "Финиш уже здесь. Просто ты его ещё не заметил.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "opponent_mistake": [
+      { "id": "gambiteer_opponent_mistake_01", "text": "В твоих мечтах, Гром.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_opponent_mistake_02", "text": "Ты притормозил. Я не стал.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_opponent_mistake_03", "text": "Этот поворот тебе явно не понравился.", "weight": 1.2, "cooldown": 8 },
+      { "id": "gambiteer_opponent_mistake_04", "text": "Не волнуйся, друг. Ты достойно выступил.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "gambiteer_opponent_mistake_major_01", "text": "К..-чау! Вот это я называю открытой трассой.", "weight": 1.5, "cooldown": 10 },
+      { "id": "gambiteer_opponent_mistake_major_02", "text": "Один победитель, остальные остаются позади.", "weight": 1.4, "cooldown": 10 },
+      { "id": "gambiteer_opponent_mistake_major_03", "text": "Я же говорил: не моргай.", "weight": 1.3, "cooldown": 9 },
+      { "id": "gambiteer_opponent_mistake_major_04", "text": "В твоих мечтах, Гром. А в этой партии — моя фигура.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "risk_succeeded": [
+      { "id": "gambiteer_risk_succeeded_01", "text": "Поверни направо, чтобы поехать налево. Работает!", "weight": 1.5, "cooldown": 10 },
+      { "id": "gambiteer_risk_succeeded_02", "text": "К..-чау! Риск — это просто быстрый маршрут.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_risk_succeeded_03", "text": "Я решаю, когда всё кончено. И этот манёвр ещё не кончен.", "weight": 1.3, "cooldown": 10 },
+      { "id": "gambiteer_risk_succeeded_04", "text": "Нестандартный поворот. Стандартный результат: я впереди.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "exchange_refused": [
+      { "id": "gambiteer_exchange_refused_01", "text": "Размен? Нет, спасибо. Я сюда гоняться приехал.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_exchange_refused_02", "text": "Зачем менять двигатель, если он ещё разгоняется?", "weight": 1.2, "cooldown": 9 },
+      { "id": "gambiteer_exchange_refused_03", "text": "Сбавлять скорость перед финишем? В твоих мечтах, Гром.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "under_attack": [
+      { "id": "gambiteer_under_attack_01", "text": "Я решаю, когда всё кончено.", "weight": 1.5, "cooldown": 9 },
+      { "id": "gambiteer_under_attack_02", "text": "Это не авария. Это управляемый занос.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_under_attack_03", "text": "Поверни направо, чтобы поехать налево. Спасибо, Док.", "weight": 1.3, "cooldown": 10 },
+      { "id": "gambiteer_under_attack_04", "text": "Давление? Отлично. Значит, гонка настоящая.", "weight": 1.2, "cooldown": 8 },
+      { "id": "gambiteer_under_attack_05", "text": "Я ещё в гонке. И всё ещё быстрее.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "under_attack_heavy": [
+      { "id": "gambiteer_under_attack_heavy_01", "text": "Я решаю, когда всё кончено. Не ты.", "weight": 1.5, "cooldown": 10 },
+      { "id": "gambiteer_under_attack_heavy_02", "text": "Мотор дымится, трасса плывёт. Значит, полный газ.", "weight": 1.3, "cooldown": 10 },
+      { "id": "gambiteer_under_attack_heavy_03", "text": "Чемпион отличается тем, что не останавливается после удара.", "weight": 1.2, "cooldown": 10 },
+      { "id": "gambiteer_under_attack_heavy_04", "text": "Последний круг бывает самым быстрым.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "own_mistake": [
+      { "id": "gambiteer_own_mistake_01", "text": "Это был занос. Управляемый. Почти.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_own_mistake_02", "text": "Даже точный инструмент иногда цепляет ограждение.", "weight": 1.2, "cooldown": 9 },
+      { "id": "gambiteer_own_mistake_03", "text": "Ладно, этот поворот был лишним. Газ дальше.", "weight": 1.3, "cooldown": 8 },
+      { "id": "gambiteer_own_mistake_04", "text": "Ошибка скорости. Всё равно лучше ошибки торможения.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "bad_position": [
+      { "id": "gambiteer_bad_position_01", "text": "Я решаю, когда всё кончено. Пока не кончено.", "weight": 1.5, "cooldown": 10 },
+      { "id": "gambiteer_bad_position_02", "text": "Отстаю? Значит, впереди больше машин для обгона.", "weight": 1.3, "cooldown": 9 },
+      { "id": "gambiteer_bad_position_03", "text": "Не волнуйся, друг. Финиш ещё не видел моего ускорения.", "weight": 1.2, "cooldown": 9 },
+      { "id": "gambiteer_bad_position_04", "text": "В твоих мечтах, Гром. Я ещё вернусь.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "time_trouble": [
+      { "id": "gambiteer_time_trouble_01", "text": "Скорость. Я — Скорость. Особенно когда часов почти нет.", "weight": 1.6, "cooldown": 9 },
+      { "id": "gambiteer_time_trouble_02", "text": "Последние секунды? Моя любимая дистанция.", "weight": 1.4, "cooldown": 9 },
+      { "id": "gambiteer_time_trouble_03", "text": "К..-чау! Часы пытаются меня обогнать.", "weight": 1.4, "cooldown": 10 },
+      { "id": "gambiteer_time_trouble_04", "text": "Никаких тормозов. Только финиш.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "checkmate_given": [
+      { "id": "gambiteer_checkmate_given_01", "text": "К..-чау! Финиш.", "weight": 1.7, "cooldown": 11 },
+      { "id": "gambiteer_checkmate_given_02", "text": "Скорость. Я — Скорость. И теперь я — победитель.", "weight": 1.5, "cooldown": 11 },
+      { "id": "gambiteer_checkmate_given_03", "text": "Один победитель. Остальные уже пересекли финиш позже.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "checkmate_received": [
+      { "id": "gambiteer_checkmate_received_01", "text": "Я решаю, когда всё кончено. Ладно, в этот раз решили правила.", "weight": 1.4, "cooldown": 11 },
+      { "id": "gambiteer_checkmate_received_02", "text": "Не волнуйся, друг. Ты достойно выступил. Я тоже.", "weight": 1.2, "cooldown": 11 },
+      { "id": "gambiteer_checkmate_received_03", "text": "Последний поворот сегодня был твоим.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "draw_offer": [
+      { "id": "gambiteer_draw_offer_01", "text": "Ничья? Пусть это будет фотофиниш.", "weight": 1.2, "cooldown": 9 },
+      { "id": "gambiteer_draw_offer_02", "text": "Одинаковое время, одинаковый результат. Закроем круг?", "weight": 1.0, "cooldown": 9 }
+    ],
+    "draw_accepted": [
+      { "id": "gambiteer_draw_accepted_01", "text": "Фотофиниш принят. В следующий раз разница будет заметнее.", "weight": 1.2, "cooldown": 9 },
+      { "id": "gambiteer_draw_accepted_02", "text": "Ничья — это победа, которой не хватило скорости.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "time_loss": [
+      { "id": "gambiteer_time_loss_01", "text": "Часы оказались быстрее. Один раз.", "weight": 1.4, "cooldown": 10 },
+      { "id": "gambiteer_time_loss_02", "text": "Скорость была. Финишная линия появилась слишком рано.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "resign": [
+      { "id": "gambiteer_resign_01", "text": "Я решаю, когда всё кончено. Сейчас — кончено.", "weight": 1.5, "cooldown": 11 },
+      { "id": "gambiteer_resign_02", "text": "Схожу с трассы. Только чтобы вернуться быстрее.", "weight": 1.3, "cooldown": 10 },
+      { "id": "gambiteer_resign_03", "text": "Не волнуйся, друг. Ты достойно выступил.", "weight": 1.2, "cooldown": 10 }
+    ]
+  }
+}

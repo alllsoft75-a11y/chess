@@ -205,6 +205,7 @@ export interface PersonalityProfile {
   exchange_preference: number
   initiative: number
   caution: number
+  avatars: Record<string, string>
 }
 
 export interface MoveCandidate {
@@ -229,3 +230,47 @@ export interface EpisodeAnalysis {
 }
 
 export type PlaybackMode = 'fixed' | 'tempo'
+
+export interface TournamentSummary {
+  id: number
+  created_at: string
+  rules_version: string
+  max_fullmoves: number
+  games_per_pair: number
+  players: string[]
+  status: string
+  error: string | null
+  total_games: number
+  played_games: number
+}
+
+export interface TournamentGameResult {
+  white_id: string
+  black_id: string
+  result: string
+  termination: string
+  fullmoves: number
+  technical_score: number
+  pgn: string
+  white_rating_before: number | null
+  black_rating_before: number | null
+  white_rating_after: number | null
+  black_rating_after: number | null
+}
+
+export interface TournamentReport extends TournamentSummary {
+  games: TournamentGameResult[]
+  standings: PersonalityProfile[]
+}
+
+export interface RatingEntry {
+  personality_id: string
+  name: string
+  temperament: string
+  rating: number
+  games: number
+  wins: number
+  draws: number
+  losses: number
+  updated_at: string | null
+}

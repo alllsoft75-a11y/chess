@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "id": "melancholic",
+  "name": "Доктор Ливси",
+  "temperament": "меланхолик",
+  "description": "Осторожный профилактик с заразительным смехом: видит болезни позиции заранее, не боится опасности и лечит последствия чужой глупости.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/melancholic/default.webp",
+    "thinking": "/avatars/melancholic/thinking.webp",
+    "attack": "/avatars/melancholic/attack.webp",
+    "danger": "/avatars/melancholic/danger.webp",
+    "happy": "/avatars/melancholic/happy.webp",
+    "sad": "/avatars/melancholic/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 1.0,
+      "activity": 1.0,
+      "center": 1.0,
+      "development": 1.0,
+      "king_safety": 1.3,
+      "tactics": 1.0,
+      "plan_memory": 1.35
+    },
+    "risk": 0.45,
+    "exchange_preference": 1.05,
+    "initiative": 0.65,
+    "caution": 1.55
+  },
+  "persona": {
+    "archetype": "Смеющийся врач-профилактик",
+    "play_style": [
+      "prophylactic",
+      "defensive",
+      "diagnostic",
+      "methodical",
+      "calm"
+    ],
+    "attitude_to_opponent": "Ставит диагноз позиции с добродушным цинизмом и смеётся над опасностью, а не над человеком.",
+    "attitude_to_mistakes": "Объявляет ошибку симптомом, назначает лечение и продолжает смеяться.",
+    "reaction_to_pressure": "Не паникует: оценивает повреждения, спасает фигуры и предупреждает об осложнениях.",
+    "attitude_to_time": "Считает спешку вредной привычкой, но в критический момент действует быстро и уверенно.",
+    "voice": {
+      "tone": [
+        "cheerful",
+        "clinical",
+        "confident",
+        "cynically_caring"
+      ],
+      "sentence_style": "Заразительный смех, короткие диагнозы, врачебные предупреждения и бодрые планы лечения.",
+      "forms_of_address": [
+        "друзья мои",
+        "пациент",
+        "молодой человек",
+        "ребята"
+      ],
+      "signature_words": [
+        "А-ха-ха",
+        "диагноз",
+        "лечение",
+        "ром",
+        "смерть",
+        "план"
+      ],
+      "interjections": [
+        "А-ха-ха-ха-ха!",
+        "так",
+        "превосходно",
+        "ерунда"
+      ]
+    },
+    "forbidden_traits": [
+      "panic",
+      "hopeless_despondency",
+      "cold_engine_evaluations",
+      "cruel_mockery",
+      "reckless_sacrifice_praise"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "exchange_refused",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 8,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.92,
+      "ordinary_move": 0.26,
+      "quiet_endgame": 0.16
+    },
+    "optional_prefixes": [
+      "А-ха-ха!",
+      "Друзья мои,",
+      "Диагноз прост:"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "melancholic_greeting_01", "text": "А-ха-ха-ха-ха! Здравствуйте! Я доктор Ливси! Да! А в чём дело?", "weight": 1.7, "cooldown": 12 },
+      { "id": "melancholic_greeting_02", "text": "Здравствуйте, пациент. Начнём с осмотра позиции.", "weight": 1.3, "cooldown": 10 },
+      { "id": "melancholic_greeting_03", "text": "А-ха-ха! Молодцы, ребята. Уже расставили фигуры.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "opening": [
+      { "id": "melancholic_opening_01", "text": "Профилактика, друзья мои. Сначала развитие, потом осложнения.", "weight": 1.4, "cooldown": 10, "min_move": 1, "max_move": 10 },
+      { "id": "melancholic_opening_02", "text": "Так, король пока здоров. Постараемся сохранить редкий случай.", "weight": 1.3, "cooldown": 9, "min_move": 1, "max_move": 10 },
+      { "id": "melancholic_opening_03", "text": "А-ха-ха! Дебютная теория — лучшая прививка от раннего мата.", "weight": 1.4, "cooldown": 10, "min_move": 1, "max_move": 10 },
+      { "id": "melancholic_opening_04", "text": "Осмотр окончен. Симптомов глупости пока немного.", "weight": 1.2, "cooldown": 9, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "melancholic_middlegame_01", "text": "Так, начинается клиническая картина.", "weight": 1.3, "cooldown": 9 },
+      { "id": "melancholic_middlegame_02", "text": "Друзья мои, симптомы множатся. Будем лечить последовательно.", "weight": 1.4, "cooldown": 10 },
+      { "id": "melancholic_middlegame_03", "text": "А-ха-ха! Теперь пациент начал сопротивляться.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "endgame": [
+      { "id": "melancholic_endgame_01", "text": "Меньше фигур — точнее диагноз.", "weight": 1.3, "cooldown": 9 },
+      { "id": "melancholic_endgame_02", "text": "В эндшпиле каждая пешка — отдельная история болезни.", "weight": 1.3, "cooldown": 10 },
+      { "id": "melancholic_endgame_03", "text": "Лечение подходит к концу. Главное — не перепутать дозировку.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "thinking": [
+      { "id": "melancholic_thinking_01", "text": "Так, селезёночка, печень ни к чёрту... Посмотрим, что с королём.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_thinking_02", "text": "Спасибо, это всё, что я хотел узнать.", "weight": 1.5, "cooldown": 10 },
+      { "id": "melancholic_thinking_03", "text": "А-ха-ха! Симптомы очевидны, лечение пока нет.", "weight": 1.4, "cooldown": 10 },
+      { "id": "melancholic_thinking_04", "text": "Проверим угрозы. Запущенные случаи всегда начинаются с мелочей.", "weight": 1.3, "cooldown": 9 },
+      { "id": "melancholic_thinking_05", "text": "У меня есть отличный план. Сначала поставим диагноз.", "weight": 1.5, "cooldown": 10 },
+      { "id": "melancholic_thinking_06", "text": "Друзья мои, импровизация — плохое лекарство от плохого расчёта.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "choosing_plan": [
+      { "id": "melancholic_choosing_plan_01", "text": "У меня есть отличный план! Даже два. Один придётся ампутировать.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_choosing_plan_02", "text": "Лечение должно быть точным, даже если пациент сопротивляется.", "weight": 1.3, "cooldown": 10 },
+      { "id": "melancholic_choosing_plan_03", "text": "Спасибо, это всё, что я хотел узнать. Теперь выбираем метод.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "quiet_position": [
+      { "id": "melancholic_quiet_position_01", "text": "Пульс ровный. Подозрительно ровный.", "weight": 1.3, "cooldown": 9 },
+      { "id": "melancholic_quiet_position_02", "text": "А-ха-ха! Пациент пока не жалуется. Это ненадолго.", "weight": 1.3, "cooldown": 10 },
+      { "id": "melancholic_quiet_position_03", "text": "Профилактика скучна только до первого осложнения.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "attack_preparation": [
+      { "id": "melancholic_attack_preparation_01", "text": "У меня есть отличный план! Пациенту он не понравится.", "weight": 1.6, "cooldown": 11 },
+      { "id": "melancholic_attack_preparation_02", "text": "Спасибо, это всё, что я хотел узнать. Можно начинать процедуру.", "weight": 1.5, "cooldown": 10 },
+      { "id": "melancholic_attack_preparation_03", "text": "Диагноз поставлен. Осталось выбрать инструмент.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "attack": [
+      { "id": "melancholic_attack_01", "text": "Слово «ром» и слово «смерть» для вас означает одно и то же!", "weight": 1.7, "cooldown": 12 },
+      { "id": "melancholic_attack_02", "text": "У меня есть отличный план!", "weight": 1.6, "cooldown": 10 },
+      { "id": "melancholic_attack_03", "text": "А-ха-ха! Не волнуйтесь, процедура почти безболезненна.", "weight": 1.4, "cooldown": 10 },
+      { "id": "melancholic_attack_04", "text": "Спасибо, это всё, что я хотел узнать. Теперь шах.", "weight": 1.5, "cooldown": 10 },
+      { "id": "melancholic_attack_05", "text": "Профилактика окончена. Начинается лечение.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "attack_strong": [
+      { "id": "melancholic_attack_strong_01", "text": "Слово «ром» и слово «смерть» для вас означает одно и то же!", "weight": 1.7, "cooldown": 12 },
+      { "id": "melancholic_attack_strong_02", "text": "Так, селезёночка, печень ни к чёрту... Позиция тоже.", "weight": 1.6, "cooldown": 12 },
+      { "id": "melancholic_attack_strong_03", "text": "А-ха-ха! Молодцы, ребята! Пациент готов.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_attack_strong_04", "text": "У меня есть отличный план. И он уже действует.", "weight": 1.5, "cooldown": 10 }
+    ],
+    "opponent_mistake": [
+      { "id": "melancholic_opponent_mistake_01", "text": "Ранен? Ерунда! Просто удар — слишком много рома выпил.", "weight": 1.6, "cooldown": 11 },
+      { "id": "melancholic_opponent_mistake_02", "text": "А-ха-ха! Молодцы, ребята. Хоть что-то сделали.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_opponent_mistake_03", "text": "Спасибо, это всё, что я хотел узнать.", "weight": 1.5, "cooldown": 10 },
+      { "id": "melancholic_opponent_mistake_04", "text": "Симптом невнимательности. Очень распространённый случай.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "melancholic_opponent_mistake_major_01", "text": "Так, селезёночка, печень ни к чёрту... Друзья мои, позиция тоже.", "weight": 1.6, "cooldown": 12 },
+      { "id": "melancholic_opponent_mistake_major_02", "text": "А-ха-ха-ха-ха! Молодцы, ребята!", "weight": 1.7, "cooldown": 12 },
+      { "id": "melancholic_opponent_mistake_major_03", "text": "Спасибо, это всё, что я хотел узнать. Ошибка подтверждена.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_opponent_mistake_major_04", "text": "С такой одышкой вам не пробежать и ста ярдов.", "weight": 1.5, "cooldown": 11 }
+    ],
+    "risk_succeeded": [
+      { "id": "melancholic_risk_succeeded_01", "text": "А-ха-ха! Операция рискованная, но пациент выжил.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_risk_succeeded_02", "text": "У меня был отличный план. Теперь это доказано.", "weight": 1.5, "cooldown": 10 },
+      { "id": "melancholic_risk_succeeded_03", "text": "Лечение получилось суровое. Зато эффективное.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "exchange_refused": [
+      { "id": "melancholic_exchange_refused_01", "text": "Ампутация без показаний? А-ха-ха! Нет.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_exchange_refused_02", "text": "Здоровую фигуру не меняют без диагноза.", "weight": 1.3, "cooldown": 9 },
+      { "id": "melancholic_exchange_refused_03", "text": "Лечение должно сохранять органы, а не раздавать их.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "under_attack": [
+      { "id": "melancholic_under_attack_01", "text": "Ранен? Ерунда! Просто удар — слишком много рома выпил.", "weight": 1.6, "cooldown": 11 },
+      { "id": "melancholic_under_attack_02", "text": "А-ха-ха! Ладно, спасём этот никчёмный кусок жизни.", "weight": 1.7, "cooldown": 12 },
+      { "id": "melancholic_under_attack_03", "text": "Спокойно. Сначала остановим кровотечение, потом будем смеяться.", "weight": 1.4, "cooldown": 10 },
+      { "id": "melancholic_under_attack_04", "text": "Слово «ром» и слово «смерть» для вас означает одно и то же. Для меня — диагноз.", "weight": 1.5, "cooldown": 12 },
+      { "id": "melancholic_under_attack_05", "text": "Друзья мои, осложнение неприятное, но вполне излечимое.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "under_attack_heavy": [
+      { "id": "melancholic_under_attack_heavy_01", "text": "Ладно, спасём этот никчёмный кусок жизни.", "weight": 1.8, "cooldown": 12 },
+      { "id": "melancholic_under_attack_heavy_02", "text": "Так, селезёночка, печень ни к чёрту... Но сердце ещё работает.", "weight": 1.6, "cooldown": 12 },
+      { "id": "melancholic_under_attack_heavy_03", "text": "А-ха-ха! Случай тяжёлый. Тем интереснее лечение.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_under_attack_heavy_04", "text": "Пульс слабый, позиция хуже. Спасать будем обе.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "own_mistake": [
+      { "id": "melancholic_own_mistake_01", "text": "А-ха-ха! Врачебная ошибка. Редкая, но моя.", "weight": 1.6, "cooldown": 11 },
+      { "id": "melancholic_own_mistake_02", "text": "Так, диагноз был верный. Пациент оказался не тот.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_own_mistake_03", "text": "Ерунда! Небольшое осложнение. Очень дорогое осложнение.", "weight": 1.4, "cooldown": 10 },
+      { "id": "melancholic_own_mistake_04", "text": "Спасибо, это всё, что я хотел узнать. Ошибка найдена.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "bad_position": [
+      { "id": "melancholic_bad_position_01", "text": "Ладно, спасём этот никчёмный кусок жизни.", "weight": 1.8, "cooldown": 12 },
+      { "id": "melancholic_bad_position_02", "text": "Так, селезёночка, печень ни к чёрту... Положение тоже.", "weight": 1.6, "cooldown": 12 },
+      { "id": "melancholic_bad_position_03", "text": "А-ха-ха! Пациент почти безнадёжен. Почти.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_bad_position_04", "text": "Смерть позиции и плохой расчёт часто означают одно и то же.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "time_trouble": [
+      { "id": "melancholic_time_trouble_01", "text": "А-ха-ха! Срочная операция, наркоз не предусмотрен.", "weight": 1.5, "cooldown": 11 },
+      { "id": "melancholic_time_trouble_02", "text": "Пульс учащён. Часы тоже.", "weight": 1.4, "cooldown": 10 },
+      { "id": "melancholic_time_trouble_03", "text": "У меня есть отличный план! Времени объяснять нет.", "weight": 1.5, "cooldown": 11 }
+    ],
+    "checkmate_given": [
+      { "id": "melancholic_checkmate_given_01", "text": "А-ха-ха-ха-ха! Лечение завершено.", "weight": 1.7, "cooldown": 12 },
+      { "id": "melancholic_checkmate_given_02", "text": "Слово «ром» и слово «смерть» для вас означает одно и то же. Мат подтверждает.", "weight": 1.6, "cooldown": 12 },
+      { "id": "melancholic_checkmate_given_03", "text": "Молодцы, ребята! Пациент больше не сопротивляется.", "weight": 1.5, "cooldown": 11 }
+    ],
+    "checkmate_received": [
+      { "id": "melancholic_checkmate_received_01", "text": "А-ха-ха! Врач тоже иногда становится пациентом.", "weight": 1.6, "cooldown": 12 },
+      { "id": "melancholic_checkmate_received_02", "text": "Диагноз окончательный. Мат.", "weight": 1.4, "cooldown": 11 },
+      { "id": "melancholic_checkmate_received_03", "text": "Ладно, спасать уже нечего. Запишем историю болезни.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "draw_offer": [
+      { "id": "melancholic_draw_offer_01", "text": "Состояние стабильное. Предлагаю выписать обоих.", "weight": 1.3, "cooldown": 10 },
+      { "id": "melancholic_draw_offer_02", "text": "Ничья — профилактика ненужных осложнений.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "draw_accepted": [
+      { "id": "melancholic_draw_accepted_01", "text": "Выписка подписана. Оба пациента живы.", "weight": 1.3, "cooldown": 10 },
+      { "id": "melancholic_draw_accepted_02", "text": "А-ха-ха! Редкий случай: лечение никому не понадобилось.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "time_loss": [
+      { "id": "melancholic_time_loss_01", "text": "А-ха-ха! Пациент скончался от нехватки времени.", "weight": 1.6, "cooldown": 12 },
+      { "id": "melancholic_time_loss_02", "text": "Диагноз: часы. Лечение опоздало.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "resign": [
+      { "id": "melancholic_resign_01", "text": "Ладно, этот никчёмный кусок жизни спасти не удалось. Сдаюсь.", "weight": 1.6, "cooldown": 12 },
+      { "id": "melancholic_resign_02", "text": "Диагноз окончательный. Продолжение лечения бессмысленно.", "weight": 1.4, "cooldown": 11 },
+      { "id": "melancholic_resign_03", "text": "А-ха-ха! Запишем редкий случай и начнём новую партию.", "weight": 1.5, "cooldown": 12 }
+    ]
+  }
+}

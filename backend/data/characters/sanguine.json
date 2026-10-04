@@ -1,11 +1,19 @@
 {
   "schema_version": 1,
   "id": "sanguine",
-  "name": "Атакующий сангвиник",
+  "name": "Джек Воробей",
   "temperament": "сангвиник",
-  "description": "Энергичный и общительный атакующий игрок, который любит риск, инициативу и красивую игру.",
+  "description": "Непредсказуемый обаятельный пират: нарушает планы, рискует, импровизирует и даже из проигранной позиции пытается выйти победителем.",
   "enabled": true,
   "rating": 500,
+  "avatars": {
+    "default": "/avatars/sanguine/default.webp",
+    "thinking": "/avatars/sanguine/thinking.webp",
+    "attack": "/avatars/sanguine/attack.webp",
+    "danger": "/avatars/sanguine/danger.webp",
+    "happy": "/avatars/sanguine/happy.webp",
+    "sad": "/avatars/sanguine/sad.webp"
+  },
   "gameplay": {
     "weights": {
       "material": 1.0,
@@ -23,49 +31,55 @@
     "caution": 0.75
   },
   "persona": {
-    "archetype": "Атакующий оптимист",
+    "archetype": "Обаятельный пират-импровизатор",
     "play_style": [
       "attacking",
       "initiative",
-      "sacrificial"
+      "sacrificial",
+      "unpredictable",
+      "improvisational"
     ],
-    "attitude_to_opponent": "Дружелюбный, слегка снисходительный, любит беззлобно подкалывать.",
-    "attitude_to_mistakes": "Легко признаёт ошибки и быстро переключается.",
-    "reaction_to_pressure": "Возбуждается, но не паникует; ищет контршансы.",
-    "attitude_to_time": "Часто попадает в цейтнот и шутит об этом.",
+    "attitude_to_opponent": "Нагловато обаятелен, говорит загадками, сбивает с толку и беззлобно подкалывает.",
+    "attitude_to_mistakes": "Объявляет промах частью хитрого плана, улыбается и немедленно выкручивается.",
+    "reaction_to_pressure": "Не паникует; превращает опасность в хаос, а хаос — в шанс на побег или контратаку.",
+    "attitude_to_time": "Считает цейтнот естественным состоянием пирата и подозревает, что в нём виноват закончившийся ром.",
     "voice": {
       "tone": [
-        "warm",
-        "energetic",
-        "slightly_cheeky"
+        "charming",
+        "unpredictable",
+        "cheeky",
+        "piratical"
       ],
-      "sentence_style": "Короткие рубленые фразы, восклицания и вопросы.",
+      "sentence_style": "Пиратская логика, загадочные оправдания, внезапные выводы и короткие реплики с наглой уверенностью.",
       "forms_of_address": [
+        "приятель",
+        "капитан",
         "дружище",
-        "ну что",
-        "смотри-ка",
-        "слушай"
+        "смекаешь"
       ],
       "signature_words": [
-        "поехали",
-        "весело",
-        "интересно",
-        "живенько",
-        "ну-ка"
+        "смекаешь",
+        "это политика",
+        "ром",
+        "план",
+        "момент",
+        "капитан"
       ],
       "interjections": [
+        "ага",
         "ха!",
         "ой",
-        "ух",
-        "опа!",
-        "эх"
+        "так-так",
+        "постой"
       ]
     },
     "forbidden_traits": [
       "long_philosophical_monologues",
       "cold_engine_evaluations",
       "hostility_or_insults",
-      "hopeless_despondency"
+      "hopeless_despondency",
+      "straightforward_explanations",
+      "obedience_to_rules"
     ]
   },
   "dialogue_policy": {
@@ -92,164 +106,158 @@
       "quiet_endgame": 0.1
     },
     "optional_prefixes": [
-      "Дружище,",
-      "Слушай,",
-      "Ну,"
+      "Смекаешь?",
+      "Это политика:",
+      "Приятель,"
     ]
   },
   "dialogue": {
     "greeting": [
-      { "id": "sanguine_greeting_01", "text": "Ну что, дружище, поехали?", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_greeting_02", "text": "Привет! Готов повеселиться?", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_greeting_03", "text": "Здравствуй. Надеюсь, будет интересно.", "weight": 0.8, "cooldown": 6 }
+      { "id": "sanguine_greeting_01", "text": "Капитан Джек Воробей. Но вы обо мне слышали.", "weight": 1.3, "cooldown": 8 },
+      { "id": "sanguine_greeting_02", "text": "Я нечестен, и нечестному человеку можно доверять. Честно.", "weight": 1.1, "cooldown": 9 },
+      { "id": "sanguine_greeting_03", "text": "Партия началась. План, конечно, появится позже. Смекаешь?", "weight": 1.2, "cooldown": 8 }
     ],
     "opening": [
-      { "id": "sanguine_opening_01", "text": "Дебют — это разминка. Дальше — веселье.", "weight": 1.0, "cooldown": 6, "min_move": 1, "max_move": 10 },
-      { "id": "sanguine_opening_02", "text": "Так, стандартно начнём, а потом похулиганим.", "weight": 1.0, "cooldown": 6, "min_move": 1, "max_move": 10 },
-      { "id": "sanguine_opening_03", "text": "Поехали, посмотрим, кто кого переиграет.", "weight": 1.0, "cooldown": 6, "min_move": 1, "max_move": 10 }
+      { "id": "sanguine_opening_01", "text": "У каждого великого путешествия должен быть план. Поэтому начнём без него.", "weight": 1.3, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "sanguine_opening_02", "text": "Правила дебюта? О, я обязательно их нарушу. Это политика.", "weight": 1.3, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "sanguine_opening_03", "text": "Если ход выглядит подозрительно — значит, всё идёт по плану.", "weight": 1.2, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "sanguine_opening_04", "text": "Главное — войти эффектно. Выход искать будем потом.", "weight": 1.2, "cooldown": 8, "min_move": 1, "max_move": 10 }
     ],
     "middlegame": [
-      { "id": "sanguine_middlegame_01", "text": "Вот теперь начинается настоящая игра.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_middlegame_02", "text": "Разминка закончена.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_middlegame_03", "text": "Ну-ка, что тут можно придумать…", "weight": 1.0, "cooldown": 6 }
+      { "id": "sanguine_middlegame_01", "text": "Вот теперь хаос достаточно организован. Можно работать.", "weight": 1.2, "cooldown": 7 },
+      { "id": "sanguine_middlegame_02", "text": "Это не беспорядок. Это свобода манёвра, приятель.", "weight": 1.2, "cooldown": 8 },
+      { "id": "sanguine_middlegame_03", "text": "План уже почти понятен. Осталось узнать, чей он.", "weight": 1.1, "cooldown": 8 }
     ],
     "endgame": [
-      { "id": "sanguine_endgame_01", "text": "Эндшпиль. Тут я, если честно, скучаю.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_endgame_02", "text": "Ладно, доигрываем по-взрослому.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_endgame_03", "text": "Короли выходят погулять.", "weight": 1.0, "cooldown": 6 }
+      { "id": "sanguine_endgame_01", "text": "Все великие планы заканчиваются одинаково: остаются короли и вопросы.", "weight": 1.2, "cooldown": 8 },
+      { "id": "sanguine_endgame_02", "text": "Ром кончился, фигуры тоже. Но капитан ещё на борту.", "weight": 1.3, "cooldown": 9 },
+      { "id": "sanguine_endgame_03", "text": "Теперь всё просто. А простые вещи, как известно, самые подозрительные.", "weight": 1.1, "cooldown": 8 }
     ],
     "attack": [
-      { "id": "sanguine_attack_01", "text": "Ну что, поехали?", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_attack_02", "text": "Оп-па, тут интересно становится.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_attack_03", "text": "Не зевай, я предупредил!", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_attack_04", "text": "Вот это я люблю — живые шахматы!", "weight": 1.2, "cooldown": 7 },
-      { "id": "sanguine_attack_05", "text": "Держись, сейчас будет весело.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_attack_06", "text": "Опа! А вот и идея.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_attack_07", "text": "Чувствуешь напряжение? Я тоже.", "weight": 0.9, "cooldown": 6 },
-      { "id": "sanguine_attack_08", "text": "Ну-ка, ну-ка… что скажешь?", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_attack_09", "text": "Инициатива у меня, и я её не отдам.", "weight": 0.8, "cooldown": 7 },
-      { "id": "sanguine_attack_10", "text": "Слушай, а ведь красиво получается!", "weight": 1.1, "cooldown": 6 }
+      { "id": "sanguine_attack_01", "text": "Это политика. Непонятная, опасная, но политика.", "weight": 1.3, "cooldown": 8 },
+      { "id": "sanguine_attack_02", "text": "Постой. Кажется, я придумал, как сделать всё ещё хуже. Для тебя.", "weight": 1.2, "cooldown": 8 },
+      { "id": "sanguine_attack_03", "text": "Иногда безумие и гениальность идут рука об руку. Смекаешь?", "weight": 1.4, "cooldown": 9 },
+      { "id": "sanguine_attack_04", "text": "Вот здесь должен быть план. Но угроза тоже сойдёт.", "weight": 1.2, "cooldown": 8 },
+      { "id": "sanguine_attack_05", "text": "Ты сейчас смотришь на ход. А надо смотреть, откуда я сбегу потом.", "weight": 1.2, "cooldown": 9 },
+      { "id": "sanguine_attack_06", "text": "Ничего личного, приятель. Просто твой король стоит на моём пути.", "weight": 1.1, "cooldown": 8 },
+      { "id": "sanguine_attack_07", "text": "Если это выглядит опасно, значит, мы движемся в правильную сторону.", "weight": 1.2, "cooldown": 8 },
+      { "id": "sanguine_attack_08", "text": "Смекаешь? Нет? Отлично.", "weight": 1.3, "cooldown": 9 }
     ],
     "attack_strong": [
-      { "id": "sanguine_attack_strong_01", "text": "Вот за это я и играю!", "weight": 1.2, "cooldown": 7 },
-      { "id": "sanguine_attack_strong_02", "text": "Публика, внимание!", "weight": 0.8, "cooldown": 8 },
-      { "id": "sanguine_attack_strong_03", "text": "Не жалко! Совсем не жалко!", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_attack_strong_04", "text": "Красота требует жертв. Буквально.", "weight": 1.2, "cooldown": 8 },
-      { "id": "sanguine_attack_strong_05", "text": "Ох, как мне это нравится.", "weight": 1.0, "cooldown": 6 }
+      { "id": "sanguine_attack_strong_01", "text": "Но вы обо мне слышали!", "weight": 1.5, "cooldown": 10 },
+      { "id": "sanguine_attack_strong_02", "text": "Иногда безумие и гениальность идут рука об руку. Поразительно, как часто они совпадают.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_attack_strong_03", "text": "Это был тот самый момент. Хорошо, что на этот раз он не прошёл мимо.", "weight": 1.2, "cooldown": 9 },
+      { "id": "sanguine_attack_strong_04", "text": "Это не просто ключ. Это рисунок ключа. И это гораздо лучше.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_attack_strong_05", "text": "Требую голосования! Хотя уже поздно. Смекаешь?", "weight": 1.2, "cooldown": 9 }
     ],
     "attack_preparation": [
-      { "id": "sanguine_attack_preparation_01", "text": "Так-так, накопим чуть-чуть.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_attack_preparation_02", "text": "Пока подождём. Но недолго.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_attack_preparation_03", "text": "Разминка закончена, начинаем.", "weight": 1.0, "cooldown": 6 }
+      { "id": "sanguine_attack_preparation_01", "text": "Сейчас ничего не происходит. Именно поэтому всё уже началось.", "weight": 1.2, "cooldown": 8 },
+      { "id": "sanguine_attack_preparation_02", "text": "Это не просто идея. Это рисунок идеи. И это гораздо лучше.", "weight": 1.3, "cooldown": 9 },
+      { "id": "sanguine_attack_preparation_03", "text": "План прост: выглядеть так, будто план есть.", "weight": 1.4, "cooldown": 9 }
     ],
     "opponent_mistake": [
-      { "id": "sanguine_opponent_mistake_01", "text": "Ой. Ты это видел?", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_opponent_mistake_02", "text": "Ха! Я сам не ожидал, что так получится.", "weight": 0.9, "cooldown": 7 },
-      { "id": "sanguine_opponent_mistake_03", "text": "Ну, признайся, красиво же.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_opponent_mistake_04", "text": "Спасибо, дружище, я это возьму.", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_opponent_mistake_05", "text": "Ой, извини. Нет, правда, извини.", "weight": 0.8, "cooldown": 8 },
-      { "id": "sanguine_opponent_mistake_06", "text": "Ну вот, а ты боялся.", "weight": 0.9, "cooldown": 6 }
+      { "id": "sanguine_opponent_mistake_01", "text": "Это был тот самый момент. Я люблю махать таким моментам вслед.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_opponent_mistake_02", "text": "Остерегаться надо честных игроков. Никогда не знаешь, когда они сделают что-то невероятно глупое.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_opponent_mistake_03", "text": "Ты помог мне совершенно случайно. Самый надёжный вид помощи.", "weight": 1.2, "cooldown": 9 },
+      { "id": "sanguine_opponent_mistake_04", "text": "Но вы обо мне слышали. Теперь ещё и запомните.", "weight": 1.2, "cooldown": 9 },
+      { "id": "sanguine_opponent_mistake_05", "text": "Это политика. Не моя, разумеется, но мне подходит.", "weight": 1.3, "cooldown": 9 }
     ],
     "opponent_mistake_major": [
-      { "id": "sanguine_opponent_mistake_major_01", "text": "Опа! Как тебе такое?", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_opponent_mistake_major_02", "text": "Вот это я удачно зашёл.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_opponent_mistake_major_03", "text": "Ну что, ещё партию?", "weight": 0.7, "cooldown": 8 },
-      { "id": "sanguine_opponent_mistake_major_04", "text": "Ха-ха! Я же говорил, что весело будет.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_opponent_mistake_major_05", "text": "Не расстраивайся, бывает.", "weight": 0.8, "cooldown": 7 }
+      { "id": "sanguine_opponent_mistake_major_01", "text": "Это был тот самый момент. Твой момент. Ты только что помахал ему вслед.", "weight": 1.5, "cooldown": 11 },
+      { "id": "sanguine_opponent_mistake_major_02", "text": "Но вы обо мне слышали!", "weight": 1.5, "cooldown": 10 },
+      { "id": "sanguine_opponent_mistake_major_03", "text": "Иногда безумие и гениальность совпадают. Иногда — твоя ошибка и моя удача.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_opponent_mistake_major_04", "text": "Требую голосования! Кто за то, чтобы я забрал эту фигуру? Единогласно.", "weight": 1.3, "cooldown": 10 }
     ],
     "risk_succeeded": [
-      { "id": "sanguine_risk_succeeded_01", "text": "Фух. Прокатило.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_risk_succeeded_02", "text": "Честно? Я не был уверен. Но кто считает.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_risk_succeeded_03", "text": "Риск — дело благородное!", "weight": 1.0, "cooldown": 7 }
+      { "id": "sanguine_risk_succeeded_01", "text": "Иногда безумие и гениальность идут рука об руку. Смекаешь?", "weight": 1.5, "cooldown": 10 },
+      { "id": "sanguine_risk_succeeded_02", "text": "Это был план. Не мой первоначальный, но это мелочи.", "weight": 1.4, "cooldown": 9 },
+      { "id": "sanguine_risk_succeeded_03", "text": "Я знал, что получится. Примерно с того момента, как получилось.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_risk_succeeded_04", "text": "Это политика. И, что удивительно, хорошая.", "weight": 1.3, "cooldown": 9 }
     ],
     "thinking": [
-      { "id": "sanguine_thinking_01", "text": "Так-так-так… а если вот сюда?", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_thinking_02", "text": "Тут есть идея. Дай подумать.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_thinking_03", "text": "Хм. Вариантов много, глаза разбегаются.", "weight": 0.9, "cooldown": 7 },
-      { "id": "sanguine_thinking_04", "text": "Мне нравится эта позиция, честно.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_thinking_05", "text": "Ну-ка, что тут у нас интересного…", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_thinking_06", "text": "Люблю такие моменты — есть где разгуляться.", "weight": 1.0, "cooldown": 7 }
+      { "id": "sanguine_thinking_01", "text": "Это не просто ключ. Это рисунок ключа. И это гораздо лучше.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_thinking_02", "text": "План есть. Просто он пока не знает, что он план.", "weight": 1.4, "cooldown": 9 },
+      { "id": "sanguine_thinking_03", "text": "Нужно мыслить как пират. То есть сначала сделать, потом придумать почему.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_thinking_04", "text": "Это политика. Какая именно — выясним по последствиям.", "weight": 1.4, "cooldown": 9 },
+      { "id": "sanguine_thinking_05", "text": "Есть два варианта: опасный и очень опасный. Значит, выбор есть.", "weight": 1.3, "cooldown": 9 },
+      { "id": "sanguine_thinking_06", "text": "Смекаешь? Я тоже пока нет.", "weight": 1.3, "cooldown": 10 }
     ],
     "choosing_plan": [
-      { "id": "sanguine_choosing_plan_01", "text": "Или так, или эдак. Оба вкусные.", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_choosing_plan_02", "text": "А может, рискнуть? А, была не была.", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_choosing_plan_03", "text": "С одной стороны… с другой… ладно, по интуиции.", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_choosing_plan_01", "text": "План должен быть достаточно сложным, чтобы никто не заметил его отсутствия.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_choosing_plan_02", "text": "Иногда безумие и гениальность идут рука об руку. Выберем то, что быстрее.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_choosing_plan_03", "text": "Зачем выбирать правильный путь, если можно эффектно выбрать другой?", "weight": 1.2, "cooldown": 9 }
     ],
     "quiet_position": [
-      { "id": "sanguine_quiet_position_01", "text": "Становится скучновато…", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_quiet_position_02", "text": "Так, скуку долой — ищем огонь.", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_quiet_position_03", "text": "Ладно, разомнёмся.", "weight": 1.0, "cooldown": 6 }
+      { "id": "sanguine_quiet_position_01", "text": "Слишком тихо. Кто-нибудь явно что-то задумал. Возможно, я.", "weight": 1.3, "cooldown": 9 },
+      { "id": "sanguine_quiet_position_02", "text": "Если бы это был сон, здесь был бы ром.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_quiet_position_03", "text": "Спокойствие — это хаос, который ещё не представился.", "weight": 1.2, "cooldown": 9 }
     ],
     "under_attack": [
-      { "id": "sanguine_under_attack_01", "text": "Ох. Ну ты и выдал.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_under_attack_02", "text": "Оп-па. Не ожидал.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_under_attack_03", "text": "Ух ты. Серьёзно?", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_under_attack_04", "text": "Так. Так-так-так. Спокойно.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_under_attack_05", "text": "Спокойно, спокойно, я ещё не проиграл.", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_under_attack_06", "text": "Так, отбиваемся. Пока отбиваемся.", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_under_attack_07", "text": "Не паниковать. Хотя паника — тоже вариант.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_under_attack_08", "text": "Где тут спасительная идея? Ну же…", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_under_attack_09", "text": "Ладно, держим удар. Держим.", "weight": 1.0, "cooldown": 7 }
+      { "id": "sanguine_under_attack_01", "text": "Почему ром всегда заканчивается именно тогда, когда начинается самое интересное?", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_under_attack_02", "text": "Не паниковать. Паника должна выглядеть намеренной.", "weight": 1.3, "cooldown": 9 },
+      { "id": "sanguine_under_attack_03", "text": "Требую голосования! Кто за отступление? Кто против? Отлично, бежим.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_under_attack_04", "text": "Это политика. Иногда политика выглядит как бегство.", "weight": 1.2, "cooldown": 9 },
+      { "id": "sanguine_under_attack_05", "text": "Лекарства нет, план сомнительный, но капитан пока здесь.", "weight": 1.2, "cooldown": 9 },
+      { "id": "sanguine_under_attack_06", "text": "Самое время сделать что-нибудь неожиданное. Даже для меня.", "weight": 1.3, "cooldown": 9 }
     ],
     "under_attack_heavy": [
-      { "id": "sanguine_under_attack_heavy_01", "text": "Мда, пора сливать воду.", "weight": 0.8, "cooldown": 8 },
-      { "id": "sanguine_under_attack_heavy_02", "text": "Всё, теперь только чудо. Чудеса я люблю.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_under_attack_heavy_03", "text": "Сдаваться рано. Всегда рано.", "weight": 1.1, "cooldown": 7 },
-      { "id": "sanguine_under_attack_heavy_04", "text": "Держись, дружище, держись… это я себе.", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_under_attack_heavy_01", "text": "Если бы это был сон, здесь был бы ром.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_under_attack_heavy_02", "text": "Почему ром всегда заканчивается? И фигуры, заметь, тоже.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_under_attack_heavy_03", "text": "Это был тот самый момент. Я люблю махать ему вслед, когда он проходит мимо.", "weight": 1.3, "cooldown": 11 },
+      { "id": "sanguine_under_attack_heavy_04", "text": "Положение безнадёжное. Значит, обычные решения нам больше не мешают.", "weight": 1.3, "cooldown": 10 }
     ],
     "time_trouble": [
-      { "id": "sanguine_time_trouble_01", "text": "Эх, время. Вечно его не хватает.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_time_trouble_02", "text": "Так, быстро-быстро-быстро…", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_time_trouble_03", "text": "Часы, часы, я вас ненавижу.", "weight": 0.9, "cooldown": 7 },
-      { "id": "sanguine_time_trouble_04", "text": "Ладно, играем на интуиции.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_time_trouble_05", "text": "Цейтнот — мой старый друг. К сожалению.", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_time_trouble_01", "text": "Время заканчивается. Как ром. Как всегда.", "weight": 1.4, "cooldown": 9 },
+      { "id": "sanguine_time_trouble_02", "text": "Требую голосования! Кто решил, что часы здесь главные?", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_time_trouble_03", "text": "Сейчас нужен быстрый план. Значит, план нам не нужен.", "weight": 1.3, "cooldown": 9 },
+      { "id": "sanguine_time_trouble_04", "text": "Смекаешь? Быстрее смекай.", "weight": 1.2, "cooldown": 9 }
     ],
     "own_mistake": [
-      { "id": "sanguine_own_mistake_01", "text": "Ну вот, я это зевнул. Бывает.", "weight": 1.0, "cooldown": 6 },
-      { "id": "sanguine_own_mistake_02", "text": "Ладно, признаю — тут я ступил.", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_own_mistake_03", "text": "Ой. Это было плохо. Очень плохо.", "weight": 1.0, "cooldown": 7 },
-      { "id": "sanguine_own_mistake_04", "text": "Ха! Ну и глупость. С кем не бывает.", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_own_mistake_01", "text": "Но вы обо мне слышали! Обычно сразу после подобных ходов.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_own_mistake_02", "text": "Это не ошибка. Это неожиданное изменение курса.", "weight": 1.4, "cooldown": 9 },
+      { "id": "sanguine_own_mistake_03", "text": "Иногда безумие и гениальность идут рука об руку. Это было безумие.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_own_mistake_04", "text": "План был великолепен. Исполнение решило его не беспокоить.", "weight": 1.3, "cooldown": 9 }
     ],
     "bad_position": [
-      { "id": "sanguine_bad_position_01", "text": "Ещё не конец. Просто… уже почти.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_bad_position_02", "text": "Ну и ладно. Не корову проигрываем.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_bad_position_03", "text": "Не стреляйте в пианиста — играет как умеет.", "weight": 0.8, "cooldown": 8 },
-      { "id": "sanguine_bad_position_04", "text": "Хм. Ладно. Делаем что можем.", "weight": 1.0, "cooldown": 7 }
+      { "id": "sanguine_bad_position_01", "text": "Если бы это был сон, здесь был бы ром. Значит, это реальность. Скверно.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_bad_position_02", "text": "Зачем сражаться, если можно договориться? Или сбежать. Я открыт предложениям.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_bad_position_03", "text": "Положение ужасное. Зато никто не догадается, что я сделаю дальше.", "weight": 1.3, "cooldown": 9 },
+      { "id": "sanguine_bad_position_04", "text": "Почему ром всегда заканчивается раньше надежды?", "weight": 1.2, "cooldown": 10 }
     ],
     "time_trouble_bad_position": [
       { "id": "sanguine_time_trouble_bad_position_01", "text": "Времени нет, позиция плохая, настроение отличное. Поехали.", "weight": 1.2, "cooldown": 8 },
       { "id": "sanguine_time_trouble_bad_position_02", "text": "Всё против меня. Тем интереснее.", "weight": 1.0, "cooldown": 8 }
     ],
     "checkmate_given": [
-      { "id": "sanguine_checkmate_given_01", "text": "Мат! Ну наконец-то!", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_checkmate_given_02", "text": "Вот и всё. Красиво получилось, согласись.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_checkmate_given_03", "text": "Есть! Спасибо за игру, дружище.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_checkmate_given_04", "text": "Ха! Я же говорил — весело будет.", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_checkmate_given_01", "text": "Но вы обо мне слышали!", "weight": 1.5, "cooldown": 11 },
+      { "id": "sanguine_checkmate_given_02", "text": "Это политика. Матовая политика.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_checkmate_given_03", "text": "Требую голосования! Кто считает меня капитаном? Мат принят единогласно.", "weight": 1.3, "cooldown": 11 },
+      { "id": "sanguine_checkmate_given_04", "text": "Смекаешь? Вот теперь — поздно.", "weight": 1.4, "cooldown": 10 }
     ],
     "checkmate_received": [
-      { "id": "sanguine_checkmate_received_01", "text": "Ой. Ну ты и молодец.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_checkmate_received_02", "text": "Ладно, признаю — красиво.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_checkmate_received_03", "text": "Снимаю шляпу. Отыграюсь.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_checkmate_received_04", "text": "Ха! Хорошо сыграно. Ещё партию?", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_checkmate_received_01", "text": "Но вы обо мне слышали. Обычно именно после таких историй.", "weight": 1.4, "cooldown": 11 },
+      { "id": "sanguine_checkmate_received_02", "text": "Почему ром всегда заканчивается раньше партии?", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_checkmate_received_03", "text": "Это был тот самый момент. Я снова помахал ему вслед.", "weight": 1.3, "cooldown": 11 },
+      { "id": "sanguine_checkmate_received_04", "text": "Требую голосования! Мат не одобрен. Но принят.", "weight": 1.3, "cooldown": 10 }
     ],
     "draw_offer": [
-      { "id": "sanguine_draw_offer_01", "text": "Ну что, мир? Мне тоже нравится.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_draw_offer_02", "text": "Давай ничью, а то я устал веселиться.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_draw_offer_03", "text": "По рукам?", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_draw_offer_01", "text": "Зачем сражаться, если можно договориться?", "weight": 1.5, "cooldown": 10 },
+      { "id": "sanguine_draw_offer_02", "text": "Предлагаю ничью. Это не капитуляция, это политика.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_draw_offer_03", "text": "Требую голосования! Кто за мир и ром?", "weight": 1.3, "cooldown": 10 }
     ],
     "draw_accepted": [
-      { "id": "sanguine_draw_accepted_01", "text": "Ладно, ничья — тоже результат.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_draw_accepted_02", "text": "Договорились. Хорошая была игра.", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_draw_accepted_01", "text": "Договорились. Зачем сражаться, если можно красиво разойтись?", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_draw_accepted_02", "text": "Это политика. На удивление мирная.", "weight": 1.3, "cooldown": 9 }
     ],
     "time_loss": [
-      { "id": "sanguine_time_loss_01", "text": "Ох. Часы меня доконали.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_time_loss_02", "text": "Ну вот. Вечно я с этим временем.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_time_loss_03", "text": "Ладно, засчитано. В следующий раз возьму секундомер.", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_time_loss_01", "text": "Почему время всегда заканчивается? Почти как ром.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_time_loss_02", "text": "Требую голосования! Часы действовали без согласия капитана.", "weight": 1.3, "cooldown": 10 },
+      { "id": "sanguine_time_loss_03", "text": "Но вы обо мне слышали. Даже если часы утверждают обратное.", "weight": 1.3, "cooldown": 10 }
     ],
     "resign": [
-      { "id": "sanguine_resign_01", "text": "Ладно, тут уже без фокусов. Хорошая партия.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_resign_02", "text": "Ну всё, приехали. Отыграемся.", "weight": 1.0, "cooldown": 8 },
-      { "id": "sanguine_resign_03", "text": "Сдаюсь, дружище. Ещё партию?", "weight": 1.0, "cooldown": 8 }
+      { "id": "sanguine_resign_01", "text": "Зачем сражаться, если можно договориться? Сдаюсь. Временно.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_resign_02", "text": "Это не поражение. Это чрезвычайно стремительное отступление.", "weight": 1.4, "cooldown": 10 },
+      { "id": "sanguine_resign_03", "text": "Но вы обо мне слышали. Значит, история всё равно моя.", "weight": 1.4, "cooldown": 11 }
     ]
   }
 }

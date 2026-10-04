@@ -27,6 +27,11 @@
     "rating": { "type": "integer", "minimum": 0 },
     "gameplay": { "$ref": "#/$defs/gameplay" },
     "persona": { "$ref": "#/$defs/persona" },
+    "avatars": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z][a-z0-9_-]*$" },
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
     "dialogue_policy": { "$ref": "#/$defs/dialoguePolicy" },
     "dialogue": {
       "type": "object",

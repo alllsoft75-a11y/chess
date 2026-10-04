@@ -33,6 +33,7 @@ class CharacterPack(BaseModel):
     rating: int = 500
     gameplay: dict
     persona: dict = Field(default_factory=dict)
+    avatars: dict[str, str] = Field(default_factory=dict)
     dialogue_policy: DialoguePolicy = Field(default_factory=DialoguePolicy)
     dialogue: dict[str, list[CharacterLine]]
 

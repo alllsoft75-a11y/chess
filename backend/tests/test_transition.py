@@ -45,7 +45,8 @@ def test_move_17_is_strong_safe_knight_fork() -> None:
     assert len(forks) == 1
     assert forks[0].actor_safe is True
     assert forks[0].target_values == {"b6": 1, "f8": 5}
-    assert forks[0].material_potential == 5
+    assert forks[0].target_gains == {"b6": 1, "f8": 2}
+    assert forks[0].material_potential == 2
     strong = [change for change in result.changes if change.category == "STRONG_FORK"]
     assert len(strong) == 1
     assert strong[0].headline == "Очень сильный ход: вилка"

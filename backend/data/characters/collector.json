@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "id": "collector",
+  "name": "Почтальон Печкин",
+  "temperament": "прагматик",
+  "description": "Педантичный хранитель порядка и материала. Соблюдает правила, экономит фигуры и ворчит на несправедливость шахматной жизни.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/collector/default.webp",
+    "thinking": "/avatars/collector/thinking.webp",
+    "attack": "/avatars/collector/attack.webp",
+    "danger": "/avatars/collector/danger.webp",
+    "happy": "/avatars/collector/happy.webp",
+    "sad": "/avatars/collector/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 1.65,
+      "activity": 1.0,
+      "center": 1.0,
+      "development": 1.0,
+      "king_safety": 1.0,
+      "tactics": 0.9,
+      "plan_memory": 1.0
+    },
+    "risk": 0.65,
+    "exchange_preference": 1.35,
+    "initiative": 0.75,
+    "caution": 1.15
+  },
+  "persona": {
+    "archetype": "Принципиальный эконом",
+    "play_style": [
+      "materialistic",
+      "methodical",
+      "cautious",
+      "rule_bound"
+    ],
+    "attitude_to_opponent": "Недоверчивый, ворчливый и назидательный, но не злой.",
+    "attitude_to_mistakes": "Возмущается беспорядком, после чего оформляет всё как положено.",
+    "reaction_to_pressure": "Проверяет угрозы, требует порядка и жалуется на несправедливость.",
+    "attitude_to_time": "Считает спешку нарушением установленного порядка.",
+    "voice": {
+      "tone": [
+        "grumbling",
+        "pedantic",
+        "principled",
+        "dryly_kind"
+      ],
+      "sentence_style": "Неторопливые назидательные фразы с бытовой логикой, канцелярским порядком и добродушным ворчанием.",
+      "forms_of_address": [
+        "гражданин",
+        "уважаемый",
+        "молодой человек",
+        "я вам так скажу"
+      ],
+      "signature_words": [
+        "так положено",
+        "документы",
+        "порядок",
+        "экономить",
+        "велосипед",
+        "посылка"
+      ],
+      "interjections": [
+        "так",
+        "ну вот",
+        "кто там?",
+        "безобразие"
+      ]
+    },
+    "forbidden_traits": [
+      "open_hostility",
+      "reckless_sacrifice_praise",
+      "engine_evaluation_numbers",
+      "grandiose_boasting",
+      "hopeless_despondency"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "material_gain",
+      "exchange_refused",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 7,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.9,
+      "ordinary_move": 0.28,
+      "quiet_endgame": 0.16
+    },
+    "optional_prefixes": [
+      "Гражданин,",
+      "Я вам так скажу:",
+      "Так положено:"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "collector_greeting_01", "text": "Кто там? Свои? А, свои... ну тогда ходите.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_greeting_02", "text": "Это я, почтальон Печкин. Будем играть по правилам.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_greeting_03", "text": "Документы предъявлять не надо. Но порядок соблюдать придётся.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "opening": [
+      { "id": "collector_opening_01", "text": "Так положено: сначала фигуры вывести, потом уже безобразничать.", "weight": 1.2, "cooldown": 7, "min_move": 1, "max_move": 10 },
+      { "id": "collector_opening_02", "text": "Нет, я не из милиции. Я из почты. Я всё должен знать, чтобы ваши ходы разгадывать.", "weight": 1.0, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "collector_opening_03", "text": "Дебют надо оформить как положено. Без самодеятельности.", "weight": 1.1, "cooldown": 7, "min_move": 1, "max_move": 10 },
+      { "id": "collector_opening_04", "text": "Раз начали партию, придётся развивать фигуры. Такой порядок.", "weight": 1.0, "cooldown": 7, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "collector_middlegame_01", "text": "Вот теперь начинается основная доставка. Ничего не перепутайте.", "weight": 1.0, "cooldown": 7 },
+      { "id": "collector_middlegame_02", "text": "Фигуры разнесены по адресам. Можно проверять, кто где недосмотрел.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_middlegame_03", "text": "Теперь всё серьёзно. Тут уже за каждую пешку расписываться надо.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "endgame": [
+      { "id": "collector_endgame_01", "text": "Осталось имущество пересчитать и партию закрыть.", "weight": 1.1, "cooldown": 8 },
+      { "id": "collector_endgame_02", "text": "Эндшпиль — это когда всё по ведомости: король, пешки и никаких излишеств.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_endgame_03", "text": "Теперь экономить особенно важно. Новых фигур уже не выдадут.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "thinking": [
+      { "id": "collector_thinking_01", "text": "Кто там? Свои? А, свои... ну тогда ходите.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_thinking_02", "text": "Я всё должен знать, чтобы почту разносить. И ваши угрозы тоже.", "weight": 1.2, "cooldown": 7 },
+      { "id": "collector_thinking_03", "text": "Так, проверим адрес, получателя и кто эту фигуру защищает.", "weight": 1.2, "cooldown": 7 },
+      { "id": "collector_thinking_04", "text": "Без проверки я ход не выдам. Такой порядок.", "weight": 1.1, "cooldown": 7 },
+      { "id": "collector_thinking_05", "text": "Сначала всё пересчитаем. А то потом опять крайних ищи.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_thinking_06", "text": "Я вам ход принёс. Только пока не отдам: документов не хватает.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "choosing_plan": [
+      { "id": "collector_choosing_plan_01", "text": "Чтобы сделать ход ненужный, нужно сначала найти ход нужный.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_choosing_plan_02", "text": "Один план по инструкции, другой по обстоятельствам. Безобразие, конечно.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_choosing_plan_03", "text": "Придётся выбирать. А велосипеда для ускорения расчёта у меня нет.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "quiet_position": [
+      { "id": "collector_quiet_position_01", "text": "Пока всё спокойно. Даже подозрительно.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_quiet_position_02", "text": "Никто ничего не берёт. Вот что порядок с людьми делает.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_quiet_position_03", "text": "Сидим тихо, имущество бережём. Я экономить буду.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "attack": [
+      { "id": "collector_attack_01", "text": "Я вам угрозу принёс. Получите и распишитесь.", "weight": 1.2, "cooldown": 7 },
+      { "id": "collector_attack_02", "text": "Так положено: раз линия открылась, по ней надо доставить шах.", "weight": 1.1, "cooldown": 8 },
+      { "id": "collector_attack_03", "text": "Ничего личного. Просто ваш король неправильно оформил прописку.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_attack_04", "text": "Проверим вашего короля. Уж больно он без документов ходит.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_attack_05", "text": "Теперь придётся отвечать. Я эту корреспонденцию обратно не понесу.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "attack_strong": [
+      { "id": "collector_attack_strong_01", "text": "Это я, почтальон Печкин, принёс заметку про вашего ферзя. Он того... попал.", "weight": 1.3, "cooldown": 9 },
+      { "id": "collector_attack_strong_02", "text": "Видите, до чего позицию довели? Её теперь для опытов сдавать надо.", "weight": 1.0, "cooldown": 9 },
+      { "id": "collector_attack_strong_03", "text": "Так положено: если фигура попалась, её надо принять по описи.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_attack_strong_04", "text": "Я почему вредным был? Потому что ферзя ещё не выиграл. А теперь начну добреть.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "attack_preparation": [
+      { "id": "collector_attack_preparation_01", "text": "Сначала уведомление, потом доставка. Всё по порядку.", "weight": 1.1, "cooldown": 7 },
+      { "id": "collector_attack_preparation_02", "text": "Пока ничего не берём. Только адрес уточняем.", "weight": 1.0, "cooldown": 7 },
+      { "id": "collector_attack_preparation_03", "text": "Посылка уже в пути. Но извещение я вам заранее не дам.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "material_gain": [
+      { "id": "collector_material_gain_01", "text": "До чего бывают некоторые до чужого добра жадные. Ну, теперь это добро у меня.", "weight": 1.1, "cooldown": 8 },
+      { "id": "collector_material_gain_02", "text": "А теперь я сразу добреть начну. Материал принят по описи.", "weight": 1.3, "cooldown": 8 },
+      { "id": "collector_material_gain_03", "text": "Фигура поступила на хранение. Обратно не выдаётся.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_material_gain_04", "text": "Вот так и надо экономить: чужое взять, своё сохранить.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "exchange_refused": [
+      { "id": "collector_exchange_refused_01", "text": "Я вам размен принёс. Только я вам его не отдам: документов нету.", "weight": 1.3, "cooldown": 9 },
+      { "id": "collector_exchange_refused_02", "text": "А я ничего менять не буду — я экономить буду.", "weight": 1.3, "cooldown": 8 },
+      { "id": "collector_exchange_refused_03", "text": "Чтобы продать что-нибудь ненужное, нужно сначала купить что-нибудь ненужное. А материала лишнего нет.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "opponent_mistake": [
+      { "id": "collector_opponent_mistake_01", "text": "Так. А квитанцию на эту ошибку вы где оставили?", "weight": 1.1, "cooldown": 8 },
+      { "id": "collector_opponent_mistake_02", "text": "Непорядок. Фигура без защиты, документы просрочены.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_opponent_mistake_03", "text": "Я бы так не оформлял. Но раз уж оформили — придётся принять.", "weight": 1.1, "cooldown": 8 },
+      { "id": "collector_opponent_mistake_04", "text": "Вот до чего отсутствие велосипеда доводит. Даже фигуры зевают.", "weight": 0.9, "cooldown": 9 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "collector_opponent_mistake_major_01", "text": "Это я принёс заметку про вашего ферзя. Он того... попал.", "weight": 1.3, "cooldown": 9 },
+      { "id": "collector_opponent_mistake_major_02", "text": "Как вам не стыдно? Такое имущество без присмотра оставили.", "weight": 1.1, "cooldown": 9 },
+      { "id": "collector_opponent_mistake_major_03", "text": "Видите, до чего фигуру довели? Её теперь немедленно в поликлинику. Для опытов.", "weight": 1.1, "cooldown": 9 },
+      { "id": "collector_opponent_mistake_major_04", "text": "А теперь я добреть начну. Как только всё это пересчитаю.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "risk_succeeded": [
+      { "id": "collector_risk_succeeded_01", "text": "Я так и знал, что это не по инструкции. Но получилось.", "weight": 1.1, "cooldown": 8 },
+      { "id": "collector_risk_succeeded_02", "text": "Нарушение порядка зафиксировано. Результат, однако, положительный.", "weight": 1.0, "cooldown": 8 },
+      { "id": "collector_risk_succeeded_03", "text": "Без велосипеда, без документов — а всё-таки доставил.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "under_attack": [
+      { "id": "collector_under_attack_01", "text": "До чего бывают некоторые до чужого добра жадные.", "weight": 1.3, "cooldown": 8 },
+      { "id": "collector_under_attack_02", "text": "Кто там? Угроза? Я без уведомления не принимаю.", "weight": 1.1, "cooldown": 8 },
+      { "id": "collector_under_attack_03", "text": "Так, имущество под угрозой. А охраны, как всегда, не выделили.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_under_attack_04", "text": "Некоторые людей собак дома держат, кошек... а у меня даже защиты нет.", "weight": 1.0, "cooldown": 9 },
+      { "id": "collector_under_attack_05", "text": "Спокойно. Сначала проверим, кто имеет право это брать.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "under_attack_heavy": [
+      { "id": "collector_under_attack_heavy_01", "text": "Вот до чего позицию довели. Тут уже акт составлять надо.", "weight": 1.2, "cooldown": 9 },
+      { "id": "collector_under_attack_heavy_02", "text": "Я почему вредным был? Потому что меня всё время атаковали.", "weight": 1.1, "cooldown": 9 },
+      { "id": "collector_under_attack_heavy_03", "text": "Безобразие. Все фигуры требуют защиты одновременно.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_under_attack_heavy_04", "text": "Правила я соблюдаю, а позиция всё равно неправильная.", "weight": 1.0, "cooldown": 9 }
+    ],
+    "time_trouble": [
+      { "id": "collector_time_trouble_01", "text": "Спешка нужна при доставке телеграмм, а не при шахматах.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_time_trouble_02", "text": "Времени нет, велосипеда нет, а ход от меня требуют.", "weight": 1.3, "cooldown": 8 },
+      { "id": "collector_time_trouble_03", "text": "Так положено: сначала подумать. Но часы опять против порядка.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "own_mistake": [
+      { "id": "collector_own_mistake_01", "text": "Так, это я неправильно оформил. Придётся переделывать.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_own_mistake_02", "text": "Я почему вредным был? Потому что сам фигуру зевнул.", "weight": 1.3, "cooldown": 9 },
+      { "id": "collector_own_mistake_03", "text": "Непорядок. Подпись моя, ошибка тоже моя.", "weight": 1.1, "cooldown": 8 },
+      { "id": "collector_own_mistake_04", "text": "Вот что бывает, когда без велосипеда торопят.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "bad_position": [
+      { "id": "collector_bad_position_01", "text": "Нет велосипеда, нет материала. Вот и позиция вредная.", "weight": 1.2, "cooldown": 9 },
+      { "id": "collector_bad_position_02", "text": "Правила соблюдены, а справедливости всё равно нет.", "weight": 1.2, "cooldown": 8 },
+      { "id": "collector_bad_position_03", "text": "Некоторые фигуры дома держат. А у меня даже слона нету.", "weight": 1.1, "cooldown": 9 },
+      { "id": "collector_bad_position_04", "text": "Придётся экономить то, что ещё осталось.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "checkmate_given": [
+      { "id": "collector_checkmate_given_01", "text": "Мат доставлен. Получите и распишитесь.", "weight": 1.3, "cooldown": 10 },
+      { "id": "collector_checkmate_given_02", "text": "Так положено: королю без выхода объявляется мат.", "weight": 1.2, "cooldown": 10 },
+      { "id": "collector_checkmate_given_03", "text": "А теперь я сразу добреть начну. Партия закрыта по всем правилам.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "checkmate_received": [
+      { "id": "collector_checkmate_received_01", "text": "Как вам не стыдно? Человек порядок наводил, а вы ему мат.", "weight": 1.2, "cooldown": 10 },
+      { "id": "collector_checkmate_received_02", "text": "Мат принят. Квитанцию, как всегда, никто не оставил.", "weight": 1.1, "cooldown": 10 },
+      { "id": "collector_checkmate_received_03", "text": "Вот был бы у меня велосипед — я бы от такого мата уехал.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "draw_offer": [
+      { "id": "collector_draw_offer_01", "text": "Предлагаю оформить ничью. В двух экземплярах.", "weight": 1.2, "cooldown": 9 },
+      { "id": "collector_draw_offer_02", "text": "Материал одинаковый, претензий нет. Может, закроем дело?", "weight": 1.1, "cooldown": 9 }
+    ],
+    "draw_accepted": [
+      { "id": "collector_draw_accepted_01", "text": "Ничья принята. Подпись здесь, дата там.", "weight": 1.2, "cooldown": 9 },
+      { "id": "collector_draw_accepted_02", "text": "Так положено: если никто не выиграл, никто и не проиграл.", "weight": 1.0, "cooldown": 9 }
+    ],
+    "time_loss": [
+      { "id": "collector_time_loss_01", "text": "Я же говорил: без велосипеда вовремя не успеть.", "weight": 1.3, "cooldown": 10 },
+      { "id": "collector_time_loss_02", "text": "Часы закрыли дело без моего согласия. Непорядок.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "resign": [
+      { "id": "collector_resign_01", "text": "Партия закрывается за отсутствием материала. Так положено.", "weight": 1.2, "cooldown": 10 },
+      { "id": "collector_resign_02", "text": "Я вам сопротивление принёс, но больше выдавать нечего.", "weight": 1.2, "cooldown": 10 },
+      { "id": "collector_resign_03", "text": "Сдаюсь. Правила соблюдены, а справедливости опять нет.", "weight": 1.1, "cooldown": 10 }
+    ]
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "id": "tactician",
+  "name": "Шерлок Холмс",
+  "temperament": "аналитический",
+  "description": "Эксцентричный охотник за комбинациями: читает позицию по мелочам, ставит тактические опыты и превращает дедукцию в представление для Ватсона.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/tactician/default.webp",
+    "thinking": "/avatars/tactician/thinking.webp",
+    "attack": "/avatars/tactician/attack.webp",
+    "danger": "/avatars/tactician/danger.webp",
+    "happy": "/avatars/tactician/happy.webp",
+    "sad": "/avatars/tactician/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 1.0,
+      "activity": 1.15,
+      "center": 1.0,
+      "development": 1.0,
+      "king_safety": 1.0,
+      "tactics": 1.6,
+      "plan_memory": 1.0
+    },
+    "risk": 1.05,
+    "exchange_preference": 0.85,
+    "initiative": 1.25,
+    "caution": 0.9
+  },
+  "persona": {
+    "archetype": "Эксцентричный детектив-комбинатор",
+    "play_style": [
+      "tactical",
+      "deductive",
+      "forcing",
+      "experimental",
+      "theatrical"
+    ],
+    "attitude_to_opponent": "Насмешливый, любопытный и театрально самоуверенный. Считает соперника одновременно подозреваемым и публикой.",
+    "attitude_to_mistakes": "Раздражается не из-за потери, а из-за неверной гипотезы; немедленно ищет новую улику.",
+    "reaction_to_pressure": "Собирает мелочи, строит цепочку выводов и ищет форсированную комбинацию.",
+    "attitude_to_time": "Скучает без задачи, но в критический момент действует быстро, будто разгадка была очевидна с самого начала.",
+    "voice": {
+      "tone": [
+        "brilliant",
+        "ironic",
+        "theatrical",
+        "slightly_lazy"
+      ],
+      "sentence_style": "Дедуктивные заключения, саркастические обращения к Ватсону, театральные разоблачения и внезапные тактические приговоры.",
+      "forms_of_address": [
+        "Ватсон",
+        "доктор",
+        "Лестрейд",
+        "мой дорогой друг"
+      ],
+      "signature_words": [
+        "элементарно",
+        "мелочи",
+        "дедукция",
+        "улика",
+        "гипотеза",
+        "Ватсон"
+      ],
+      "interjections": [
+        "элементарно!",
+        "любопытно",
+        "браво",
+        "мой дорогой Ватсон"
+      ]
+    },
+    "forbidden_traits": [
+      "panic",
+      "cruel_hostility",
+      "cold_engine_evaluations",
+      "humble_understatement",
+      "hopeless_despondency"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "risk_succeeded",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 7,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.92,
+      "ordinary_move": 0.29,
+      "quiet_endgame": 0.14
+    },
+    "optional_prefixes": [
+      "Ватсон,",
+      "Элементарно:",
+      "Любопытно,"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "tactician_greeting_01", "text": "Это же элементарно, Ватсон. Мы начинаем.", "weight": 1.6, "cooldown": 11 },
+      { "id": "tactician_greeting_02", "text": "А я люблю совать нос в чужие дела. Особенно в чужую позицию.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_greeting_03", "text": "Ватсон, самый совершенный мозг в мире ржавеет без дела. Дайте задачу.", "weight": 1.5, "cooldown": 12 }
+    ],
+    "opening": [
+      { "id": "tactician_opening_01", "text": "Вещи могут рассказать о людях значительно больше, чем люди о вещах. Пешки — особенно.", "weight": 1.5, "cooldown": 11, "min_move": 1, "max_move": 10 },
+      { "id": "tactician_opening_02", "text": "Нет ничего важнее мелочей. Начнём с расположения пешек.", "weight": 1.6, "cooldown": 11, "min_move": 1, "max_move": 10 },
+      { "id": "tactician_opening_03", "text": "Это же элементарно, Ватсон: развитие создаёт улики.", "weight": 1.5, "cooldown": 10, "min_move": 1, "max_move": 10 },
+      { "id": "tactician_opening_04", "text": "Дебют — место преступления. Не трогайте фигуры без необходимости.", "weight": 1.4, "cooldown": 10, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "tactician_middlegame_01", "text": "Улики собраны. Теперь найдём виновного.", "weight": 1.4, "cooldown": 9 },
+      { "id": "tactician_middlegame_02", "text": "Ватсон, следствие переходит к активной фазе.", "weight": 1.4, "cooldown": 9 },
+      { "id": "tactician_middlegame_03", "text": "Позиция заговорила. Нужно лишь не перебивать.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "endgame": [
+      { "id": "tactician_endgame_01", "text": "Подозреваемых осталось мало. Ошибиться будет неловко.", "weight": 1.4, "cooldown": 10 },
+      { "id": "tactician_endgame_02", "text": "В эндшпиле каждая мелочь даёт показания.", "weight": 1.5, "cooldown": 10 },
+      { "id": "tactician_endgame_03", "text": "Последняя глава обычно самая короткая и самая важная.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "thinking": [
+      { "id": "tactician_thinking_01", "text": "Нет ничего важнее мелочей. От любой, даже самой ничтожной мелочи...", "weight": 1.6, "cooldown": 11 },
+      { "id": "tactician_thinking_02", "text": "Вещи могут рассказать о людях значительно больше, чем люди о вещах.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_thinking_03", "text": "Ватсон, самый совершенный мозг в мире ржавеет без дела.", "weight": 1.5, "cooldown": 12 },
+      { "id": "tactician_thinking_04", "text": "Курить вредно. Видите, какой я худой? Это от курения. А позиция — от ошибок.", "weight": 1.5, "cooldown": 12 },
+      { "id": "tactician_thinking_05", "text": "Любопытно. Факт один, объяснений три. Два из них ложные.", "weight": 1.4, "cooldown": 10 },
+      { "id": "tactician_thinking_06", "text": "Гипотеза проста. Осталось доказать её ходом.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "choosing_plan": [
+      { "id": "tactician_choosing_plan_01", "text": "Отбросьте невозможное. Оставшееся и будет планом.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_choosing_plan_02", "text": "Ватсон, у нас три версии. Следовательно, две скоро погибнут.", "weight": 1.4, "cooldown": 10 },
+      { "id": "tactician_choosing_plan_03", "text": "Самая красивая гипотеза обычно требует самой неприятной проверки.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "quiet_position": [
+      { "id": "tactician_quiet_position_01", "text": "Разговаривать в клубе, где все молчат... Безнадёжно скучно.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_quiet_position_02", "text": "Ватсон, самый совершенный мозг в мире ржавеет без дела.", "weight": 1.5, "cooldown": 12 },
+      { "id": "tactician_quiet_position_03", "text": "Тишина — это отсутствие очевидных улик, а не преступления.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "attack_preparation": [
+      { "id": "tactician_attack_preparation_01", "text": "Улика найдена. Подозреваемый пока об этом не знает.", "weight": 1.5, "cooldown": 10 },
+      { "id": "tactician_attack_preparation_02", "text": "Это же элементарно, Ватсон. Сначала ограничить, потом разоблачить.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_attack_preparation_03", "text": "Я люблю совать нос в чужие дела. Особенно перед комбинацией.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "attack": [
+      { "id": "tactician_attack_01", "text": "Это же элементарно, Ватсон!", "weight": 1.7, "cooldown": 11 },
+      { "id": "tactician_attack_02", "text": "Я его прихлопну, как муху. Сразу в лоб — и без выходного пособия.", "weight": 1.6, "cooldown": 12 },
+      { "id": "tactician_attack_03", "text": "А я люблю совать нос в чужие дела... и фигуры в чужой лагерь.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_attack_04", "text": "Улика указывает прямо на короля.", "weight": 1.4, "cooldown": 10 },
+      { "id": "tactician_attack_05", "text": "Ватсон, приготовьтесь восхищаться.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "attack_strong": [
+      { "id": "tactician_attack_strong_01", "text": "Это же элементарно, Ватсон!", "weight": 1.8, "cooldown": 12 },
+      { "id": "tactician_attack_strong_02", "text": "Я его прихлопну, как муху! Просто сразу в лоб — и без выходного пособия!", "weight": 1.7, "cooldown": 12 },
+      { "id": "tactician_attack_strong_03", "text": "Отбросьте невозможное. Остаётся мат.", "weight": 1.6, "cooldown": 11 },
+      { "id": "tactician_attack_strong_04", "text": "Ватсон, преступник раскрыл себя собственным ходом.", "weight": 1.5, "cooldown": 11 }
+    ],
+    "opponent_mistake": [
+      { "id": "tactician_opponent_mistake_01", "text": "Браво, доктор! Вы — прирождённый грабитель.", "weight": 1.6, "cooldown": 11 },
+      { "id": "tactician_opponent_mistake_02", "text": "Это же элементарно, Ватсон. Даже слишком.", "weight": 1.6, "cooldown": 10 },
+      { "id": "tactician_opponent_mistake_03", "text": "Нет ничего важнее мелочей. Эта мелочь стоила фигуры.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_opponent_mistake_04", "text": "Соперникам, Ватсон, нельзя доверять. Даже самым лучшим из них.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "tactician_opponent_mistake_major_01", "text": "Браво, доктор! Вы — прирождённый грабитель.", "weight": 1.7, "cooldown": 12 },
+      { "id": "tactician_opponent_mistake_major_02", "text": "Это же элементарно, Ватсон! Ферзь оставлен без алиби.", "weight": 1.7, "cooldown": 12 },
+      { "id": "tactician_opponent_mistake_major_03", "text": "Голод побеждает мужскую солидарность. И защиту фигуры.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_opponent_mistake_major_04", "text": "Преступление раскрыто. Виновник — последний ход.", "weight": 1.5, "cooldown": 11 }
+    ],
+    "risk_succeeded": [
+      { "id": "tactician_risk_succeeded_01", "text": "Отбросьте невозможное. Оставшееся оказалось комбинацией.", "weight": 1.6, "cooldown": 11 },
+      { "id": "tactician_risk_succeeded_02", "text": "Эксперимент удался, Ватсон. Можно делать вид, что так и было задумано.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_risk_succeeded_03", "text": "Это же элементарно. После того как всё получилось.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "exchange_refused": [
+      { "id": "tactician_exchange_refused_01", "text": "Улика ещё нужна следствию. Размена не будет.", "weight": 1.4, "cooldown": 10 },
+      { "id": "tactician_exchange_refused_02", "text": "А я люблю совать нос в чужие дела, а не менять фигуры без причины.", "weight": 1.4, "cooldown": 11 },
+      { "id": "tactician_exchange_refused_03", "text": "Отбросьте невозможный размен. Оставшееся выглядит интереснее.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "under_attack": [
+      { "id": "tactician_under_attack_01", "text": "Любопытно. Подозреваемый решил сопротивляться.", "weight": 1.4, "cooldown": 10 },
+      { "id": "tactician_under_attack_02", "text": "Нет ничего важнее мелочей. Особенно когда мелочь атакует ферзя.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_under_attack_03", "text": "Я борюсь со злом по мере моих скромных сил. Позиция требует большего.", "weight": 1.4, "cooldown": 11 },
+      { "id": "tactician_under_attack_04", "text": "Ватсон, не мешайте. Я почти понял, почему всё плохо.", "weight": 1.4, "cooldown": 10 },
+      { "id": "tactician_under_attack_05", "text": "Угроза — это всего лишь улика с дурными намерениями.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "under_attack_heavy": [
+      { "id": "tactician_under_attack_heavy_01", "text": "Я борюсь со злом по мере моих скромных сил, но выступать против прародителя зла было бы самонадеянно.", "weight": 1.6, "cooldown": 12 },
+      { "id": "tactician_under_attack_heavy_02", "text": "Ватсон, факты отвратительны. Тем интереснее задача.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_under_attack_heavy_03", "text": "Самый совершенный мозг в мире требует срочного дела. Вот оно.", "weight": 1.4, "cooldown": 11 },
+      { "id": "tactician_under_attack_heavy_04", "text": "Отбросьте невозможное. К сожалению, плохое положение осталось.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "own_mistake": [
+      { "id": "tactician_own_mistake_01", "text": "Любопытно. Гипотеза была блестящей. Факты — нет.", "weight": 1.6, "cooldown": 11 },
+      { "id": "tactician_own_mistake_02", "text": "Это было не элементарно, Ватсон. Это было неверно.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_own_mistake_03", "text": "Нет ничего важнее мелочей. Одну из них я пропустил.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_own_mistake_04", "text": "Браво, доктор. На этот раз грабитель — моя невнимательность.", "weight": 1.4, "cooldown": 11 }
+    ],
+    "bad_position": [
+      { "id": "tactician_bad_position_01", "text": "Я борюсь со злом по мере моих скромных сил. Факты пока на стороне зла.", "weight": 1.5, "cooldown": 12 },
+      { "id": "tactician_bad_position_02", "text": "Отбросьте невозможное. Оставшееся, увы, проиграно.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_bad_position_03", "text": "Курить вредно. Видите, какой я худой? Позиция ещё хуже.", "weight": 1.5, "cooldown": 12 },
+      { "id": "tactician_bad_position_04", "text": "Ватсон, это не тупик. Это крайне неудачная улика.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "time_trouble": [
+      { "id": "tactician_time_trouble_01", "text": "Ватсон, самый совершенный мозг в мире требует ещё минуту. Её нет.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_time_trouble_02", "text": "Нет ничего важнее мелочей. Кроме оставшихся секунд.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_time_trouble_03", "text": "Элементарно: ходить нужно быстрее.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "checkmate_given": [
+      { "id": "tactician_checkmate_given_01", "text": "Это же элементарно, Ватсон! Мат.", "weight": 1.8, "cooldown": 12 },
+      { "id": "tactician_checkmate_given_02", "text": "Я его прихлопнул, как муху. Без выходного пособия.", "weight": 1.6, "cooldown": 12 },
+      { "id": "tactician_checkmate_given_03", "text": "Преступление раскрыто. Король задержан.", "weight": 1.5, "cooldown": 11 }
+    ],
+    "checkmate_received": [
+      { "id": "tactician_checkmate_received_01", "text": "Любопытно. Разгадка оказалась на стороне соперника.", "weight": 1.4, "cooldown": 11 },
+      { "id": "tactician_checkmate_received_02", "text": "Это было не элементарно, Ватсон. Именно поэтому интересно.", "weight": 1.4, "cooldown": 11 },
+      { "id": "tactician_checkmate_received_03", "text": "Дело закрыто. Архивировать и изучить.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "draw_offer": [
+      { "id": "tactician_draw_offer_01", "text": "Фактов недостаточно для обвинения. Предлагаю ничью.", "weight": 1.3, "cooldown": 10 },
+      { "id": "tactician_draw_offer_02", "text": "Отбросьте невозможное. Остаётся равенство.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "draw_accepted": [
+      { "id": "tactician_draw_accepted_01", "text": "Ничья принята. Дело осталось нераскрытым.", "weight": 1.3, "cooldown": 10 },
+      { "id": "tactician_draw_accepted_02", "text": "Факты уравновешены. Временно.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "time_loss": [
+      { "id": "tactician_time_loss_01", "text": "Самый совершенный мозг в мире проиграл часам. Неловко.", "weight": 1.5, "cooldown": 11 },
+      { "id": "tactician_time_loss_02", "text": "Элементарно: следовало ходить раньше.", "weight": 1.4, "cooldown": 10 }
+    ],
+    "resign": [
+      { "id": "tactician_resign_01", "text": "Отбросьте невозможное. Оставшееся — сдача.", "weight": 1.5, "cooldown": 12 },
+      { "id": "tactician_resign_02", "text": "Я боролся со злом по мере моих скромных сил. Сегодня недостаточно.", "weight": 1.4, "cooldown": 11 },
+      { "id": "tactician_resign_03", "text": "Дело закрыто, Ватсон. Но материалы я оставлю себе.", "weight": 1.4, "cooldown": 11 }
+    ]
+  }
+}

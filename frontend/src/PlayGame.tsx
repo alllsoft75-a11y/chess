@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ChessBoard } from './ChessBoard'
 import { MaterialBar } from './MaterialBar'
+import { CharacterAvatar } from './CharacterAvatar'
 import { isPromotionMove } from './promotion'
 import type { MoveCandidate, PersonalityProfile, PositionAnalysis } from './types'
 
@@ -85,13 +86,13 @@ export function PlayGame({ onReview }: Props) {
       setServerPgn(playerPayload.pgn)
       setMoves((items) => [...items, { player: playerPayload.player_move, program: null }])
       setMessage(`Вы сыграли ${playerPayload.player_move.san}. Программа размышляет…`)
+      await new Promise<void>((resolve) => window.requestAnimationFrame(() => window.requestAnimationFrame(() => resolve())))
       const playerFinished = playerPayload.status === 'finished' && playerPayload.result !== '*'
       if (playerFinished) {
         setResult(playerPayload.result)
         setMessage(`Партия окончена: ${playerPayload.result}.`)
         return
       }
-      await new Promise((resolve) => window.setTimeout(resolve, 80))
       const programResponse = await fetch(`/api/v1/saved-games/${gameId}/program-move`, { method: 'POST' })
       const programPayload = await programResponse.json()
       if (!programResponse.ok) throw new Error(programPayload.detail ?? 'Программа не смогла ответить')
@@ -165,14 +166,22 @@ export function PlayGame({ onReview }: Props) {
           </select>
         </label>
         <p className="personality-description">{personalities.find((item) => item.id === personalityId)?.description}</p>
-        <div className="character-speech-bubble">
-          <div className="speech-header">
-            <span className="speech-author">{personalities.find((item) => item.id === personalityId)?.name ?? 'Персонаж'}</span>
-            {emotion && <span className={`emotion emotion-${emotion}`}>{emotion}</span>}
+        <div className="character-presentation">
+          <div className="character-speech-bubble">
+            <div className="speech-header">
+              <span className="speech-author">{personalities.find((item) => item.id === personalityId)?.name ?? 'Персонаж'}</span>
+              {emotion && <span className={`emotion emotion-${emotion}`}>{emotion}</span>}
+            </div>
+            <p className={`speech-quote${speech ? '' : ' speech-silent'}`}>
+              {thinking ? '…' : speech ? `«${speech}»` : '…'}
+            </p>
           </div>
-          <p className={`speech-quote${speech ? '' : ' speech-silent'}`}>
-            {thinking ? '…' : speech ? `«${speech}»` : '…'}
-          </p>
+          <CharacterAvatar
+            personality={personalities.find((item) => item.id === personalityId)}
+            emotion={emotion}
+            thinking={thinking}
+            result={result}
+          />
         </div>
         <p className="character-speech">{thinking ? 'Персонаж выбирает ход…' : message}</p>
         {pendingPromotion && (

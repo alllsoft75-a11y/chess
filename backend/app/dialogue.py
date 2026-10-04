@@ -54,6 +54,10 @@ _EMOTIONS = {
     "own_mistake": "тревога",
     "under_attack": "тревога",
     "bad_position": "тревога",
+    "material_gain": "удовлетворение",
+    "exchange_refused": "принципиальность",
+    "risk_succeeded": "облегчение",
+    "attack_preparation": "сосредоточенность",
     "thinking": "сосредоточенность",
 }
 
@@ -179,15 +183,27 @@ def _classify_pack_situation(
     return base
 
 
+def _contains_mate(text: str) -> bool:
+    return re.search(r"(?:^|[\s:;,.!?])мат(?:$|[\s:;,.!?])", text) is not None
+
+
 def _base_situation(personality: PersonalityProfile, move: MoveCandidate, text: str) -> str:
-    if "мат" in text:
+    if _contains_mate(text):
         return "attack_strong"
     if move.score >= 600:
         return "opponent_mistake_major"
     if move.score >= 250:
         return "attack_strong"
+    if "взятие материала" in text and personality.weights.get("material", 1.0) >= 1.4:
+        return "material_gain"
+    if "размен" in text and personality.exchange_preference >= 1.2:
+        return "exchange_refused"
+    if "форсированная комбинация" in text and personality.risk >= 1.2:
+        return "risk_succeeded"
     if "шах" in text or "атак" in text or personality.initiative > 1.2:
         return "attack"
+    if "мотив" in text or "давлен" in text:
+        return "attack_preparation"
     return "thinking"
 
 
@@ -197,6 +213,10 @@ def _fallback_situations(pack: CharacterPack, situation: str) -> list[str]:
         "own_mistake": ["under_attack", "bad_position"],
         "under_attack": ["own_mistake", "bad_position"],
         "opponent_mistake_major": ["attack_strong"],
+        "material_gain": ["opponent_mistake", "attack"],
+        "exchange_refused": ["thinking"],
+        "risk_succeeded": ["attack_strong", "attack"],
+        "attack_preparation": ["thinking", "attack"],
         "attack_strong": ["attack"],
         "attack": ["attack_strong"],
     }
@@ -257,7 +277,7 @@ def generate_utterance(
     text = " ".join(move.reasons).lower()
     if "потер" in text or "критич" in text or move.score < 0:
         category, emotion = "danger", "тревога"
-    elif "мат" in text or "форсирован" in text or "вилка" in text or move.score >= 250:
+    elif _contains_mate(text) or "форсирован" in text or "вилка" in text or move.score >= 250:
         category, emotion = "good", "азарт"
     elif "шах" in text or "атак" in text or personality.initiative > 1.2:
         category, emotion = "attack", "напор"

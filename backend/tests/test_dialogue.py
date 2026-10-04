@@ -18,7 +18,8 @@ def test_choleric_attacking_line_is_short_and_live() -> None:
 def test_resignation_has_personal_phrase() -> None:
     phrase, emotion = generate_utterance(get_personality("sanguine"), None, True, "проиграно")
 
-    assert "сда" in phrase.lower() or "приехали" in phrase.lower() or "без фокусов" in phrase.lower()
+    assert phrase
+    assert any(marker in phrase.lower() for marker in ("сда", "отступ", "слышали", "договориться"))
     assert emotion == "смирение"
 
 

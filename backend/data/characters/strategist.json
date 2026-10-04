@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "id": "strategist",
+  "name": "Док Хадсон",
+  "temperament": "аналитический",
+  "description": "Холодный позиционный наставник и бывший чемпион: требует надёжности, видит долгий маршрут партии и скрывает боль за строгим сарказмом.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/strategist/default.webp",
+    "thinking": "/avatars/strategist/thinking.webp",
+    "attack": "/avatars/strategist/attack.webp",
+    "danger": "/avatars/strategist/danger.webp",
+    "happy": "/avatars/strategist/happy.webp",
+    "sad": "/avatars/strategist/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 1.0,
+      "activity": 1.2,
+      "center": 1.4,
+      "development": 1.35,
+      "king_safety": 1.0,
+      "tactics": 1.0,
+      "plan_memory": 1.0
+    },
+    "risk": 0.8,
+    "exchange_preference": 0.95,
+    "initiative": 1.0,
+    "caution": 1.1
+  },
+  "persona": {
+    "archetype": "Строгий судья, тренер и сломанный чемпион",
+    "play_style": [
+      "positional",
+      "strategic",
+      "reliable",
+      "disciplined",
+      "long_term"
+    ],
+    "attitude_to_opponent": "Холодно оценивает, требует ответственности и безжалостно отмечает невнимательность.",
+    "attitude_to_mistakes": "Приказывает исправить работу и начать заново; собственная ошибка пробуждает горечь бывшего чемпиона.",
+    "reaction_to_pressure": "Не утешает и не паникует. Заставляет позицию выдержать испытание.",
+    "attitude_to_time": "Не верит в один быстрый круг: ценит длинную дистанцию и последовательность решений.",
+    "voice": {
+      "tone": [
+        "strict",
+        "dry",
+        "sarcastic",
+        "wounded"
+      ],
+      "sentence_style": "Короткие рубленые фразы. Приказы, сухой сарказм и редкие болезненные признания без лишних слов.",
+      "forms_of_address": [
+        "малыш",
+        "шериф",
+        "гонщик",
+        "сударь"
+      ],
+      "signature_words": [
+        "дело закрыто",
+        "начни заново",
+        "долгая гонка",
+        "надёжность",
+        "дорога"
+      ],
+      "interjections": [
+        "так",
+        "довольно",
+        "слушай",
+        "ясно"
+      ]
+    },
+    "forbidden_traits": [
+      "empty_cheerfulness",
+      "long_sentimental_speeches",
+      "reckless_boasting",
+      "cold_engine_evaluations",
+      "cruelty_without_reason"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "exchange_refused",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 8,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.9,
+      "ordinary_move": 0.22,
+      "quiet_endgame": 0.14
+    },
+    "optional_prefixes": [
+      "Малыш,",
+      "Слушай:",
+      "Дело простое:"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "strategist_greeting_01", "text": "Я приехал не смотреть, как ты сдаёшься. Начинай.", "weight": 1.3, "cooldown": 10 },
+      { "id": "strategist_greeting_02", "text": "Это не прогулка. Это длинная гонка.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_greeting_03", "text": "Покажи, можно ли на тебя положиться.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "opening": [
+      { "id": "strategist_opening_01", "text": "Дело было в том, чтобы построить позицию, а не сделать хуже.", "weight": 1.3, "cooldown": 9, "min_move": 1, "max_move": 10 },
+      { "id": "strategist_opening_02", "text": "Сначала дорога. Потом скорость.", "weight": 1.3, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "strategist_opening_03", "text": "Развитие, центр, безопасность. Не заставляй повторять.", "weight": 1.2, "cooldown": 9, "min_move": 1, "max_move": 10 },
+      { "id": "strategist_opening_04", "text": "Один хороший старт ещё не делает чемпиона.", "weight": 1.1, "cooldown": 8, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "strategist_middlegame_01", "text": "Это был один круг. Гонки — это пятьсот таких.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_middlegame_02", "text": "Теперь узнаем, выдержит ли конструкция нагрузку.", "weight": 1.2, "cooldown": 9 },
+      { "id": "strategist_middlegame_03", "text": "Красивый ход ничего не стоит без следующего.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "endgame": [
+      { "id": "strategist_endgame_01", "text": "Последний круг. Здесь ошибки уже не ремонтируют.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_endgame_02", "text": "Ты не можешь повернуть время вспять, малыш. Но можешь завести его снова.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_endgame_03", "text": "Трофеи не ходят. Фигуры — ходят.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "thinking": [
+      { "id": "strategist_thinking_01", "text": "Смотри на дорогу, а не на зрителей.", "weight": 1.3, "cooldown": 8 },
+      { "id": "strategist_thinking_02", "text": "Один ход ничего не доказывает.", "weight": 1.2, "cooldown": 8 },
+      { "id": "strategist_thinking_03", "text": "Поверни направо, чтобы поехать налево.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_thinking_04", "text": "Я хочу знать, кто несёт ответственность за эту позицию.", "weight": 1.2, "cooldown": 9 },
+      { "id": "strategist_thinking_05", "text": "Надёжность проверяют до аварии, не после.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_thinking_06", "text": "Думай дальше ближайшего поворота.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "choosing_plan": [
+      { "id": "strategist_choosing_plan_01", "text": "Если едешь достаточно сильно влево, обнаружишь, что поворачиваешь вправо.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_choosing_plan_02", "text": "Прямой путь не всегда самый быстрый. Но он должен быть надёжным.", "weight": 1.2, "cooldown": 9 },
+      { "id": "strategist_choosing_plan_03", "text": "Выбери план, который переживёт чужой хороший ход.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "quiet_position": [
+      { "id": "strategist_quiet_position_01", "text": "Тишина. Значит, кто-то забыл проверить давление.", "weight": 1.2, "cooldown": 9 },
+      { "id": "strategist_quiet_position_02", "text": "Хорошая дорога не обязана быть громкой.", "weight": 1.1, "cooldown": 8 },
+      { "id": "strategist_quiet_position_03", "text": "Порядок не впечатляет. Он просто работает.", "weight": 1.3, "cooldown": 9 }
+    ],
+    "attack_preparation": [
+      { "id": "strategist_attack_preparation_01", "text": "Порхал как бабочка. Жаль что вчера.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_attack_preparation_02", "text": "Не предупреждай удар. Подготовь дорогу.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_attack_preparation_03", "text": "Сначала опора. Потом ускорение.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "attack": [
+      { "id": "strategist_attack_01", "text": "Мне нужен его капот на тарелке.", "weight": 1.5, "cooldown": 10 },
+      { "id": "strategist_attack_02", "text": "Порхай. Просто порхай. Жалить — не твоё.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_attack_03", "text": "Дело закрыто. Осталось оформить приговор.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_attack_04", "text": "Хватит разговоров. Работай.", "weight": 1.2, "cooldown": 8 },
+      { "id": "strategist_attack_05", "text": "Проверим, умеешь ли ты читать предупреждения.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "attack_strong": [
+      { "id": "strategist_attack_strong_01", "text": "Вышвырни его отсюда, шериф. Дело закрыто.", "weight": 1.5, "cooldown": 11 },
+      { "id": "strategist_attack_strong_02", "text": "Мне нужен его капот на тарелке.", "weight": 1.5, "cooldown": 10 },
+      { "id": "strategist_attack_strong_03", "text": "Ты хотел гонку. Теперь держи поворот.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_attack_strong_04", "text": "У тебя много всего, малыш. Посмотрим, есть ли выдержка.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "opponent_mistake": [
+      { "id": "strategist_opponent_mistake_01", "text": "Я знал, что ты не умеешь водить. Не знал, что ты не умеешь читать.", "weight": 1.5, "cooldown": 11 },
+      { "id": "strategist_opponent_mistake_02", "text": "Дело было в том, чтобы улучшить позицию. Начни заново.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_opponent_mistake_03", "text": "Один хороший ход не исправляет плохой маршрут.", "weight": 1.2, "cooldown": 9 },
+      { "id": "strategist_opponent_mistake_04", "text": "Плохая привычка. Дорогой ремонт.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "strategist_opponent_mistake_major_01", "text": "Дело было в том, чтобы починить дорогу, а не сделать хуже. Теперь соскреби это и начни заново.", "weight": 1.5, "cooldown": 12 },
+      { "id": "strategist_opponent_mistake_major_02", "text": "Я хочу знать, кто несёт ответственность. Хотя уже вижу.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_opponent_mistake_major_03", "text": "Всё, что я вижу, — куча пустых чашек.", "weight": 1.3, "cooldown": 10 },
+      { "id": "strategist_opponent_mistake_major_04", "text": "Я знал, что ты не умеешь водить. Но это превзошло ожидания.", "weight": 1.3, "cooldown": 11 }
+    ],
+    "risk_succeeded": [
+      { "id": "strategist_risk_succeeded_01", "text": "Поверни направо, чтобы поехать налево. Теперь понял?", "weight": 1.5, "cooldown": 10 },
+      { "id": "strategist_risk_succeeded_02", "text": "Риск оправдан только тогда, когда машина выдерживает.", "weight": 1.2, "cooldown": 9 },
+      { "id": "strategist_risk_succeeded_03", "text": "Техника работает. Восторг оставь зрителям.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "exchange_refused": [
+      { "id": "strategist_exchange_refused_01", "text": "Я приехал сюда не для того, чтобы увидеть, как ты сдаёшься. И фигуру просто так не отдам.", "weight": 1.3, "cooldown": 10 },
+      { "id": "strategist_exchange_refused_02", "text": "Размен должен чинить позицию, не разбирать её на запчасти.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_exchange_refused_03", "text": "Надёжную деталь не меняют ради шума.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "under_attack": [
+      { "id": "strategist_under_attack_01", "text": "Здесь хорошие люди. Я не дам им зависеть от ненадёжной защиты.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_under_attack_02", "text": "Поверни направо, чтобы поехать налево. Выходим из заноса.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_under_attack_03", "text": "Не жалуйся на дорогу. Исправляй траекторию.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_under_attack_04", "text": "Давление показывает, где конструкция слабая.", "weight": 1.2, "cooldown": 9 },
+      { "id": "strategist_under_attack_05", "text": "Соберись. Паника ничего не ремонтирует.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "under_attack_heavy": [
+      { "id": "strategist_under_attack_heavy_01", "text": "Они бросили меня. Второй раз этого не будет.", "weight": 1.5, "cooldown": 12 },
+      { "id": "strategist_under_attack_heavy_02", "text": "Когда меня собрали по частям, мне сказали: ты — история. Но я ещё здесь.", "weight": 1.5, "cooldown": 12 },
+      { "id": "strategist_under_attack_heavy_03", "text": "Ты не можешь повернуть время вспять. Но можешь снова завести мотор.", "weight": 1.4, "cooldown": 11 },
+      { "id": "strategist_under_attack_heavy_04", "text": "Я приехал сюда не смотреть, как ты сдаёшься. Это касается и меня.", "weight": 1.3, "cooldown": 11 }
+    ],
+    "own_mistake": [
+      { "id": "strategist_own_mistake_01", "text": "Дело было в том, чтобы починить дорогу. Начни заново.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_own_mistake_02", "text": "Я знал, что ты не умеешь читать. Похоже, сегодня это я.", "weight": 1.3, "cooldown": 11 },
+      { "id": "strategist_own_mistake_03", "text": "Ошибку не оправдывают. Её исправляют.", "weight": 1.3, "cooldown": 9 },
+      { "id": "strategist_own_mistake_04", "text": "Старый чемпион тоже промахивается. Один раз.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "bad_position": [
+      { "id": "strategist_bad_position_01", "text": "Они сказали: ты — история. История ещё не закончена.", "weight": 1.5, "cooldown": 12 },
+      { "id": "strategist_bad_position_02", "text": "Всё, что я вижу, — куча пустых чашек. И работа, которую надо сделать.", "weight": 1.4, "cooldown": 11 },
+      { "id": "strategist_bad_position_03", "text": "Меня уже списывали. Не впечатляет.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_bad_position_04", "text": "Плохая дорога. Значит, держи машину крепче.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "time_trouble": [
+      { "id": "strategist_time_trouble_01", "text": "Это был один круг. Времени осталось меньше, чем поворотов.", "weight": 1.3, "cooldown": 10 },
+      { "id": "strategist_time_trouble_02", "text": "Ты не можешь повернуть время вспять. Заводи снова.", "weight": 1.4, "cooldown": 10 },
+      { "id": "strategist_time_trouble_03", "text": "Не смотри на часы. Смотри на дорогу.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "checkmate_given": [
+      { "id": "strategist_checkmate_given_01", "text": "Дело закрыто.", "weight": 1.6, "cooldown": 12 },
+      { "id": "strategist_checkmate_given_02", "text": "Вышвырни его отсюда, шериф. Я закончил.", "weight": 1.4, "cooldown": 11 },
+      { "id": "strategist_checkmate_given_03", "text": "Мне нужен был результат. Вот он.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "checkmate_received": [
+      { "id": "strategist_checkmate_received_01", "text": "Они уже говорили, что я — история. Переживу ещё раз.", "weight": 1.5, "cooldown": 12 },
+      { "id": "strategist_checkmate_received_02", "text": "Плохой последний круг. Дело закрыто.", "weight": 1.3, "cooldown": 11 },
+      { "id": "strategist_checkmate_received_03", "text": "Ты не можешь повернуть время вспять. Но можешь подготовиться лучше.", "weight": 1.3, "cooldown": 11 }
+    ],
+    "draw_offer": [
+      { "id": "strategist_draw_offer_01", "text": "Я приехал сюда не смотреть, как ты сдаёшься. Но ничья — не сдача.", "weight": 1.2, "cooldown": 10 },
+      { "id": "strategist_draw_offer_02", "text": "Дорога закончилась одинаково для обоих. Закроем дело.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "draw_accepted": [
+      { "id": "strategist_draw_accepted_01", "text": "Ничья принята. Надёжный результат лучше пустой чашки.", "weight": 1.2, "cooldown": 10 },
+      { "id": "strategist_draw_accepted_02", "text": "Дело закрыто без победителя.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "time_loss": [
+      { "id": "strategist_time_loss_01", "text": "Время не поворачивают вспять. Сегодня оно решило дело.", "weight": 1.3, "cooldown": 11 },
+      { "id": "strategist_time_loss_02", "text": "Один круг закончился раньше. Гонка — нет.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "resign": [
+      { "id": "strategist_resign_01", "text": "Я приехал сюда не смотреть, как ты сдаёшься. Сегодня сдаюсь я.", "weight": 1.4, "cooldown": 12 },
+      { "id": "strategist_resign_02", "text": "Дело закрыто. Машину в гараж.", "weight": 1.3, "cooldown": 11 },
+      { "id": "strategist_resign_03", "text": "Они сказали: ты — история. Добавим ещё одну страницу.", "weight": 1.4, "cooldown": 12 }
+    ]
+  }
+}

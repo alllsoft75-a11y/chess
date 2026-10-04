@@ -1,0 +1,23 @@
+Структура файлов аватаров:
+
+/avatars/<personality_id>/default.webp
+/avatars/<personality_id>/thinking.webp
+/avatars/<personality_id>/attack.webp
+/avatars/<personality_id>/danger.webp
+/avatars/<personality_id>/happy.webp
+/avatars/<personality_id>/sad.webp
+
+Идентификаторы персонажей:
+sanguine
+choleric
+phlegmatic
+melancholic
+tactician
+strategist
+collector
+gambiteer
+defender
+universal
+
+Можно заменить расширения и пути через поле avatars в JSON-пакете персонажа.
+Если файл отсутствует, интерфейс показывает текстовый fallback с инициалами.

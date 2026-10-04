@@ -299,6 +299,12 @@ def _line_between(source: chess.Square, target: chess.Square) -> list[chess.Squa
 
 
 def _forks(board: chess.Board) -> list[Motif]:
+    """Вилка — двойной удар, выгодный по материалу (SEE), а не просто атака двух целей.
+
+    Классифицируем как вилку: две и более цели с чистым выигрышем взятия (SEE >= 1),
+    либо королевскую вилку (шах королю + хотя бы одна выгодная цель).
+    Атака защищенной цели более дешевым защитником выгоды не дает — не вилка.
+    """
     motifs: list[Motif] = []
     for source in chess.SQUARES:
         piece = board.piece_at(source)
@@ -311,19 +317,31 @@ def _forks(board: chess.Board) -> list[Motif]:
         ]
         if len(targets) < 2:
             continue
-        target_values = {
-            chess.square_name(target): PIECE_VALUES[board.piece_type_at(target)]
-            for target in targets
-        }
-        valuable_targets = [target for target in targets if target_values[chess.square_name(target)] >= 1]
-        if len(valuable_targets) < 2:
+        target_values: dict[str, int] = {}
+        target_gains: dict[str, int] = {}
+        royal = False
+        for target in targets:
+            piece_type = board.piece_type_at(target)
+            name = chess.square_name(target)
+            target_values[name] = PIECE_VALUES[piece_type]
+            if piece_type == chess.KING:
+                royal = True
+                continue
+            gain = _best_capture_gain(board, target, piece.color)
+            if gain >= 1:
+                target_gains[name] = gain
+        if not ((royal and target_gains) or len(target_gains) >= 2):
             continue
         actor_attackers = list(board.attackers(not piece.color, source))
         actor_safe = not actor_attackers
-        best_target_value = max(target_values.values())
-        material_potential = best_target_value if actor_safe else best_target_value - PIECE_VALUES[piece.piece_type]
+        material_potential = max(target_gains.values())
         fork_name = "коневая вилка" if piece.piece_type == chess.KNIGHT else "вилка"
+        if royal:
+            fork_name = "королевская " + fork_name
         safety_text = "Атакующая фигура не находится под боем." if actor_safe else "Атакующая фигура находится под боем."
+        targets_text = ", ".join(f"{name} (+{gain} чистыми)" for name, gain in sorted(target_gains.items()))
+        if royal:
+            targets_text += ", шах королю"
         motifs.append(
             Motif(
                 code="FORK",
@@ -335,12 +353,13 @@ def _forks(board: chess.Board) -> list[Motif]:
                 actor_piece=chess.piece_name(piece.piece_type),
                 actor_safe=actor_safe,
                 target_values=target_values,
+                target_gains=target_gains,
                 material_potential=material_potential,
                 confidence=0.95,
                 explanation=(
                     f"{PIECE_NAMES[piece.piece_type].capitalize()} на {chess.square_name(source)} создаёт "
-                    f"{fork_name}: одновременно атакует {', '.join(f'{name} (+{value})' for name, value in target_values.items())}. "
-                    f"{safety_text} Потенциал материального выигрыша: {material_potential:+d}."
+                    f"{fork_name}: выгодно атакует {targets_text}. "
+                    f"{safety_text} Чистый потенциал материального выигрыша: {material_potential:+d}."
                 ),
             )
         )

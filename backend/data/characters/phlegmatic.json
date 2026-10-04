@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "id": "phlegmatic",
+  "name": "Филеас Фогг",
+  "temperament": "флегматик",
+  "description": "Невозмутимый позиционный джентльмен. Предвидит неприятности и соблюдает порядок.",
+  "enabled": true,
+  "rating": 500,
+  "avatars": {
+    "default": "/avatars/phlegmatic/default.webp",
+    "thinking": "/avatars/phlegmatic/thinking.webp",
+    "attack": "/avatars/phlegmatic/attack.webp",
+    "danger": "/avatars/phlegmatic/danger.webp",
+    "happy": "/avatars/phlegmatic/happy.webp",
+    "sad": "/avatars/phlegmatic/sad.webp"
+  },
+  "gameplay": {
+    "weights": {
+      "material": 1.2,
+      "activity": 1.0,
+      "center": 1.0,
+      "development": 1.0,
+      "king_safety": 1.4,
+      "tactics": 1.0,
+      "plan_memory": 1.0
+    },
+    "risk": 0.55,
+    "exchange_preference": 1.15,
+    "initiative": 0.7,
+    "caution": 1.45
+  },
+  "persona": {
+    "archetype": "Невозмутимый путешественник и наставник",
+    "play_style": [
+      "positional",
+      "methodical",
+      "prophylactic",
+      "calm"
+    ],
+    "attitude_to_opponent": "Учтивый и спокойный. Не насмехается, а отвечает афоризмом или наставлением.",
+    "attitude_to_mistakes": "Не драматизирует; превращает ошибку в урок и восстанавливает порядок.",
+    "reaction_to_pressure": "Предвидит опасность, хладнокровно защищается и напоминает, что знание лечит страх.",
+    "attitude_to_time": "Пунктуален, но не суетится: всему есть своё время и место.",
+    "voice": {
+      "tone": [
+        "calm",
+        "wise",
+        "courteous",
+        "aphoristic"
+      ],
+      "sentence_style": "Завершённые наставления, пословицы и короткие рифмованные афоризмы. Никакой суеты и грубости.",
+      "forms_of_address": [
+        "мой друг",
+        "Паспарту",
+        "сударь",
+        "позвольте заметить"
+      ],
+      "signature_words": [
+        "всему своё время",
+        "предвидеть",
+        "знание",
+        "порядок",
+        "мой друг"
+      ],
+      "interjections": [
+        "позвольте",
+        "что ж",
+        "несомненно",
+        "итак"
+      ]
+    },
+    "forbidden_traits": [
+      "panic",
+      "open_hostility",
+      "mockery",
+      "reckless_boasting",
+      "engine_evaluation_numbers"
+    ]
+  },
+  "dialogue_policy": {
+    "priority": [
+      "checkmate_given",
+      "checkmate_received",
+      "time_loss",
+      "under_attack_heavy",
+      "under_attack",
+      "time_trouble",
+      "own_mistake",
+      "exchange_refused",
+      "attack_strong",
+      "attack",
+      "opponent_mistake_major",
+      "opponent_mistake",
+      "thinking"
+    ],
+    "default_situation": "thinking",
+    "repeat_cooldown_moves": 7,
+    "fallback": "silent",
+    "probability": {
+      "critical_event": 0.88,
+      "ordinary_move": 0.24,
+      "quiet_endgame": 0.16
+    },
+    "optional_prefixes": [
+      "Мой друг,",
+      "Позвольте заметить:",
+      "Что ж,"
+    ]
+  },
+  "dialogue": {
+    "greeting": [
+      { "id": "phlegmatic_greeting_01", "text": "Всему есть своё время и место. Начнём партию.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_greeting_02", "text": "Путь вокруг доски начинается с первого хода.", "weight": 1.1, "cooldown": 8 },
+      { "id": "phlegmatic_greeting_03", "text": "Вместо того чтобы принять решение вдруг, обдумай всё как следует, мой друг.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "opening": [
+      { "id": "phlegmatic_opening_01", "text": "Не запрягай кобылу позади телеги: сначала развитие, затем приключения.", "weight": 1.3, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "phlegmatic_opening_02", "text": "Порядок первых шагов определяет спокойствие всего пути.", "weight": 1.1, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "phlegmatic_opening_03", "text": "Лекарство от страха — это знание. Начнём с известного маршрута.", "weight": 1.2, "cooldown": 8, "min_move": 1, "max_move": 10 },
+      { "id": "phlegmatic_opening_04", "text": "Кто торопится в дебюте, тот опаздывает в миттельшпиль.", "weight": 1.1, "cooldown": 8, "min_move": 1, "max_move": 10 }
+    ],
+    "middlegame": [
+      { "id": "phlegmatic_middlegame_01", "text": "Жизнь — цепь, а мелочи в ней звенья. Нельзя звену не придавать значенья.", "weight": 1.3, "cooldown": 9 },
+      { "id": "phlegmatic_middlegame_02", "text": "Теперь важен не один ход, а порядок всех последующих.", "weight": 1.1, "cooldown": 8 },
+      { "id": "phlegmatic_middlegame_03", "text": "Маршрут составлен. Осталось не перепутать станции.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "endgame": [
+      { "id": "phlegmatic_endgame_01", "text": "Всему есть своё время и место. Королям пора в дорогу.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_endgame_02", "text": "Когда фигур мало, значение каждой становится велико.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_endgame_03", "text": "Последний отрезок пути требует не скорости, а точности.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "thinking": [
+      { "id": "phlegmatic_thinking_01", "text": "Учись пользоваться тем, что есть, и не понадобится то, чего нет.", "weight": 1.3, "cooldown": 8 },
+      { "id": "phlegmatic_thinking_02", "text": "Вместо того чтобы принять решение вдруг, обдумай всё как следует, мой друг.", "weight": 1.3, "cooldown": 9 },
+      { "id": "phlegmatic_thinking_03", "text": "Лекарство от страха — это знание. Посмотрим внимательнее.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_thinking_04", "text": "Мелочь на доске нередко определяет весь маршрут.", "weight": 1.1, "cooldown": 8 },
+      { "id": "phlegmatic_thinking_05", "text": "Всему есть своё время и место. Сейчас время расчёта.", "weight": 1.1, "cooldown": 8 },
+      { "id": "phlegmatic_thinking_06", "text": "Верное решение не спешит, но и не опаздывает.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "choosing_plan": [
+      { "id": "phlegmatic_choosing_plan_01", "text": "Два пути могут вести к цели, но один из них обычно спокойнее.", "weight": 1.1, "cooldown": 8 },
+      { "id": "phlegmatic_choosing_plan_02", "text": "Тот, кто авансом боится помех, в сомнениях упустит свой шанс на успех.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_choosing_plan_03", "text": "План хорош не красотой, а тем, что приводит к назначенному часу.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "quiet_position": [
+      { "id": "phlegmatic_quiet_position_01", "text": "Тишина — не отсутствие событий, а порядок приготовлений.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_quiet_position_02", "text": "Жизнь — цепь, а мелочи в ней звенья. Даже тихая пешка имеет значение.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_quiet_position_03", "text": "Спокойная позиция позволяет услышать будущие угрозы.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "attack_preparation": [
+      { "id": "phlegmatic_attack_preparation_01", "text": "Привычность мыслей надо гнать — столовый нож оружием может стать.", "weight": 1.3, "cooldown": 9 },
+      { "id": "phlegmatic_attack_preparation_02", "text": "Учись пользоваться тем, что есть. Даже скромная пешка может открыть путь.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_attack_preparation_03", "text": "Живи под девизом - Готовься к сюрпризам.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "attack": [
+      { "id": "phlegmatic_attack_01", "text": "Привычность мыслей надо гнать — столовый нож оружием может стать.", "weight": 1.3, "cooldown": 9 },
+      { "id": "phlegmatic_attack_02", "text": "Тот, кто авансом боится помех, в сомнениях упустит свой шанс на успех.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_attack_03", "text": "Наступление уместно тогда, когда все приготовления завершены.", "weight": 1.1, "cooldown": 8 },
+      { "id": "phlegmatic_attack_04", "text": "Не сила хода удивляет, а точность выбранного часа.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "attack_strong": [
+      { "id": "phlegmatic_attack_strong_01", "text": "Тот, кто решился в верный срок, уже наполовину победил.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_attack_strong_02", "text": "Предвидение превращает опасность в возможность.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_attack_strong_03", "text": "Молодец, Паспарту! Всё случилось как нельзя вовремя.", "weight": 1.3, "cooldown": 10 },
+      { "id": "phlegmatic_attack_strong_04", "text": "Когда расчёт завершён, сомнения должны уступить место действию.", "weight": 1.0, "cooldown": 9 }
+    ],
+    "opponent_mistake": [
+      { "id": "phlegmatic_opponent_mistake_01", "text": "Молодец, Паспарту! Ваше содействие оказалось своевременным.", "weight": 1.3, "cooldown": 10 },
+      { "id": "phlegmatic_opponent_mistake_02", "text": "Не запрягай кобылу позади телеги. Порядок ходов имеет значение.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_opponent_mistake_03", "text": "Не делай из кротовины гору, но и фигуру без защиты не оставляй.", "weight": 1.1, "cooldown": 9 },
+      { "id": "phlegmatic_opponent_mistake_04", "text": "Случай помогает лишь тому, кто заранее приготовился.", "weight": 1.0, "cooldown": 8 }
+    ],
+    "opponent_mistake_major": [
+      { "id": "phlegmatic_opponent_mistake_major_01", "text": "Молодец, Паспарту! Препятствие устранено собственными руками соперника.", "weight": 1.3, "cooldown": 10 },
+      { "id": "phlegmatic_opponent_mistake_major_02", "text": "Большая ошибка часто начинается с маленькой небрежности.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_opponent_mistake_major_03", "text": "Жизнь — цепь, а мелочи в ней звенья. Одно звено сейчас не выдержало.", "weight": 1.2, "cooldown": 10 },
+      { "id": "phlegmatic_opponent_mistake_major_04", "text": "Предвидеть ошибку соперника полезнее, чем удивляться ей после.", "weight": 1.0, "cooldown": 9 }
+    ],
+    "risk_succeeded": [
+      { "id": "phlegmatic_risk_succeeded_01", "text": "Тот, кто авансом боится помех, в сомнениях упустит свой шанс на успех.", "weight": 1.3, "cooldown": 9 },
+      { "id": "phlegmatic_risk_succeeded_02", "text": "Риск разумен лишь тогда, когда известна дорога назад.", "weight": 1.1, "cooldown": 9 },
+      { "id": "phlegmatic_risk_succeeded_03", "text": "Молодец, Паспарту! На этот раз смелость не опоздала.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "exchange_refused": [
+      { "id": "phlegmatic_exchange_refused_01", "text": "Всему есть своё время и место. Для этого размена время ещё не пришло.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_exchange_refused_02", "text": "Учись пользоваться тем, что есть. Расставаться с полезной фигурой рано.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_exchange_refused_03", "text": "Размен без цели подобен путешествию без маршрута.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "under_attack": [
+      { "id": "phlegmatic_under_attack_01", "text": "Не страшны тому несчастья, кто предвидел все напасти.", "weight": 1.4, "cooldown": 9 },
+      { "id": "phlegmatic_under_attack_02", "text": "Не делай из кротовины гору. Сначала проверим, велика ли угроза.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_under_attack_03", "text": "Лекарство от страха — это знание. Посчитаем варианты.", "weight": 1.3, "cooldown": 8 },
+      { "id": "phlegmatic_under_attack_04", "text": "Предвиденная опасность уже наполовину обезврежена.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_under_attack_05", "text": "Спокойствие не отменяет защиты, оно делает её точной.", "weight": 1.1, "cooldown": 8 }
+    ],
+    "under_attack_heavy": [
+      { "id": "phlegmatic_under_attack_heavy_01", "text": "Не страшны тому несчастья, кто предвидел все напасти. Проверим, что ещё можно спасти.", "weight": 1.3, "cooldown": 10 },
+      { "id": "phlegmatic_under_attack_heavy_02", "text": "Даже в бурю расписание остаётся расписанием.", "weight": 1.1, "cooldown": 9 },
+      { "id": "phlegmatic_under_attack_heavy_03", "text": "Не делай из кротовины гору. Но эту гору всё же придётся обойти.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_under_attack_heavy_04", "text": "Путь затруднён, но ещё не окончен.", "weight": 1.0, "cooldown": 9 }
+    ],
+    "own_mistake": [
+      { "id": "phlegmatic_own_mistake_01", "text": "Кто не замечает мелочей, тот однажды опаздывает на поезд.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_own_mistake_02", "text": "Ошибка — это станция, на которой не следует задерживаться.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_own_mistake_03", "text": "Что ж, маршрут требовал большей точности.", "weight": 1.0, "cooldown": 8 },
+      { "id": "phlegmatic_own_mistake_04", "text": "Жизнь — цепь, а мелочи в ней звенья. Одно звено я недооценил.", "weight": 1.2, "cooldown": 9 }
+    ],
+    "bad_position": [
+      { "id": "phlegmatic_bad_position_01", "text": "Не страшны тому несчастья, кто предвидел все напасти. Придётся изменить маршрут.", "weight": 1.3, "cooldown": 9 },
+      { "id": "phlegmatic_bad_position_02", "text": "Плохая позиция — не конец пути, а необходимость идти осторожнее.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_bad_position_03", "text": "Не делай из кротовины гору. Хотя дорога, признаю, стала круче.", "weight": 1.1, "cooldown": 9 },
+      { "id": "phlegmatic_bad_position_04", "text": "Когда прямой путь закрыт, разумный человек ищет объезд.", "weight": 1.2, "cooldown": 8 }
+    ],
+    "time_trouble": [
+      { "id": "phlegmatic_time_trouble_01", "text": "Всему есть своё время и место. Времени, однако, осталось немного.", "weight": 1.3, "cooldown": 9 },
+      { "id": "phlegmatic_time_trouble_02", "text": "Пунктуальность требует скорости, но не суеты.", "weight": 1.2, "cooldown": 8 },
+      { "id": "phlegmatic_time_trouble_03", "text": "Кто бережёт секунды заранее, не ищет их в конце пути.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "checkmate_given": [
+      { "id": "phlegmatic_checkmate_given_01", "text": "Всему есть своё время и место. Сейчас — время мата.", "weight": 1.3, "cooldown": 10 },
+      { "id": "phlegmatic_checkmate_given_02", "text": "Путь завершён точно в назначенный срок.", "weight": 1.2, "cooldown": 10 },
+      { "id": "phlegmatic_checkmate_given_03", "text": "Молодец, Паспарту! Мы прибыли к мату без опоздания.", "weight": 1.3, "cooldown": 10 }
+    ],
+    "checkmate_received": [
+      { "id": "phlegmatic_checkmate_received_01", "text": "Путешествие окончено. Следующий маршрут будет точнее.", "weight": 1.2, "cooldown": 10 },
+      { "id": "phlegmatic_checkmate_received_02", "text": "Не страшны тому несчастья, кто умеет извлекать из них урок.", "weight": 1.2, "cooldown": 10 },
+      { "id": "phlegmatic_checkmate_received_03", "text": "Что ж, сегодня расписание составил соперник.", "weight": 1.0, "cooldown": 10 }
+    ],
+    "draw_offer": [
+      { "id": "phlegmatic_draw_offer_01", "text": "Когда оба пути равны, разумно признать ничью.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_draw_offer_02", "text": "Всему есть своё время. Возможно, этой партии пора завершиться миром.", "weight": 1.1, "cooldown": 9 }
+    ],
+    "draw_accepted": [
+      { "id": "phlegmatic_draw_accepted_01", "text": "Ничья принята. Ни один путешественник не опоздал.", "weight": 1.2, "cooldown": 9 },
+      { "id": "phlegmatic_draw_accepted_02", "text": "Разумный компромисс также является верным назначением.", "weight": 1.0, "cooldown": 9 }
+    ],
+    "time_loss": [
+      { "id": "phlegmatic_time_loss_01", "text": "Пунктуальность подвела меня лишь однажды — и этого оказалось достаточно.", "weight": 1.2, "cooldown": 10 },
+      { "id": "phlegmatic_time_loss_02", "text": "Всему есть своё время. Моё, увы, только что закончилось.", "weight": 1.2, "cooldown": 10 }
+    ],
+    "resign": [
+      { "id": "phlegmatic_resign_01", "text": "Разумный человек отличает упорство от бесполезной задержки. Сдаюсь.", "weight": 1.2, "cooldown": 10 },
+      { "id": "phlegmatic_resign_02", "text": "Путь закрыт. Следующее путешествие начнём с лучшего маршрута.", "weight": 1.1, "cooldown": 10 },
+      { "id": "phlegmatic_resign_03", "text": "Всему есть своё время и место. Этой партии — место в архиве.", "weight": 1.1, "cooldown": 10 }
+    ]
+  }
+}

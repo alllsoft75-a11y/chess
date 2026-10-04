@@ -18,8 +18,12 @@ from .models import (
     SavedGameSummary,
 )
 from .analysis import PIECE_VALUES, _best_capture_gain
+from .contexts import ContextLedger
+from .dialogue import generate_utterance
+from .models import ProgramMoveResponse
 from .personalities import get_personality
-from .program import _candidate, choose_program_move
+from .ponder import cancel_ponder, clear_game, start_ponder, take_pondered
+from .program import choose_program_move
 from .transition import analyze_move
 
 RULES_VERSION = "0.1.0"
@@ -113,6 +117,44 @@ def init_db() -> None:
                 backtest_result_json TEXT,
                 approved_version TEXT
             );
+            CREATE TABLE IF NOT EXISTS character_ratings (
+                personality_id TEXT PRIMARY KEY,
+                rating REAL NOT NULL,
+                games INTEGER NOT NULL DEFAULT 0,
+                wins INTEGER NOT NULL DEFAULT 0,
+                draws INTEGER NOT NULL DEFAULT 0,
+                losses INTEGER NOT NULL DEFAULT 0,
+                updated_at TEXT NOT NULL
+            );
+            CREATE TABLE IF NOT EXISTS tournaments (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                created_at TEXT NOT NULL,
+                rules_version TEXT NOT NULL,
+                max_fullmoves INTEGER NOT NULL,
+                games_per_pair INTEGER NOT NULL,
+                players_json TEXT NOT NULL,
+                status TEXT NOT NULL DEFAULT 'running',
+                error TEXT,
+                total_games INTEGER NOT NULL,
+                played_games INTEGER NOT NULL DEFAULT 0
+            );
+            CREATE TABLE IF NOT EXISTS tournament_games (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                tournament_id INTEGER NOT NULL REFERENCES tournaments(id),
+                game_index INTEGER NOT NULL,
+                white_id TEXT NOT NULL,
+                black_id TEXT NOT NULL,
+                white_rating_before REAL NOT NULL,
+                black_rating_before REAL NOT NULL,
+                white_rating_after REAL NOT NULL,
+                black_rating_after REAL NOT NULL,
+                result TEXT NOT NULL,
+                termination TEXT NOT NULL,
+                fullmoves INTEGER NOT NULL,
+                technical_score INTEGER NOT NULL,
+                pgn TEXT NOT NULL,
+                UNIQUE(tournament_id, game_index)
+            );
             """
         )
         columns = {row["name"] for row in db.execute("PRAGMA table_info(games)").fetchall()}
@@ -122,6 +164,7 @@ def init_db() -> None:
             "continuation_uci": "TEXT",
             "personality_id": "TEXT NOT NULL DEFAULT 'universal'",
             "memory_processed": "INTEGER NOT NULL DEFAULT 0",
+            "contexts_json": "TEXT",
         }
         for name, definition in migrations.items():
             if name not in columns:
@@ -225,7 +268,15 @@ def play_saved_player_move(game_id: int, player_uci: str) -> SavedGameResponse:
     player_move = chess.Move.from_uci(player_uci)
     if player_move not in board.legal_moves:
         raise ValueError(f"Ход {player_uci} нелегален")
-    player_candidate = _candidate(board, player_move)
+    cancel_ponder(game_id)
+    captured = board.piece_at(player_move.to_square) if board.is_capture(player_move) else None
+    player_candidate = MoveCandidate(
+        uci=player_move.uci(),
+        san=board.san(player_move),
+        score=PIECE_VALUES[captured.piece_type] * 20 if captured else 0,
+        reasons=[f"взятие материала +{PIECE_VALUES[captured.piece_type]}"] if captured else ["ход игрока принят"],
+        plan="ход игрока",
+    )
     with connection() as db:
         _save_move(db, game_id, board, player_move, "player", player_candidate, [])
         if row["expected_reply_uci"] and row["expected_reply_uci"] != player_uci:
@@ -240,6 +291,20 @@ def play_saved_player_move(game_id: int, player_uci: str) -> SavedGameResponse:
     )
 
 
+def _fresh_utterance(personality, decision: ProgramMoveResponse, board: chess.Board) -> ProgramMoveResponse:
+    """Ponder-решение готовилось молча — реплику генерируем в момент реального хода."""
+    if personality is None:
+        return decision
+    if decision.resigned:
+        utterance, emotion = generate_utterance(personality, None, True, decision.resignation_reason)
+    else:
+        mate_after = chess.Board(decision.fen_after).is_checkmate() if decision.move else False
+        utterance, emotion = generate_utterance(
+            personality, decision.move, move_number=board.fullmove_number, mate_after=mate_after
+        )
+    return decision.model_copy(update={"utterance": utterance, "emotion": emotion})
+
+
 def play_saved_program_move(game_id: int) -> SavedGameResponse:
     row = _row_game(game_id)
     if row["status"] != "active":
@@ -250,9 +315,28 @@ def play_saved_program_move(game_id: int) -> SavedGameResponse:
     remembered_continuation = row["continuation_uci"]
     personality = get_personality(row["personality_id"])
     learned = [rule.model_dump() for rule in list_learned_rules(row["personality_id"])]
-    decision = choose_program_move(board.fen(), remembered_continuation, personality, learned)
+    ledger = ContextLedger.loads(row["contexts_json"])
+    ledger.update(board)
+    pondered = None
+    with connection() as db:
+        last_player = db.execute(
+            "SELECT uci, fen_after FROM game_moves WHERE game_id = ? AND actor = 'player' ORDER BY ply DESC LIMIT 1",
+            (game_id,),
+        ).fetchone()
+    if last_player is not None and last_player["fen_after"] == board.fen():
+        pondered = take_pondered(game_id, last_player["uci"], board.fen())
+    if pondered is not None:
+        decision = _fresh_utterance(personality, pondered.decision, board)
+    else:
+        decision = choose_program_move(
+            board.fen(), remembered_continuation, personality, learned, contexts=ledger.export()
+        )
     program_candidate = decision.move
     with connection() as db:
+        db.execute(
+            "UPDATE games SET contexts_json = ? WHERE id = ?",
+            (ledger.dumps(), game_id),
+        )
         if program_candidate:
             _save_move(db, game_id, board, chess.Move.from_uci(program_candidate.uci), "program", program_candidate, decision.alternatives)
             db.execute(
@@ -269,7 +353,18 @@ def play_saved_program_move(game_id: int) -> SavedGameResponse:
         else:
             result, status = _update_game(db, game_id, board)
     if status == "finished":
+        clear_game(game_id)
         _process_game_memory(game_id)
+    elif program_candidate is not None:
+        start_ponder(
+            game_id,
+            board.fen(),
+            program_candidate.expected_reply_uci,
+            program_candidate.continuation_uci,
+            personality,
+            learned,
+            ledger.dumps(),
+        )
     return SavedGameResponse(
         id=game_id, fen=board.fen(), pgn=_game_pgn(game_id), result=result, status=status,
         rules_version=RULES_VERSION, personality_id=row["personality_id"], program_move=program_candidate,

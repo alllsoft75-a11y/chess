@@ -28,8 +28,9 @@ from .models import (
     SavedGameMoveRequest,
     SavedGameResponse,
     SavedGameSummary,
-    TournamentReport,
     TournamentRequest,
+    TournamentSummary,
+    RatingEntry,
 )
 from .pgn import parse_pgn
 from .personalities import list_personalities
@@ -50,7 +51,8 @@ from .storage import (
     play_saved_program_move,
     play_saved_turn,
 )
-from .tournament import run_round_robin
+from .ratings import list_ratings
+from .tournament import get_tournament_report, get_tournament_summary, list_tournaments, start_round_robin
 from .transition import analyze_move
 
 app = FastAPI(title="Chess Vision API", version="0.1.0")
@@ -115,9 +117,46 @@ def personality_experience(personality_id: str, episode: ExperienceEpisode) -> L
     return learn_from_experience(recorded)
 
 
-@app.post("/api/v1/tournaments/round-robin", response_model=TournamentReport)
-def round_robin(request: TournamentRequest) -> TournamentReport:
-    return run_round_robin(request.max_fullmoves, request.games_per_pair)
+@app.post("/api/v1/tournaments/round-robin", response_model=TournamentSummary, status_code=201)
+def round_robin(request: TournamentRequest) -> TournamentSummary:
+    try:
+        tournament_id = start_round_robin(
+            request.max_fullmoves, request.games_per_pair, request.personality_ids
+        )
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return get_tournament_summary(tournament_id)
+
+
+@app.get("/api/v1/tournaments", response_model=list[TournamentSummary])
+def tournaments() -> list[TournamentSummary]:
+    return [TournamentSummary(**item) for item in list_tournaments()]
+
+
+@app.get("/api/v1/tournaments/{tournament_id}", response_model=dict)
+def tournament_report(tournament_id: int) -> dict:
+    try:
+        return get_tournament_report(tournament_id)
+    except ValueError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.get("/api/v1/ratings", response_model=list[RatingEntry])
+def ratings() -> list[RatingEntry]:
+    return [
+        RatingEntry(
+            personality_id=item["personality_id"],
+            name=item["name"],
+            temperament=item["temperament"],
+            rating=int(round(float(item["rating"]))),
+            games=int(item["games"]),
+            wins=int(item["wins"]),
+            draws=int(item["draws"]),
+            losses=int(item["losses"]),
+            updated_at=item.get("updated_at"),
+        )
+        for item in list_ratings()
+    ]
 
 
 @app.post("/api/v1/saved-games", response_model=SavedGameResponse)

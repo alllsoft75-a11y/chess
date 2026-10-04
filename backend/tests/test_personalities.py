@@ -24,6 +24,10 @@ def test_ten_distinct_personalities() -> None:
     assert len(personalities) == 10
     assert len({personality.id for personality in personalities}) == 10
     assert all(personality.rating == 500 for personality in personalities)
+    assert next(personality for personality in personalities if personality.id == "universal").name == "Гермиона"
+    assert next(personality for personality in personalities if personality.id == "defender").name == "Кот в сапогах"
+    assert next(personality for personality in personalities if personality.id == "melancholic").name == "Доктор Ливси"
+    assert next(personality for personality in personalities if personality.id == "tactician").name == "Шерлок Холмс"
 
 
 def test_negative_experience_creates_and_strengthens_rule() -> None:

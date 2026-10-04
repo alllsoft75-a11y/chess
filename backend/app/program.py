@@ -1,8 +1,10 @@
+import threading
 import time
 
 import chess
 
 from .analysis import PIECE_VALUES, _analyze_position_cached, _best_capture_gain, _position_key, analysis_cache_info, analyze_position
+from .contexts import PositionContext
 from .dialogue import generate_utterance
 from .models import GameTurnResponse, MoveCandidate, PersonalityProfile, ProgramMoveResponse, SearchMetrics
 
@@ -12,6 +14,93 @@ DEVELOPMENT_SQUARES = {
     chess.BLACK: {chess.B8, chess.G8, chess.C8, chess.F8},
 }
 PIECE_SYMBOLS = {"pawn": "P", "knight": "N", "bishop": "B", "rook": "R", "queen": "Q", "king": "K"}
+
+_SEARCH_LOCAL = threading.local()
+
+
+def set_wide_search(enabled: bool) -> None:
+    """Фоновый ponder-поток расширяет лимиты перебора; запросы работают с обычными."""
+    _SEARCH_LOCAL.wide = enabled
+
+
+def _widen(base: int) -> int:
+    return base * 2 if getattr(_SEARCH_LOCAL, "wide", False) else base
+
+
+_HOME_MINORS = {
+    chess.WHITE: {chess.B1: chess.KNIGHT, chess.G1: chess.KNIGHT, chess.C1: chess.BISHOP, chess.F1: chess.BISHOP},
+    chess.BLACK: {chess.B8: chess.KNIGHT, chess.G8: chess.KNIGHT, chess.C8: chess.BISHOP, chess.F8: chess.BISHOP},
+}
+_CASTLED_KING = {chess.WHITE: {chess.C1, chess.G1}, chess.BLACK: {chess.C8, chess.G8}}
+_CENTER_FILES = (3, 4)
+
+
+def _undeveloped_minors(board: chess.Board, color: chess.Color) -> int:
+    count = 0
+    for square, piece_type in _HOME_MINORS[color].items():
+        piece = board.piece_at(square)
+        if piece is not None and piece.color == color and piece.piece_type == piece_type:
+            count += 1
+    return count
+
+
+def _opening_phase(board: chess.Board, color: chess.Color) -> bool:
+    return board.fullmove_number <= 14 and _undeveloped_minors(board, color) >= 2
+
+
+def _development_progress(board: chess.Board, color: chess.Color) -> tuple[int, int]:
+    """Развитие: лёгкие фигуры вне дома + рокировка + центральные пешки на чужой половине."""
+    home = _HOME_MINORS[color]
+    developed = 0
+    for square, piece_type in home.items():
+        piece = board.piece_at(square)
+        if piece is None or piece.color != color or piece.piece_type != piece_type:
+            developed += 1
+    king = board.king(color)
+    if king is not None and king in _CASTLED_KING[color]:
+        developed += 1
+    advance_rank = 3 if color == chess.WHITE else 4
+    center_pawns = sum(
+        1
+        for file in _CENTER_FILES
+        for square in board.pieces(chess.PAWN, color)
+        if chess.square_file(square) == file and chess.square_rank(square) >= advance_rank
+    )
+    developed += min(2, center_pawns)
+    return developed, len(home)
+
+
+def _pawn_push_threatens(board: chess.Board, target: chess.Square, mover_color: chess.Color) -> bool:
+    """Соперник следующим пешечным толчком (в т.ч. двойным) атакует поле."""
+    enemy = not mover_color
+    direction = 1 if enemy == chess.WHITE else -1
+    rank = chess.square_rank(target)
+    file = chess.square_file(target)
+    for delta in (-1, 1):
+        push_file = file + delta
+        if not 0 <= push_file < 8:
+            continue
+        attack_square = chess.square(push_file, rank - direction)
+        if not 0 <= chess.square_rank(attack_square) < 8:
+            continue
+        blocker = board.piece_at(attack_square)
+        if blocker is not None:
+            continue
+        source = chess.square(push_file, rank - 2 * direction)
+        pawn = board.piece_at(source) if 0 <= chess.square_rank(source) < 8 else None
+        if pawn is not None and pawn.color == enemy and pawn.piece_type == chess.PAWN:
+            return True
+        home_rank = 1 if enemy == chess.WHITE else 6
+        home_square = chess.square(push_file, home_rank)
+        if chess.square_rank(attack_square) == home_rank + 2 * direction:
+            pawn = board.piece_at(home_square)
+            middle = board.piece_at(chess.square(push_file, home_rank + direction))
+            if (
+                pawn is not None and pawn.color == enemy and pawn.piece_type == chess.PAWN
+                and middle is None
+            ):
+                return True
+    return False
 
 
 def _material(board: chess.Board, color: chess.Color) -> int:
@@ -25,6 +114,13 @@ def _strategic_score_cached(position_key: str, color: chess.Color) -> tuple[int,
     enemy = [piece for piece in analysis.pieces if piece.color != side]
     score = 0
     reasons: list[str] = []
+
+    progress_board = chess.Board(analysis.position.fen)
+    progress, total = _development_progress(progress_board, color)
+    if progress < total + 3:
+        score += progress * 12
+        if progress < total:
+            reasons.append(f"дебютное развитие: выведено фигур {min(progress, total)} из {total}")
 
     activity = sum(piece.activity.index for piece in own)
     enemy_activity = sum(piece.activity.index for piece in enemy)
@@ -55,7 +151,7 @@ def _strategic_score_cached(position_key: str, color: chess.Color) -> tuple[int,
             score -= 18
             reasons.append("король требует внимания")
 
-    critical = [piece for piece in own if piece.state == "CRITICAL"]
+    critical = [piece for piece in own if piece.state == "CRITICAL" and piece.piece != "king"]
     score -= sum(PIECE_VALUES[chess.Piece.from_symbol(PIECE_SYMBOLS[piece.piece]).piece_type] * 25 for piece in critical)
     if critical:
         reasons.append("есть критически уязвимые фигуры")
@@ -94,6 +190,11 @@ def _cheap_order_score(board: chess.Board, move: chess.Move) -> int:
         score += 80
     if move.to_square in CENTER:
         score += 18
+    centrality = 3.5 - max(
+        abs(chess.square_file(move.to_square) - 3.5),
+        abs(chess.square_rank(move.to_square) - 3.5),
+    )
+    score += int(centrality * 8)
     if mover and move.from_square in DEVELOPMENT_SQUARES[board.turn] and mover.piece_type in {chess.KNIGHT, chess.BISHOP}:
         score += 24
     if board.is_castling(move):
@@ -226,25 +327,43 @@ def _static_candidate(board: chess.Board, move: chess.Move) -> MoveCandidate:
         score += 35
         reasons.append("рокировка и безопасность короля")
 
+    if _opening_phase(board, color):
+        undeveloped = _undeveloped_minors(board, color)
+        quiet = not board.is_capture(move) and not board.gives_check(move) and not board.is_castling(move) and not move.promotion
+        mover_on_home = mover is not None and _HOME_MINORS[color].get(move.from_square) == (mover.piece_type if mover else None)
+        target_is_home = _HOME_MINORS[color].get(move.to_square) is not None
+        if quiet and not board.is_check() and mover is not None and mover.piece_type != chess.PAWN:
+            if undeveloped >= 2 and not mover_on_home:
+                score -= 20
+                reasons.append("темп: в дебюте приоритет у развития новых фигур")
+            if target_is_home:
+                score -= 28
+                reasons.append("фигура возвращается на стартовое поле: потеря темпа развития")
+            if mover is not None and PIECE_VALUES[mover.piece_type] >= 3 and _pawn_push_threatens(board, move.to_square, color):
+                score -= 16
+                reasons.append("поле простреливается пешечным толчком — темп будет потерян")
+
     analysis = analyze_position(after.fen())
     own_side = "white" if color == chess.WHITE else "black"
     moved = next((piece for piece in analysis.pieces if piece.color == own_side and piece.square == chess.square_name(move.to_square)), None)
     if moved:
         score += moved.activity.index // 6
-        value = PIECE_VALUES[chess.Piece.from_symbol(PIECE_SYMBOLS[moved.piece]).piece_type]
+        captured_value = PIECE_VALUES[captured.piece_type] if captured else 0
         if moved.state == "CRITICAL":
-            score -= value * 45
-            reasons.append("фигура остаётся под немедленной потерей")
-            if value >= 5:
-                score -= value * 35
-                reasons.append("ценная фигура поставлена под прямое взятие")
+            threat_loss, _ = _cheapest_threat_loss(after, move.to_square, color)
+            net_loss = threat_loss - captured_value
+            if net_loss > 0:
+                score -= net_loss * 60
+                reasons.append(f"фигура остаётся под немедленной потерей (чистая {net_loss})")
+                if net_loss >= 3:
+                    reasons.append("ценная фигура поставлена под прямое взятие")
         elif moved.state == "SAFE":
             score += 5
             reasons.append("фигура остаётся устойчивой")
 
     strong_motifs = [
         motif for motif in analysis.motifs
-        if motif.side == own_side and motif.material_potential > 0 and motif.actor_safe and 100 not in motif.target_values.values()
+        if motif.side == own_side and motif.actor_safe and motif.material_potential > 0
     ]
     if strong_motifs:
         best = max(strong_motifs, key=lambda motif: motif.material_potential)
@@ -427,7 +546,8 @@ def _preflight(board: chess.Board, move: chess.Move) -> tuple[bool, list[str]]:
                 return False, [f"фигура стоимостью {moved_value} остаётся под потерей ради {captured_value}"]
         if moved_value >= 3:
             loss, attacker = _cheapest_threat_loss(after, move.to_square, color)
-            if loss >= 2:
+            net_loss = loss - captured_value
+            if net_loss >= 2:
                 combo = _forcing_combo(board, move)
                 tempo, _ = _tempo_rescue_bonus(board, move)
                 captured_was_dangerous_passer = bool(
@@ -438,7 +558,7 @@ def _preflight(board: chess.Board, move: chess.Move) -> tuple[bool, list[str]]:
                 if (combo is None or combo[0] <= 0) and tempo <= 0 and not captured_was_dangerous_passer:
                     return False, [
                         f"фигура стоимостью {moved_value} приходит на поле под более дешёвую атаку "
-                        f"({attacker}): чистая потеря {loss}"
+                        f"({attacker}): чистая потеря {net_loss}"
                     ]
 
     after_exposure = _critical_exposure(after, color)
@@ -466,24 +586,32 @@ def _forcing_reply_danger(board_after_our_move: chess.Board, reply: MoveCandidat
         if motif.side != enemy_side or motif.code != "FORK":
             continue
         king_targeted = any(value == 100 for value in motif.target_values.values())
-        valuable_targets = [value for value in motif.target_values.values() if 3 <= value < 100]
-        if king_targeted and valuable_targets:
-            loss = max(valuable_targets)
-            danger = max(danger, loss * 55)
-            reasons.append(f"форсирующая вилка после {reply.san} угрожает фигурой стоимостью {loss}")
+        gains = motif.target_gains or {
+            name: value for name, value in motif.target_values.items() if 1 <= value < 100
+        }
+        best_gain = max(gains.values(), default=0)
+        if best_gain <= 0:
+            continue
+        if king_targeted:
+            danger = max(danger, best_gain * 55)
+            reasons.append(f"королевская вилка после {reply.san}: чистый выигрыш соперника {best_gain}")
+        elif len(gains) >= 2 and motif.actor_safe:
+            danger = max(danger, best_gain * 40)
+            reasons.append(f"двойной удар после {reply.san} по двум выгодным целям (лучшее {best_gain})")
     if position.is_check():
         checking_square = reply_move.to_square
         checking_piece = position.piece_at(checking_square)
         if checking_piece:
-            attacked_values = [
-                PIECE_VALUES[position.piece_type_at(target)]
+            attacked_gains = [
+                _best_capture_gain(position, target, not our_color)
                 for target in position.attacks(checking_square)
                 if position.color_at(target) == our_color and position.piece_type_at(target) != chess.KING
             ]
-            if attacked_values:
-                loss = max(attacked_values)
+            real_gains = [gain for gain in attacked_gains if gain >= 1]
+            if real_gains:
+                loss = max(real_gains)
                 danger = max(danger, loss * 55)
-                reasons.append(f"шах одновременно атакует фигуру стоимостью {loss}")
+                reasons.append(f"шах одновременно выигрывает материал (чистыми {loss})")
     return danger, reasons
 
 
@@ -584,13 +712,13 @@ def _planned_candidate(board: chess.Board, move: chess.Move) -> MoveCandidate:
     if after.is_game_over():
         return immediate
 
-    replies = _opponent_reply_set(after)
+    replies = _opponent_reply_set(after, limit=_widen(5))
     evaluated_replies: list[tuple[int, MoveCandidate, MoveCandidate | None]] = []
     root_balance = _material(board, board.turn) - _material(board, not board.turn)
     for reply in replies:
         after_reply = after.copy(stack=False)
         after_reply.push_uci(reply.uci)
-        continuations = _reply_candidates(after_reply, limit=3)
+        continuations = _reply_candidates(after_reply, limit=_widen(3))
         continuation = continuations[0] if continuations else None
         continuation_gain = max(-100, min(100, continuation.score if continuation else 0))
         line_end = after_reply.copy(stack=False)
@@ -634,10 +762,26 @@ def _candidate(board: chess.Board, move: chess.Move) -> MoveCandidate:
     return _static_candidate(board, move)
 
 
-def _resignation_reason(board: chess.Board) -> str | None:
+def _quiescent_recovery(board: chess.Board) -> int:
+    """Лучший немедленный материальный возврат: чистый выигрыш серии взятий (SEE)."""
+    color = board.turn
+    best = 0
+    for move in board.legal_moves:
+        if not board.is_capture(move):
+            continue
+        occupant = board.piece_at(move.to_square)
+        if occupant is None or occupant.color == color:
+            continue
+        best = max(best, _best_capture_gain(board, move.to_square, color))
+    return best
+
+
+def _resignation_reason(board: chess.Board, contextual_hope: int = 0) -> str | None:
     color = board.turn
     deficit = _material(board, not color) - _material(board, color)
-    if deficit < 5:
+    recovery = _quiescent_recovery(board)
+    effective_deficit = deficit - recovery
+    if effective_deficit < 5:
         return None
     analysis = analyze_position(board.fen())
     side = "white" if color == chess.WHITE else "black"
@@ -652,12 +796,18 @@ def _resignation_reason(board: chess.Board) -> str | None:
             tactical_resources.append(candidate)
     if tactical_resources:
         return None
-    if deficit >= 9:
-        return f"материальный дефицит {deficit}, убедительных шахов, взятий или контригры не найдено"
-    if deficit >= 5 and active <= 1 and critical >= 1:
-        return f"материальный дефицит {deficit}, фигуры пассивны и сохраняется критическая слабость"
-    if deficit >= 5 and board.fullmove_number >= 15 and active == 0:
-        return f"материальный дефицит {deficit}, активной контригры нет"
+    hopeless_threshold = 12 if contextual_hope >= 4 else 9
+    if effective_deficit >= hopeless_threshold:
+        return (
+            f"материальный дефицит {deficit} (с учётом немедленного возврата {recovery}: {effective_deficit}), "
+            "убедительных шахов, взятий или контригры не найдено"
+        )
+    if contextual_hope >= 4:
+        return None
+    if effective_deficit >= 5 and active <= 1 and critical >= 1:
+        return f"материальный дефицит {deficit} (возврат {recovery}), фигуры пассивны и сохраняется критическая слабость"
+    if effective_deficit >= 5 and board.fullmove_number >= 15 and active == 0:
+        return f"материальный дефицит {deficit} (возврат {recovery}), активной контригры нет"
     return None
 
 
@@ -699,29 +849,128 @@ def _damage_control_candidate(board: chess.Board) -> MoveCandidate | None:
     return options[0][1]
 
 
-def _personality_adjustment(candidate: MoveCandidate, personality: PersonalityProfile | None) -> MoveCandidate:
+def _style_delta(board: chess.Board, move: chess.Move, personality: PersonalityProfile) -> int:
+    """Отклонение хода от нейтрального вкуса: сколько характер добавляет/убавляет к его цене."""
+    color = board.turn
+    weights = personality.weights
+    is_check = board.gives_check(move)
+    is_capture = board.is_capture(move)
+    captured_value = 0
+    if is_capture:
+        captured = board.piece_at(move.to_square)
+        captured_value = PIECE_VALUES[captured.piece_type] if captured else 0
+    enemy_half = chess.square_rank(move.to_square) >= 4 if color == chess.BLACK else chess.square_rank(move.to_square) <= 3
+    develops = move.from_square in DEVELOPMENT_SQUARES[color] and (board.piece_type_at(move.from_square) or 0) in {chess.KNIGHT, chess.BISHOP}
+    center_push = board.piece_type_at(move.from_square) == chess.PAWN and move.to_square in CENTER
+    after = board.copy(stack=False)
+    after.push(move)
+    landing_attacked = bool(after.attackers(not color, move.to_square))
+    castle = board.is_castling(move)
+
+    delta = 0
+    delta += int((personality.initiative - 1.0) * (60 * is_check + 35 * is_capture + 20 * enemy_half))
+    delta += int((weights.get("tactics", 1.0) - 1.0) * 45 * is_check)
+    delta += int((weights.get("center", 1.0) - 1.0) * 30 * (move.to_square in CENTER))
+    delta += int((weights.get("development", 1.0) - 1.0) * 25 * develops)
+    delta += int((weights.get("king_safety", 1.0) - 1.0) * (35 * castle + 15 * (not landing_attacked)))
+    delta += int((weights.get("material", 1.0) - 1.0) * 14 * captured_value + (1.0 - personality.exchange_preference) * 10 * is_capture)
+    delta += int((personality.caution - 1.0) * (12 * castle - 15 * enemy_half - 12 * landing_attacked))
+    delta += int((personality.risk - 1.0) * 18 * (is_check or center_push))
+    delta += 10 * int(center_push) * int(personality.initiative >= 1.4)
+    return delta
+
+
+def _personality_adjustment(
+    candidate: MoveCandidate,
+    personality: PersonalityProfile | None,
+    board: chess.Board | None = None,
+) -> MoveCandidate:
     if personality is None:
         return candidate
-    adjustment = 0
     reasons = list(candidate.reasons)
     text = " ".join(candidate.reasons).lower()
+    hard_rejection = any(
+        marker in text
+        for marker in (
+            "допускает мат",
+            "под более дешёвую атаку",
+            "остаётся под потерей",
+            "не устранена угроза",
+            "крупная фигура теряется",
+            "игнорирует немедленную угрозу",
+        )
+    )
+    if hard_rejection:
+        return candidate
+    adjustment = 0
+    weights = personality.weights
     if "материал" in text or "взятие" in text:
-        adjustment += int((personality.weights.get("material", 1.0) - 1.0) * 35)
+        adjustment += int((weights.get("material", 1.0) - 1.0) * 55)
     if "актив" in text or "координац" in text:
-        adjustment += int((personality.weights.get("activity", 1.0) - 1.0) * 25)
+        adjustment += int((weights.get("activity", 1.0) - 1.0) * 40)
     if "центр" in text:
-        adjustment += int((personality.weights.get("center", 1.0) - 1.0) * 22)
+        adjustment += int((weights.get("center", 1.0) - 1.0) * 35)
     if "развит" in text:
-        adjustment += int((personality.weights.get("development", 1.0) - 1.0) * 22)
-    if "шах" in text or "fork" in text or "вилка" in text:
-        adjustment += int((personality.weights.get("tactics", 1.0) - 1.0) * 30)
+        adjustment += int((weights.get("development", 1.0) - 1.0) * 30)
+    if "шах" in text or "fork" in text or "вилка" in text or "комбинац" in text:
+        adjustment += int((weights.get("tactics", 1.0) - 1.0) * 50)
     if "потер" in text or "критич" in text:
-        adjustment -= int(personality.caution * 18)
+        adjustment -= int(max(0.0, personality.caution - 1.0) * 60 + 12)
     if "размен" in text:
-        adjustment += int((personality.exchange_preference - 1.0) * 25)
+        adjustment += int((personality.exchange_preference - 1.0) * 40)
+    if "мотив" in text or "форсирован" in text or "давлен" in text:
+        adjustment += int((personality.risk - 1.0) * 25)
+
+    if board is not None and len(candidate.uci) >= 4:
+        try:
+            move = chess.Move.from_uci(candidate.uci)
+        except ValueError:
+            move = None
+        if move is not None and board.is_legal(move):
+            delta = _style_delta(board, move, personality)
+            if delta:
+                adjustment += delta
+                if delta >= 8:
+                    reasons.append("стиль: ход в характере")
+                elif delta <= -8:
+                    reasons.append("стиль: ход против характера")
     if adjustment:
         reasons.append(f"характер {personality.name}: поправка {adjustment:+d}")
     return candidate.model_copy(update={"score": candidate.score + adjustment, "reasons": reasons})
+
+
+def _context_adjustment(candidate: MoveCandidate, contexts: list[PositionContext]) -> MoveCandidate:
+    if not contexts:
+        return candidate
+    bonus = 0
+    reasons: list[str] = []
+    for context in contexts:
+        if context.suggested_uci and context.suggested_uci == candidate.uci:
+            if bonus < 140:
+                bonus = 140
+            reasons.append(f"реализация отслеживаемого контекста: {context.note}")
+            continue
+        if not context.actor or not context.target_square or len(candidate.uci) < 4:
+            continue
+        try:
+            source = chess.parse_square(context.actor)
+            target = chess.parse_square(context.target_square)
+            move_from = chess.parse_square(candidate.uci[:2])
+            move_to = chess.parse_square(candidate.uci[2:4])
+        except ValueError:
+            continue
+        if move_from != source or move_to == target:
+            continue
+        before = max(abs(chess.square_file(source) - chess.square_file(target)), abs(chess.square_rank(source) - chess.square_rank(target)))
+        after = max(abs(chess.square_file(move_to) - chess.square_file(target)), abs(chess.square_rank(move_to) - chess.square_rank(target)))
+        if after < before:
+            step = 30 if context.kind == "fork_opportunity" else 18
+            if bonus < step:
+                bonus = step
+            reasons.append(f"прогресс контекста ({context.kind}) к {context.target_square}")
+    if bonus:
+        return candidate.model_copy(update={"score": candidate.score + bonus, "reasons": [*reasons, *candidate.reasons]})
+    return candidate
 
 
 def choose_program_move(
@@ -729,6 +978,8 @@ def choose_program_move(
     planned_continuation: str | None = None,
     personality: PersonalityProfile | None = None,
     learned_rules: list[dict] | None = None,
+    contexts: list[dict] | None = None,
+    quiet: bool = False,
 ) -> ProgramMoveResponse:
     started = time.perf_counter()
     cache_before = analysis_cache_info()
@@ -747,7 +998,7 @@ def choose_program_move(
         board.push_uci(damage_control.uci)
         utterance, emotion = (
             generate_utterance(personality, damage_control, move_number=move_number, mate_after=board.is_checkmate())
-            if personality
+            if personality and not quiet
             else (None, None)
         )
         return ProgramMoveResponse(
@@ -759,7 +1010,10 @@ def choose_program_move(
             utterance=utterance,
             emotion=emotion,
         )
-    resignation_reason = _resignation_reason(board)
+    parsed_contexts = [PositionContext.from_dict(item) for item in (contexts or []) if isinstance(item, dict)]
+    active_contexts = [context for context in parsed_contexts if context.status == "active"]
+    contextual_hope = max((context.target_value for context in active_contexts), default=0)
+    resignation_reason = _resignation_reason(board, contextual_hope)
     if resignation_reason:
         result = "0-1" if board.turn == chess.WHITE else "1-0"
         utterance, emotion = generate_utterance(personality, None, True, resignation_reason) if personality else (None, None)
@@ -776,18 +1030,55 @@ def choose_program_move(
         )
 
     legal_moves = list(board.legal_moves)
-    root_moves = _prefilter_moves(board, limit=7)
+    root_moves = _prefilter_moves(board, limit=_widen(7))
     candidate_ucis = {move.uci() for move in root_moves}
     candidate_ucis.update(
         move.uci()
         for move in legal_moves
         if _tempo_rescue_bonus(board, move)[0] > 0
     )
+    if personality is not None:
+        forcing_extra = sorted(
+            [
+                move for move in legal_moves
+                if move.uci() not in candidate_ucis and (board.is_capture(move) or board.gives_check(move))
+            ],
+            key=lambda move: (-_cheap_order_score(board, move), move.uci()),
+        )
+        quiet_extra = sorted(
+            [
+                move for move in legal_moves
+                if move.uci() not in candidate_ucis
+                and not board.is_capture(move)
+                and not board.gives_check(move)
+                and not board.is_castling(move)
+            ],
+            key=lambda move: (-_cheap_order_score(board, move), move.uci()),
+        )
+        if personality.initiative >= 1.3:
+            candidate_ucis.update(move.uci() for move in forcing_extra[:2])
+        if personality.caution >= 1.3:
+            candidate_ucis.update(move.uci() for move in quiet_extra[:2])
+        if personality.weights.get("material", 1.0) >= 1.5:
+            candidate_ucis.update(move.uci() for move in forcing_extra[:1])
     if planned_continuation and chess.Move.from_uci(planned_continuation) in board.legal_moves:
         candidate_ucis.add(planned_continuation)
+    for context in active_contexts:
+        if not context.suggested_uci:
+            continue
+        try:
+            suggested = chess.Move.from_uci(context.suggested_uci)
+        except ValueError:
+            continue
+        if suggested in board.legal_moves:
+            candidate_ucis.add(context.suggested_uci)
     planned = [_planned_candidate(board, chess.Move.from_uci(uci)) for uci in candidate_ucis]
     analyzed_branches = len(planned)
-    planned = [_personality_adjustment(candidate, personality) for candidate in planned]
+    planned = [
+        candidate if candidate.score <= -900 else _personality_adjustment(candidate, personality, board)
+        for candidate in planned
+    ]
+    planned = [_context_adjustment(candidate, active_contexts) for candidate in planned]
     if learned_rules:
         adjusted = []
         situation_context = analyze_position(board.fen()).situation.context
@@ -819,11 +1110,11 @@ def choose_program_move(
     color = board.turn
     deficit = _material(board, not color) - _material(board, color)
     viable = [item for item in planned if item.score > -900]
-    if not viable and deficit >= 5:
+    if not viable and deficit - _quiescent_recovery(board) >= 5:
         resignation_reason = (
             f"материальный дефицит {deficit}, все рассмотренные ходы допускают мат или крупную немедленную потерю"
         )
-        utterance, emotion = generate_utterance(personality, None, True, resignation_reason) if personality else (None, None)
+        utterance, emotion = generate_utterance(personality, None, True, resignation_reason) if personality and not quiet else (None, None)
         return ProgramMoveResponse(
             move=None,
             alternatives=planned[:5],
@@ -848,7 +1139,7 @@ def choose_program_move(
     board.push_uci(chosen.uci)
     utterance, emotion = (
         generate_utterance(personality, chosen, move_number=move_number, mate_after=board.is_checkmate())
-        if personality
+        if personality and not quiet
         else (None, None)
     )
     cache_after = analysis_cache_info()

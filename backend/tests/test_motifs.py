@@ -13,7 +13,8 @@ def test_immediate_knight_fork() -> None:
     assert found[0].targets == ["d7", "f7"]
     assert found[0].actor_piece == "knight"
     assert found[0].actor_safe is True
-    assert found[0].material_potential == 9
+    assert found[0].material_potential == 6
+    assert found[0].target_gains == {"d7": 6, "f7": 2}
     assert "коневая вилка" in found[0].explanation
 
 
