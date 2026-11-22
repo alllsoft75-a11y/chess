@@ -1,0 +1,16 @@
+services:
+  chess:
+    image: chess-vision:local
+    pull_policy: never
+    restart: unless-stopped
+    ports:
+      - "${CHESS_BIND_IP:-127.0.0.1}:${CHESS_PORT:-8080}:8000"
+    environment:
+      CHESS_VISION_DB: /var/lib/chess/chess_vision.db
+    volumes:
+      - ./data:/var/lib/chess
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=2).close()"]
+      interval: 5s
+      timeout: 3s
+      retries: 6
